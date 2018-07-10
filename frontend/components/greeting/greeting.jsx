@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Greeting = (props) => {
   const sessionLinks = () => (
-    <nav className="login-signup">
-      <Link to="/login">Login</Link><br/>
-      <Link to="/signup">Sign up!</Link>
+    <nav className="sign-up-nav">
+      Have an Account? <span> </span><Link to='/login'>Log in</Link>
     </nav>
   );
   const personalGreeting = () => (
@@ -14,7 +13,11 @@ const Greeting = (props) => {
       <button className="header-button" onClick={props.logout}>Log Out</button>
     </hgroup>
   );
-  return props.currentUser ? personalGreeting() : sessionLinks();
+  if (props.currentUser) {
+    return personalGreeting()
+  } else {
+    return ""
+  }
 };
 
 

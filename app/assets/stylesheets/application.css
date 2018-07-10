@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+input {
+  border-style: solid;
+  border: 1px;
+  border-width: 1px;
+}
+
+body {
+  font-family: sans-serif;
+}
