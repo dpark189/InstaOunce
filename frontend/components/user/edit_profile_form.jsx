@@ -1,6 +1,7 @@
 import React from 'react';
 import { merge } from 'lodash';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class EditProfileForm extends React.Component {
   constructor(props){
@@ -11,6 +12,7 @@ class EditProfileForm extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
+    debugger
     this.setState(newProps.user);
   }
 
@@ -75,4 +77,31 @@ class EditProfileForm extends React.Component {
   }
 }
 
-export default withRouter(EditProfileForm);
+const mapStateToprops = (state, ownProps) => {
+
+  const dummyUser = {
+    full_name: "",
+    username: "",
+    website: "",
+    bio: "",
+    email: "",
+    phone_number: "",
+    gender: ""
+  };
+
+  const user = (state.entities.users[ownProps.match.params.userId]) || (dummyUser);
+  const usertype = "i dont know why this is here";
+  return {
+    user,
+    currentUser: state.session
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateUser: (user) => dispatch(updateUser(user)),
+    fetchUser: (user) => dispatch(fetchUser)
+  };
+};
+
+export default withRouter(connect(mapStateToprops, mapDispatchToProps)(EditProfileForm));

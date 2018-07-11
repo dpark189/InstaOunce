@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { updateUser, fetchUser } from '../../actions/user_actions';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Route, Link } from 'react-router-dom';
 import EditProfileForm from './edit_profile_form';
 
 class UserProfile extends React.Component {
@@ -24,12 +24,13 @@ class UserProfile extends React.Component {
 
     if (this.props.currentUser.id === this.props.user.id){
       userEdit = (
-        <EditProfileForm user={this.props.user} updateUser={this.props.updateUser}/>
+        <Link to={`users/${this.props.currentUser.id}/edit`} >Edit Profile</Link>
       )
     }
     return(
-      <div>
+      <div className="profile-main">
         {userEdit}
+        <Route exact path="users/:userId/edit" component={EditProfileForm} />
       </div>
     )
   }
