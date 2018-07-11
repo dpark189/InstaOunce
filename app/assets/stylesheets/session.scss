@@ -1,10 +1,41 @@
 
+.top-session-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
 
 .session-container {
+  background: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   padding-bottom: 15px;
   padding-top: 15px;
   margin-bottom: 10px;
+  min-width: 346px;
   width: 346px;
+}
+
+div.signup-image {
+  overflow: hidden;
+  width: 454px;
+  height: 618px;
+  margin-left: -35px;
+  margin-right: 10px;
+}
+
+.signup-logo {
+  width: 175px;
+  height: 51px;
+  display: flex;
+  align-self: center;
+}
+
+.signup-phone {
+  width: 454px;
+  height: 618px;
 }
 
 .form-div {
@@ -13,8 +44,9 @@
   flex-direction: column;
   align-content: center;
   box-sizing: border-box;
-  border: 1px solid grey;
+  border: 1px solid #e6e6e6;
   text-align: center;
+  height: 535px;
 }
 
 .form-div > span {
@@ -26,16 +58,6 @@
   text-align: center;
 }
 
-.bottom-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 25px;
-  font-size: 14px;
-  display: block;
-  padding: 10px 0;
-  height: 48px;
-}
 
 .bottom-div > a {
   text-decoration: none;
@@ -48,7 +70,12 @@
   align-items: center;
 }
 
-
+.bottom-div {
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid #e6e6e6;
+}
 
 .session-form > input {
   width: 250px;

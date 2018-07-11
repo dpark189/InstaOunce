@@ -55,34 +55,41 @@ class SignupSessionForm extends React.Component {
 
     return (
       <div className="top-session-div">
-        <div className="session-container form-div">
-          <span>{topFormComponent}</span>
-          <form className="session-form" onSubmit={this.handleSubmit}>
-            <input
-              placeholder="Email"
-              onChange={this.handleChange("email")}
-              value={this.state.email}>
-            </input>
-            <input
-              placeholder="Full Name"
-              onChange={this.handleChange("full_name")}
-              value={this.state.fullName}>
-            </input>
-            <input
-              placeholder="Username"
-              onChange={this.handleChange("username")}
-              value={this.state.username}>
-            </input>
-            <input
-              placeholder="Password"
-              onChange={this.handleChange("password")}
-              type="password" value={this.state.password}>
-            </input>
-            <input type="submit" value={this.props.formType}/>
-          </form>
-          {bottomDisclaimer}
+        <div className="signup-image">
+          <img className="signup-phone" src={window.signup_phone_pic}/>
         </div>
-        {bottomFormComponent}
+        <div className="session-container-organize">
+          <div className="session-container form-div">
+            <img className="signup-logo"
+              src={window.logoName}/>
+              <span>{topFormComponent}</span>
+              <form className="session-form" onSubmit={this.handleSubmit}>
+                <input
+                  placeholder="Email"
+                  onChange={this.handleChange("email")}
+                  value={this.state.email}>
+                </input>
+                <input
+                  placeholder="Full Name"
+                  onChange={this.handleChange("full_name")}
+                  value={this.state.fullName}>
+                </input>
+                <input
+                  placeholder="Username"
+                  onChange={this.handleChange("username")}
+                  value={this.state.username}>
+                </input>
+                <input
+                  placeholder="Password"
+                  onChange={this.handleChange("password")}
+                  type="password" value={this.state.password}>
+                </input>
+                <input type="submit" value={this.props.formType}/>
+              </form>
+              {bottomDisclaimer}
+            </div>
+            {bottomFormComponent}
+        </div>
       </div>
     );
   }
