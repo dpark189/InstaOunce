@@ -52,11 +52,14 @@ class SignupSessionForm extends React.Component {
         Have an Account?<Link to='/login'> Log in</Link>
       </div>
     )
+    // <img className="signup-phone" src={window.signup_phone_pic}/>
 
     return (
       <div className="top-session-div">
-        <div className="signup-image">
-          <img className="signup-phone" src={window.signup_phone_pic}/>
+        <div className="signup-image"
+          style={{backgroundImage: "url(" + window.signup_phone_pic + ")"}}
+          >
+
         </div>
         <div className="session-container-organize">
           <div className="session-container form-div">

@@ -24,6 +24,8 @@ div.signup-image {
   height: 618px;
   margin-left: -35px;
   margin-right: 10px;
+  object-fit: cover;
+  background-size: cover;
 }
 
 .signup-logo {
@@ -33,10 +35,10 @@ div.signup-image {
   align-self: center;
 }
 
-.signup-phone {
-  width: 454px;
-  height: 618px;
-}
+// .signup-phone {
+//   width: 454px;
+//   height: 618px;
+// }
 
 .form-div {
   display: flex;
