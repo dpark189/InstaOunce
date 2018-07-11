@@ -15,15 +15,23 @@ export const updateUser = (user) => {
     return UserApiUtil.updateUser(user).then(
       (user) => dispatch(receiveUser(user)),
       (err) => {
-        
+
         return dispatch(receiveUserErrors(err))
       }
     )
   };
 };
 
+export const fetchUser = (userId) => new Promise(function(resolve, reject) {
+  return dispatch => {
+    return UserApiUtil.fetchUser(userId).then(
+      (user) => dispatch(receiveUser(user))
+    )
+  };
+});
+
 export const receiveUserErrors = (errors) => {
-  
+
   return {
     type: RECEIVE_USER_ERRORS,
     errors
