@@ -11,7 +11,7 @@ class SignupImage extends React.Component {
   }
 
   getRandomImageId() {
-    debugger
+
     const min = 0;
     const max = 5;
     this.setState({currentImage: Math.floor(Math.random() * (max - min)) + min });

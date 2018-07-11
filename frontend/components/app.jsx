@@ -5,20 +5,20 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import UserProfileContainer from './user/user_profile_container';
+import NavBarContainer from './navbar/navbar_container';
+import FontAwesome from 'react-fontawesome';
 
 
 const App = () => {
   return (
     <div>
       <section>
-        <h1>InstaOunce</h1>
+        <ProtectedRoute path="/" component={NavBarContainer}/>
         <section className="session-order">
-
           <Switch>
             <AuthRoute exact path="/" component={SignupFormContainer} />
             <AuthRoute exact path="/login" component={LoginFormContainer} />
           </Switch>
-          <GreetingContainer />
 
         </section>
 

@@ -8,6 +8,7 @@ import EditProfileForm from './edit_profile_form';
 class UserProfile extends React.Component {
 
   componentDidMount(){
+    debugger
     const id = this.props.match.params.userId;
     this.props.fetchUser(id);
   }
@@ -20,7 +21,7 @@ class UserProfile extends React.Component {
   // TODO: logic for when to show user edit form or user's page
   render(){
     let userEdit;
-    debugger
+
     if (this.props.currentUser.id === this.props.user.id){
       userEdit = (
         <EditProfileForm user={this.props.user} updateUser={this.props.updateUser}/>
@@ -35,7 +36,7 @@ class UserProfile extends React.Component {
 }
 
 const mapStateToprops = (state, ownProps) => {
-  debugger
+
   const dummyUser = {
     full_name: "",
     username: "",
