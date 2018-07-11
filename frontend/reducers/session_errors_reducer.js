@@ -7,8 +7,7 @@ export default (state = [], action ) => {
     case RECEIVE_SESSION_ERRORS:
       return merge({}, state, action.errors);
     case RECEIVE_CURRENT_USER:
-
-    return [];
+      return [];
     default:
       return state;
   }
