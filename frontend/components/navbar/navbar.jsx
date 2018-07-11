@@ -24,7 +24,7 @@ export default ({sessionId}) => (
               <i className="fa fa-compass icon2"></i>
               <i className="fa fa-heart icon2"></i>
 
-              <Link to={`/user/${sessionId}`}>
+              <Link to={`/users/${sessionId}`}>
               <i className="fa fa-user icon2 "></i>
               </Link>
             </span>
