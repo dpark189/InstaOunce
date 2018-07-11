@@ -5,6 +5,7 @@ const defaultState = {};
 
 export default (state = defaultState, action ) => {
   Object.freeze(state);
+
   const newState = merge({}, state);
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
