@@ -18,7 +18,7 @@ class SignupImage extends React.Component {
   }
 
   componentDidMount () {
-    this.intervalId = setInterval(this.getRandomImageId, 5000);
+    this.intervalId = setInterval(this.getRandomImageId, 2000);
   }
 
   componentWillUnmount() {
