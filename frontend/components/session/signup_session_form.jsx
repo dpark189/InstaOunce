@@ -1,6 +1,7 @@
 import React from 'react';
 import { merge } from 'lodash';
 import { Link, Route } from 'react-router-dom';
+import SignupImage from './signup_image';
 
 
 class SignupSessionForm extends React.Component {
@@ -57,9 +58,8 @@ class SignupSessionForm extends React.Component {
     return (
       <div className="top-session-div">
         <div className="signup-image"
-          style={{backgroundImage: "url(" + window.signup_phone_pic + ")"}}
-          >
-
+          style={{backgroundImage: "url(" + window.signup_phone_pic + ")"}}>
+          <SignupImage />
         </div>
         <div className="session-container-organize">
           <div className="session-container form-div">

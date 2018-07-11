@@ -26,6 +26,9 @@ div.signup-image {
   margin-right: 10px;
   object-fit: cover;
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .signup-logo {
@@ -109,4 +112,11 @@ div.signup-image {
   font-weight: 400;
   color: #999;
   margin: 10px 60px;
+}
+
+#rotatingImg {
+  width: 240px;
+  height: 427px;
+  margin-left: 88px;
+  margin-top: 10px;
 }
