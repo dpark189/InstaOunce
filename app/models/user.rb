@@ -1,6 +1,39 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint(8)        not null, primary key
+#  username        :string
+#  password_digest :string
+#  session_token   :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  phone_number    :integer
+#  email           :string
+#  full_name       :string           not null
+#  website         :string
+#  bio             :string
+#  gender          :string
+#  profile_picture :string
+#
+
+# tests
+# BOTH PHONE NUMBER AND EMAIL
+# User.new(username: "test", password: "password", phone_number: "1234567890", email: "asdfa@asdfa.com", full_name: "dude dude")
+# ONLY EMAIL
+# User.new(username: "test", password: "password", email: "asdfa@asdfa.com", full_name: "dude dude")
+# ONLY PHONE NUMBER
+# User.new(username: "test", password: "password", phone_number: "1234567890", full_name: "dude dude")
+# NEITHER EMAIL OR PHONE NUMBER
+# User.new(username: "test", password: "password", full_name: "dude dude")
+
 class User < ApplicationRecord
   validates :username, :password_digest, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
+  validates :email, presence: true, unless: :phone_number?
+  validates :phone_number, presence: true, unless: :email?
+  validates :full_name, presence: true
+
   after_initialize :ensure_session_token
   attr_reader :password
 
