@@ -15,7 +15,7 @@ export const updateUser = (user) => {
     return UserApiUtil.updateUser(user).then(
       (user) => dispatch(receiveUser(user)),
       (err) => {
-        debugger
+        
         return dispatch(receiveUserErrors(err))
       }
     )
@@ -23,7 +23,7 @@ export const updateUser = (user) => {
 };
 
 export const receiveUserErrors = (errors) => {
-  debugger
+  
   return {
     type: RECEIVE_USER_ERRORS,
     errors
