@@ -1,0 +1,85 @@
+
+.edit-profile-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.edit-profile-form > label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 60%;
+  margin-bottom: 16px;
+  border: 1px;
+}
+
+.edit-profile-form > label > input[type="text"] {
+  max-width: 280px;
+  min-width: 200px;
+  width: 60%
+}
+
+div.edit-profile-form-indent {
+  width: 63%;
+  display: flex;
+  justify-content: center;
+}
+
+div.edit-profile-form-indent > :first-child {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+  padding-left: 4%;
+  color: #999;
+}
+
+div.gender-select {
+  display: flex;
+  width: 62%;
+  justify-content: flex-start;
+}
+
+.edit-profile-form > div > input[type="submit"] {
+  height: 24px;
+  width: 74px;
+  text-align: center;
+  color: white;
+  padding-left: 12.3px;
+  padding-right: 12.3px;
+  margin-right: 8%;
+}
+
+.edit-profile-form > label > div > select {
+  font-size: 16px;
+  height: 32px;
+  padding: 0 30px 0 10px;
+  background: 0 0;
+  border: 1px solid #efefef;
+  border-radius: 3px;
+  border-width: 1px;
+  text-align: center;
+  font-size: 16px;
+}
+
+textarea {
+  border-style: solid;
+  border: 1px;
+  border-width: 1px;
+  max-width: 280px;
+  min-width: 200px;
+  width: 60%;
+  height: 40px;
+  border-radius: 3px;
+  border: 1px solid lightgrey;
+  text-align: center;
+  padding: 9px 0 7px 8px;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+option.Specified-option {
+  color: #999;
+}

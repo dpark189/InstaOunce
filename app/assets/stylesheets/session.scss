@@ -1,23 +1,23 @@
 
 
 .session-container {
+  padding-bottom: 15px;
+  padding-top: 15px;
+  margin-bottom: 10px;
+  width: 346px;
+}
+
+.form-div {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-content: center;
-  width: 346px;
   box-sizing: border-box;
   border: 1px solid grey;
   text-align: center;
 }
 
-.form-div {
-  padding-bottom: 15px;
-  padding-top: 15px;
-  margin-bottom: 10px;
-}
-
-.session-container > span {
+.form-div > span {
   font-weight: 600;
   line-height: 20px;
   font-size: 17px;
@@ -48,15 +48,10 @@
   align-items: center;
 }
 
+
+
 .session-form > input {
   width: 250px;
-  height: 20px;
-  border-radius: 3px;
-  border: 1px solid lightgrey;
-  text-align: center;
-  padding: 9px 0 7px 8px;
-  font-size: 16px;
-  margin-bottom: 5px;
 }
 
 .session-form > input[type="submit"] {
