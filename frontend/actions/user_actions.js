@@ -4,10 +4,10 @@ export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 
-export const receiveUser = (user) => {
+export const receiveUser = (payload) => {
   return {
     type: RECEIVE_USER,
-    user
+    user: payload.user
   };
 };
 
@@ -24,7 +24,6 @@ export const updateUser = (user) => {
     return UserApiUtil.updateUser(user).then(
       (user) => dispatch(receiveUser(user)),
       (err) => {
-
         return dispatch(receiveUserErrors(err));
       }
     );
