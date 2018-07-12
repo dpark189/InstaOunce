@@ -1,20 +1,21 @@
 # == Schema Information
 #
-# Table name: posts
+# Table name: images
 #
 #  id         :bigint(8)        not null, primary key
-#  author_id  :integer
-#  caption    :string
+#  post_id    :integer
+#  image_url  :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  author_id  :integer
 #
 
-class Post < ApplicationRecord
-  validates :author_id, presence: true
+class Image < ApplicationRecord
+  validates :image_url, presence: true
 
+  belongs_to :post
   belongs_to :author,
     foreign_key: :author_id,
     class_name: :User
 
-  has_many :images
 end
