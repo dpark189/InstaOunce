@@ -6,7 +6,7 @@ class ImagesController < ApplicationController
   end
 
   def create
-    # TODO: finish controller 
+    
   end
 
   private
