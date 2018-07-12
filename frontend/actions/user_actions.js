@@ -7,7 +7,8 @@ export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 export const receiveUser = (payload) => {
   return {
     type: RECEIVE_USER,
-    user: payload.user
+    user: payload.user,
+    post: payload.post
   };
 };
 

@@ -8,13 +8,13 @@ import UserProfileContainer from './user/user_profile_container';
 import NavBarContainer from './navbar/navbar_container';
 import EditProfileForm from './user/edit_profile_form';
 import PostIndexContainer from './post/post_index_container';
-import Modal from './modal/modal';
+import ModalContainer from './modal/modal_container';
 
 const App = () => {
   return (
     <div>
       <ProtectedRoute path="/" component={NavBarContainer}/>
-      <Modal />
+      <ModalContainer />
       <section className="app-section">
         <section className="session-order">
           <Switch>

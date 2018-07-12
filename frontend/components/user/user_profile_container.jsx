@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { updateUser, fetchUser } from '../../actions/user_actions';
+import { openModal } from '../../actions/modal_actions';
 import { withRouter, Route, Link } from 'react-router-dom';
 import EditProfileForm from './edit_profile_form';
 import UserProfilePicture from './user_profile_picture';
@@ -28,9 +29,15 @@ class UserProfile extends React.Component {
           <Link to={`${this.props.currentUser.id}/edit`}>
             <button className="edit-profile button">Edit Profile</button>
           </Link>
+          <button
+            className="edit-profile button"
+            onClick={() => this.props.openModal('createPost')}
+            >
+            Create Post
+          </button>
           <i className="fas fa-cog icon4"></i>
         </div>
-      )
+      );
     }
     return(
       <div className="profile-header">
@@ -50,7 +57,7 @@ class UserProfile extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -77,7 +84,8 @@ const mapStateToprops = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateUser: (user) => dispatch(updateUser(user)),
-    fetchUser: (user) => dispatch(fetchUser)
+    fetchUser: (userId) => dispatch(fetchUser(userId)),
+    openModal: modal => dispatch(openModal(modal))
   };
 };
 
