@@ -78,7 +78,7 @@ class EditProfileForm extends React.Component {
 }
 
 const mapStateToprops = (state, ownProps) => {
-  debugger
+
   const dummyUser = {
     full_name: "",
     username: "",
