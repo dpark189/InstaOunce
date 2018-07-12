@@ -2,12 +2,15 @@ div.profile-main {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 60px;
 }
 .user-content {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 600px;
+  padding-left: 70px;
+  padding-right: 70px;
+  align-items: center;
 }
 
 .user-info-sub1 {
@@ -52,4 +55,15 @@ div.profile-main {
   align-items: center;
   flex-direction: row;
   width: 300px;
+}
+
+.profile-frame {
+  width: 152px;
+  height: 152px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+img.profile_picture {
+  margin-left: -39px;
 }

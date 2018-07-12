@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { updateUser, fetchUser } from '../../actions/user_actions';
 import { withRouter, Route, Link } from 'react-router-dom';
 import EditProfileForm from './edit_profile_form';
+import UserProfilePicture from './user_profile_picture';
 
 class UserProfile extends React.Component {
 
@@ -34,6 +35,7 @@ class UserProfile extends React.Component {
     }
     return(
       <div className="profile-main">
+        <UserProfilePicture user={this.props.user} />
         <div className="user-content">
           <div className="user-info-sub1">
             <h3 className="profile-username">{this.props.user.username}</h3>
