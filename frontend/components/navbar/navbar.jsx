@@ -28,7 +28,7 @@ export default (props) => {
               <Link to={`/users/${props.sessionId}`}>
               <i className="fa fa-user icon2 "></i>
               </Link>
-              <button onClick={() => props.logout()}>logout</button>
+              <button onClick={() => props.logout()}>temp logout</button>
             </span>
           </nav>
         </div>

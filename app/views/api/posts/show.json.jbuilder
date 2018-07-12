@@ -1,5 +1,6 @@
 json.post do
-  json.extract! @post, :id, :author_id, :caption, :updated_at
+  json.extract! @post, :id, :author_id, :caption
+  json.updated_at post.updated_at.strftime("%B %e, %Y")
 end
 
 json.user do
