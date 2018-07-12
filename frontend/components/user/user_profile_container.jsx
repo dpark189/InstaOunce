@@ -22,7 +22,6 @@ class UserProfile extends React.Component {
   render(){
 
     let userEdit;
-
     if (this.props.currentUser.id === this.props.user.id){
       userEdit = (
         <div className="user-info-sub-1-links">
@@ -33,9 +32,17 @@ class UserProfile extends React.Component {
         </div>
       )
     }
+    let image;
+    if (typeof this.props.user.profile_picture === "undefined") {
+      image = (
+        <div className="profile-frame">
+          <img className="profile_picture" src={`${this.state.image}`} />
+        </div>
+      )
+    }
     return(
       <div className="profile-header">
-        <UserProfilePicture user={this.props.user} />
+        <UserProfilePicture fetchUser={this.props.fetchUser} user={this.props.user} />
         <div className="user-content">
           <div className="user-info-sub1">
             <h3 className="profile-username">{this.props.user.username}</h3>
