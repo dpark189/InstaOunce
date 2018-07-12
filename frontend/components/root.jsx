@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
-import FontAwesome from 'react-fontawesome';
 
 import App from './app';
 
