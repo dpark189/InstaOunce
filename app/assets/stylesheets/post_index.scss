@@ -4,6 +4,9 @@
   flex-direction: column;
   border: 1px solid #e6e6e6;
   margin-bottom: 50px;
+  min-width: 471px;
+  max-width: 614px;
+
 }
 
 .post-index-section {
@@ -50,6 +53,7 @@
 .post-index-item-div > section.post-index-item-caption {
   border-bottom: 1px solid #e6e6e6;
   margin-bottom: 0;
+  word-wrap: normal;
 }
 
 .post-index-item-div > section {
