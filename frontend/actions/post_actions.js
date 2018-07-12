@@ -1,21 +1,23 @@
 import * as PostApiUtil from '../util/post_api_util.js';
 
-export const RECEIVE_ALL_POSTS = "RECEIVE_ALL_POSTS";
+export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_POST = "RECEIVE_POST";
 export const REMOVE_POST = "REMOVE_POST";
 export const RECEIVE_POST_ERRORS = "RECEIVE_POST_ERRORS";
 
-export const receiveAllPosts = (posts) => {
+export const receiveAllPosts = (payload) => {
   return {
-    type: RECEIVE_ALL_POSTS,
-    posts
+    type: RECEIVE_POSTS,
+    posts: payload.posts,
+    users: payload.users
   };
 };
 
-export const receivePost = (post) => {
+export const receivePost = (payload) => {
   return {
     type: RECEIVE_POST,
-    post
+    post: payload.post,
+    user: payload.user,
   };
 };
 

@@ -1,11 +1,13 @@
 class Api::UsersController < ApplicationController
   def index
-    @users = User.all
+    @users = User.all.includes(:posts)
     render :index
   end
 
   def show
     @user = User.find(params[:id])
+    user_post_ids = @user.posts.ids
+    @posts = user_post_ids.map{|id| Post.find(id)}
   end
 
   def new

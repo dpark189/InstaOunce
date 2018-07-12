@@ -1,16 +1,17 @@
 class Api::PostsController < ApplicationController
   before_action :ensure_logged_in, except: [:index]
   def index
-    @posts = Post.all
+    @posts = Post.all.includes(:author)
     render :index
   end
 
 # TODO: might be able to do logic for showing followed user posts here
   def show
     @post = Post.find(params[:id])
+    @user = User.find(@post.author_id)
     render :show
   end
-  
+
   def create
     @post = Post.new(post_params)
     if @post.save

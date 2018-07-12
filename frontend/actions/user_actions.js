@@ -1,14 +1,23 @@
 import * as UserApiUtil from '../util/user_api_util.js';
 
 export const RECEIVE_USER = "RECEIVE_USER";
+export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 
 export const receiveUser = (user) => {
   return {
     type: RECEIVE_USER,
     user
-  }
-}
+  };
+};
+
+export const receiveUsers = (payload) => {
+  return {
+    type: RECEIVE_USERS,
+    user: payload.user,
+    posts: payload.posts
+  };
+};
 
 export const updateUser = (user) => {
   return dispatch => {
@@ -16,19 +25,19 @@ export const updateUser = (user) => {
       (user) => dispatch(receiveUser(user)),
       (err) => {
 
-        return dispatch(receiveUserErrors(err))
+        return dispatch(receiveUserErrors(err));
       }
-    )
+    );
   };
 };
 
-export const fetchUser = (userId) => new Promise(function(resolve, reject) {
+export const fetchUser = (userId) => {
   return dispatch => {
     return UserApiUtil.fetchUser(userId).then(
       (user) => dispatch(receiveUser(user))
-    )
+    );
   };
-});
+};
 
 export const receiveUserErrors = (errors) => {
 

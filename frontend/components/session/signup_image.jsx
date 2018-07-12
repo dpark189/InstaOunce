@@ -37,7 +37,7 @@ class SignupImage extends React.Component {
 
     return (
         <img id="rotatingImg" src={images[this.state.currentImage]} />
-    )
+    );
   }
 }
 

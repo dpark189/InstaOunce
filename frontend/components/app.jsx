@@ -7,6 +7,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import UserProfileContainer from './user/user_profile_container';
 import NavBarContainer from './navbar/navbar_container';
 import EditProfileForm from './user/edit_profile_form';
+import PostIndexContainer from './post/post_index_container';
 
 const App = () => {
   return (
@@ -18,8 +19,8 @@ const App = () => {
             <AuthRoute exact path="/" component={SignupFormContainer} />
             <AuthRoute exact path="/login" component={LoginFormContainer} />
           </Switch>
-
         </section>
+        <ProtectedRoute exact path="/" component={PostIndexContainer}/>
         <Switch>
           <ProtectedRoute exact path="/users/:userId"
           component={UserProfileContainer}/>
