@@ -11,8 +11,8 @@ export default (state = defaultState, action ) => {
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       return { id: action.user.id };
+      // TODO: need to change this to accept username if url paths are going to use username instaed of id
     case LOGOUT_CURRENT_USER:
-
       return defaultState;
     default:
       return state;
