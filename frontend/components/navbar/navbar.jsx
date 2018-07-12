@@ -1,7 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default ({sessionId}) => (
+export default (props) => {
+ return (
       <div>
         <div className="nav-bar-component">
           <nav className="nav-bar">
@@ -24,11 +25,13 @@ export default ({sessionId}) => (
               <i className="fa fa-compass icon2"></i>
               <i className="fa fa-heart icon2"></i>
 
-              <Link to={`/users/${sessionId}`}>
+              <Link to={`/users/${props.sessionId}`}>
               <i className="fa fa-user icon2 "></i>
               </Link>
+              <button onClick={() => props.logout()}>logout</button>
             </span>
           </nav>
         </div>
       </div>
-);
+    );
+};
