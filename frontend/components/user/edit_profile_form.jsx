@@ -12,7 +12,7 @@ class EditProfileForm extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    debugger
+
     this.setState(newProps.user);
   }
 
@@ -78,7 +78,7 @@ class EditProfileForm extends React.Component {
 }
 
 const mapStateToprops = (state, ownProps) => {
-
+  debugger
   const dummyUser = {
     full_name: "",
     username: "",
@@ -90,7 +90,7 @@ const mapStateToprops = (state, ownProps) => {
   };
 
   const user = (state.entities.users[ownProps.match.params.userId]) || (dummyUser);
-  const usertype = "i dont know why this is here";
+
   return {
     user,
     currentUser: state.session
@@ -104,4 +104,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default withRouter(connect(mapStateToprops, mapDispatchToProps)(EditProfileForm));
+export default connect(mapStateToprops, mapDispatchToProps)(EditProfileForm);

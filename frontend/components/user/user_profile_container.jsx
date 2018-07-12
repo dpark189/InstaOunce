@@ -8,7 +8,6 @@ import EditProfileForm from './edit_profile_form';
 class UserProfile extends React.Component {
 
   componentDidMount(){
-    debugger
     const id = this.props.match.params.userId;
     this.props.fetchUser(id);
   }
@@ -20,17 +19,31 @@ class UserProfile extends React.Component {
   }
   // TODO: logic for when to show user edit form or user's page
   render(){
+
     let userEdit;
 
     if (this.props.currentUser.id === this.props.user.id){
       userEdit = (
-        <Link to={`users/${this.props.currentUser.id}/edit`} >Edit Profile</Link>
+        <Link to={`${this.props.currentUser.id}/edit`}>Edit Profile</Link>
       )
     }
     return(
       <div className="profile-main">
-        {userEdit}
-        <Route exact path="users/:userId/edit" component={EditProfileForm} />
+        <div className="user-content">
+          <div className="user-info-sub1">
+            <h3 className="profile-username">{this.props.user.username}</h3>
+            {userEdit}
+            <i className="fa fa-cog icon4"></i>
+          </div>
+          <div className="user-info-sub2">
+            <h4 className="user-info">posts</h4>
+            <h4 className="user-info">followers</h4>
+            <h4 className="user-info">following</h4>
+          </div>
+          <div className="user-info-sub3">
+            <h4 className="user-name">{this.props.user.full_name}</h4>
+          </div>
+        </div>
       </div>
     )
   }

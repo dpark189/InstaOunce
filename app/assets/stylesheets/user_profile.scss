@@ -3,3 +3,37 @@ div.profile-main {
   justify-content: center;
   align-items: center;
 }
+.user-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 600px;
+}
+
+.user-info-sub1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 400px;
+}
+
+.profile-username {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-weight: 100;
+  font-size: 32px;
+  line-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.user-info-sub2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 300px;
+}
