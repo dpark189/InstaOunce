@@ -9,7 +9,6 @@ class PostIndex extends React.Component {
   }
 
   render () {
-
     const items = this.props.posts.map( (post) => {
       return (
         <PostIndexItem
