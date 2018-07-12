@@ -34,7 +34,7 @@ class UserProfile extends React.Component {
       )
     }
     return(
-      <div className="profile-main">
+      <div className="profile-header">
         <UserProfilePicture user={this.props.user} />
         <div className="user-content">
           <div className="user-info-sub1">

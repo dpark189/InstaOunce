@@ -70,3 +70,10 @@ input[type="submit"] {
   white-space: nowrap;
   margin-top: 10px;
 }
+
+.app-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

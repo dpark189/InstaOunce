@@ -11,8 +11,8 @@ import EditProfileForm from './user/edit_profile_form';
 const App = () => {
   return (
     <div>
-      <section>
-        <ProtectedRoute path="/" component={NavBarContainer}/>
+      <ProtectedRoute path="/" component={NavBarContainer}/>
+      <section className="app-section">
         <section className="session-order">
           <Switch>
             <AuthRoute exact path="/" component={SignupFormContainer} />

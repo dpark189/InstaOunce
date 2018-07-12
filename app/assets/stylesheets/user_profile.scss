@@ -1,8 +1,12 @@
-div.profile-main {
+div.profile-header {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 60px;
+  max-width: 932px;
+  height: 152px;
+  padding-bottom: 44px;
+  border-bottom: 1px solid #e6e6e6;
 }
 .user-content {
   display: flex;
