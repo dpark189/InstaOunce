@@ -22,9 +22,9 @@ const App = () => {
 
         </section>
         <Switch>
-          <Route exact path="/users/:userId"
+          <ProtectedRoute exact path="/users/:userId"
           component={UserProfileContainer}/>
-          <Route exact path="/users/:userId/edit"
+          <ProtectedRoute exact path="/users/:userId/edit"
           component={EditProfileForm}/>
         </Switch>
       </section>
