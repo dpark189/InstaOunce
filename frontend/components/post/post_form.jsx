@@ -28,10 +28,14 @@ class PostForm extends React.Component {
   render () {
 
     return (
-      <div className="post-form-div top-div">
+      <div className="post-form-div">
+        <h3 className="post-form-header">Add A Post</h3>
         <form className="post-form" onSubmit={this.handleSubmit}>
-          <input placeholder="image not yet implemented"/>
           <input
+            type="text"
+            placeholder="image not yet implemented"
+          />
+          <textarea
             placeholder="caption"
             value={this.state.caption}
             onChange={this.handleChange('caption')}

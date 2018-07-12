@@ -26,15 +26,17 @@ class UserProfile extends React.Component {
     if (this.props.currentUser.id === this.props.user.id){
       userEdit = (
         <div className="user-info-sub-1-links">
-          <Link to={`${this.props.currentUser.id}/edit`}>
-            <button className="edit-profile button">Edit Profile</button>
-          </Link>
-          <button
-            className="edit-profile button"
-            onClick={() => this.props.openModal('createPost')}
-            >
-            Create Post
-          </button>
+          <div className="profile-buttons">
+              <Link to={`${this.props.currentUser.id}/edit`}>
+              <button className="edit-profile button">Edit Profile</button>
+              </Link>
+              <button
+              className="edit-profile button"
+              onClick={() => this.props.openModal('createPost')}
+              >
+                Create Post
+              </button>
+          </div>
           <i className="fas fa-cog icon4"></i>
         </div>
       );

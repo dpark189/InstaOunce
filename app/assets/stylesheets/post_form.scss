@@ -1,0 +1,29 @@
+.post-form {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  align-content: flex-end;
+  box-sizing: border-box;
+  border: 1px solid #e6e6e6;
+  text-align: center;
+  height: 250px;
+  background: white;
+  min-width: 346px;
+  width: 346px;
+}
+
+
+
+.post-form > textarea {
+  width: 250px;
+}
+
+.post-form > input[type="submit"] {
+  height: 28px;
+  margin-bottom: 13px;
+}
+
+.post-form > input[type="text"] {
+  width: 250px;
+}
