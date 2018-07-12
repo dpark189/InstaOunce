@@ -6,8 +6,10 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   const posts = Object.values(state.entities.posts);
+  const users = state.entities.users
   return {
-    posts
+    posts,
+    users
   };
 };
 

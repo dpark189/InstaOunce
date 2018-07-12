@@ -10,15 +10,15 @@ export default (props) => {
     <div className="post-index-item-div">
       <section className="post-header">
         <div className="post-icon-links">
-          <i class="far fa-heart"></i>
-          <i class="far fa-comment"></i>
+          <i className="far fa-heart"></i>
+          <i className="far fa-comment"></i>
         </div>
         <div className="post-header-likes">
           <span># likes</span>
         </div>
       </section>
       <section className="post-index-item-caption">
-        <span><strong>{author.username} </strong>{post.caption}</span>
+        <span><strong>{props.author.username} </strong>{props.post.caption}</span>
       </section>
     </div>
   );

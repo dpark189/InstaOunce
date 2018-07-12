@@ -9,10 +9,12 @@ class PostIndex extends React.Component {
   }
 
   render () {
+
     const items = this.props.posts.map( (post) => {
       return (
         <PostIndexItem
           post={post}
+          author={this.props.users[post.author_id]}
           key={post.id}
         />
       );
