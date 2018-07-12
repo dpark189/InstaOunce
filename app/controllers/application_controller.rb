@@ -28,4 +28,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_belong(obj_author_id)
+    if obj_author_id == current_user.id
+      return true
+    else
+      return false
+    end
+  end
+
 end
