@@ -28,6 +28,9 @@ export default (props) => {
       <section className="post-index-item-caption">
         <span><strong>{props.author.username} </strong>{props.post.caption}</span>
       </section>
+      <section className="index-item-comment">
+        <p>comments will go here</p>
+      </section>
     </div>
   );
 };

@@ -47,10 +47,20 @@
   margin: 10px;
 }
 
-.post-index-item-caption {
+.post-index-item-div > section.post-index-item-caption {
   border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0;
 }
 
 .post-index-item-div > section {
   margin: 10px;
+}
+
+.post-index-item-div > section.index-item-comment {
+  margin: 0 0 0 10px;
+  height: 32px;
+}
+
+.post-index-item-div > section.index-item-comment > p {
+  margin: 5px 0 0 0;
 }
