@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  margin-top: 10px;
 }
 
 .session-container {
@@ -36,6 +36,7 @@ div.signup-image {
   height: 51px;
   display: flex;
   align-self: center;
+  margin: 10px 0 12px;
 }
 
 // .signup-phone {
@@ -45,13 +46,20 @@ div.signup-image {
 
 .form-div {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
   align-content: center;
   box-sizing: border-box;
   border: 1px solid #e6e6e6;
   text-align: center;
   height: 535px;
+}
+
+.session-container-organize {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .form-div > span {

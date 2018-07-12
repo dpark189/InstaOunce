@@ -37,50 +37,39 @@ class LoginSessionForm extends React.Component {
     let bottomFormComponent;
     let bottomDisclaimer;
     let additionalSignup;
-    if (this.props.formType === "Signup") {
-      topFormComponent = (
-        <p className="sign-up-greeting">Sign Up to see photos and videos from your friends</p>
-      )
-      bottomDisclaimer = (
-        <p className="sign-up-disclaimer">
-          By signing up, you agree to our
-          <strong> Terms</strong>, <strong> Data Policy</strong> and <strong> Cookies Policy</strong>.
-        </p>
-      )
-      bottomFormComponent = (
-        <div className="session-container bottom-div">
-          Have an Account?<Link to='/login'> Log in</Link>
-        </div>
-      )
-    }
-    //  else {
-    //   bottomFormComponent = (
-    //     <div className="session-container bottom-div">
-    //       don't have an Account?<Link to='/'> Sign Up</Link>
-    //     </div>
-    //   );
-    // }
+
+    bottomFormComponent = (
+      <div className="session-container bottom-div">
+        don't have an Account?<Link to='/'> Sign Up</Link>
+      </div>
+    );
+
     return (
       <div className="top-session-div">
-        <div className="session-container form-div">
-          <span>{topFormComponent}</span>
-          <form className="session-form" onSubmit={this.handleSubmit}>
-            <input
-              placeholder="Username"
-              onChange={this.handleChange("username")}
-              value={this.state.username}>
-            </input>
+        <div className="session-container-organize">
+          <div className="top-session-div">
+            <div className="session-container form-div" style={{height: 260}}>
+              <img className="signup-logo"
+                src={window.logoName}/>
+              <form className="session-form" onSubmit={this.handleSubmit}>
+                <input
+                  placeholder="Username"
+                  onChange={this.handleChange("username")}
+                  value={this.state.username}>
+                </input>
 
-            <input
-              placeholder="Password"
-              onChange={this.handleChange("password")}
-              type="password" value={this.state.password}>
-            </input>
-            <input type="submit" value={this.props.formType}/>
-          </form>
-          {bottomDisclaimer}
+                <input
+                  placeholder="Password"
+                  onChange={this.handleChange("password")}
+                  type="password" value={this.state.password}>
+                </input>
+                <input type="submit" value={this.props.formType}/>
+              </form>
+              <a href="#">Forgot password?</a>
+            </div>
+          </div>
+          {bottomFormComponent}
         </div>
-        {bottomFormComponent}
       </div>
     );
   }
