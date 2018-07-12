@@ -32,14 +32,6 @@ class UserProfile extends React.Component {
         </div>
       )
     }
-    let image;
-    if (typeof this.props.user.profile_picture === "undefined") {
-      image = (
-        <div className="profile-frame">
-          <img className="profile_picture" src={`${this.state.image}`} />
-        </div>
-      )
-    }
     return(
       <div className="profile-header">
         <UserProfilePicture fetchUser={this.props.fetchUser} user={this.props.user} />
