@@ -14,16 +14,15 @@ class ProfilePicture extends React.Component {
     let image;
     if (!this.props.user.profile_picture) {
       image = (
-        <div className="profile-frame">
-          <img className="profile_picture" src={`${this.state.image}`} />
+        <div className="profile-frame" style={{backgroundImage: "url(" + window.profile_placeholder + ")"}}>
         </div>
-      )
+      );
     }
     return (
-      <div className="profile-frame">
+      <div className="profile-pic-div">
         {image}
       </div>
-    )
+    );
   }
 }
 

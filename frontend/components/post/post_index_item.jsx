@@ -3,18 +3,26 @@ import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions/post_actions';
 import { fetchUser } from '../../actions/user_actions';
 import { withRouter } from 'react-router-dom';
+import UserProfilePicture from '../user/user_profile_picture';
 
 export default (props) => {
 
   return(
     <div className="post-index-item-div">
       <section className="post-header">
-        <div className="post-icon-links">
-          <i className="far fa-heart"></i>
-          <i className="far fa-comment"></i>
+        <div className="post-user-info">
+          <UserProfilePicture user={props.author} />
+          <strong>{props.author.username}</strong>
         </div>
-        <div className="post-header-likes">
-          <span># likes</span>
+      </section>
+      <section className="post-sub-header">
+        <div className="post-icon-links">
+          <i className="far fa-heart post-icons"></i>
+          <i className="far fa-comment post-icons"></i>
+        </div>
+
+        <div className="post-sub-header-likes">
+          <strong># likes</strong>
         </div>
       </section>
       <section className="post-index-item-caption">

@@ -11,3 +11,7 @@ require 'faker'
 # end
 
 # Post.create(author_id: 1, caption: "first post")
+
+10.times do
+  Post.create(author_id:(rand(1..3)), caption: Faker::ChuckNorris.fact)
+end

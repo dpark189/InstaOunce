@@ -41,18 +41,18 @@ class SignupSessionForm extends React.Component {
 
     const topFormComponent = (
       <p className="sign-up-greeting">Sign Up to see photos and videos from your friends</p>
-    )
+    );
     const bottomDisclaimer = (
       <p className="sign-up-disclaimer">
         By signing up, you agree to our
         <strong> Terms</strong>, <strong> Data Policy</strong> and <strong> Cookies Policy</strong>.
       </p>
-    )
+    );
     const bottomFormComponent = (
       <div className="session-container bottom-div">
         Have an Account?<Link to='/login'> Log in</Link>
       </div>
-    )
+    );
 
     return (
       <div className="top-session-div">
