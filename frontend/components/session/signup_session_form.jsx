@@ -53,7 +53,6 @@ class SignupSessionForm extends React.Component {
         Have an Account?<Link to='/login'> Log in</Link>
       </div>
     )
-    // <img className="signup-phone" src={window.signup_phone_pic}/>
 
     return (
       <div className="top-session-div">

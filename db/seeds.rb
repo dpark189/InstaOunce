@@ -9,3 +9,5 @@ require 'faker'
 # 10.times do
 #   User.create(username: Faker::Name.name, password: 'password')
 # end
+
+# Post.create(author_id: 1, caption: "first post")

@@ -6,7 +6,11 @@ class Api::PostsController < ApplicationController
   end
 
 # TODO: might be able to do logic for showing followed user posts here
-
+  def show
+    @post = Post.find(params[:id])
+    render :show
+  end
+  
   def create
     @post = Post.new(post_params)
     if @post.save
