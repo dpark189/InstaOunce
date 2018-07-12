@@ -6,7 +6,6 @@ import SignupFormContainer from './session/signup_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import UserProfileContainer from './user/user_profile_container';
 import NavBarContainer from './navbar/navbar_container';
-import FontAwesome from 'react-fontawesome';
 import EditProfileForm from './user/edit_profile_form';
 
 const App = () => {
