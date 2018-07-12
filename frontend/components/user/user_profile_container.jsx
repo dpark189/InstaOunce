@@ -24,9 +24,12 @@ class UserProfile extends React.Component {
 
     if (this.props.currentUser.id === this.props.user.id){
       userEdit = (
-        <Link to={`${this.props.currentUser.id}/edit`}>
-          <button className="edit-profile button">Edit Profile</button>
-        </Link>
+        <div className="user-info-sub-1-links">
+          <Link to={`${this.props.currentUser.id}/edit`}>
+            <button className="edit-profile button">Edit Profile</button>
+          </Link>
+          <i className="fas fa-cog icon4"></i>
+        </div>
       )
     }
     return(
@@ -35,7 +38,6 @@ class UserProfile extends React.Component {
           <div className="user-info-sub1">
             <h3 className="profile-username">{this.props.user.username}</h3>
             {userEdit}
-            <i className="fa fa-cog icon4"></i>
           </div>
           <div className="user-info-sub2">
             <h4 className="user-info">posts</h4>
