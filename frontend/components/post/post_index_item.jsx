@@ -27,6 +27,9 @@ export default (props) => {
       </section>
       <section className="post-index-item-caption">
         <span><strong>{props.author.username} </strong>{props.post.caption}</span>
+        <div className="update-date">
+          {props.post.updated_at}
+        </div>
       </section>
       <section className="index-item-comment">
         <p>comments will go here</p>
