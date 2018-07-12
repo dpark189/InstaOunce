@@ -24,7 +24,9 @@ class UserProfile extends React.Component {
 
     if (this.props.currentUser.id === this.props.user.id){
       userEdit = (
-        <Link to={`${this.props.currentUser.id}/edit`}>Edit Profile</Link>
+        <Link to={`${this.props.currentUser.id}/edit`}>
+          <button className="edit-profile button">Edit Profile</button>
+        </Link>
       )
     }
     return(

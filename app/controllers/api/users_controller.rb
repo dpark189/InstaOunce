@@ -18,7 +18,6 @@ class Api::UsersController < ApplicationController
       login(@user)
       render :show
     else
-      debugger
       render json: @user.errors.full_messages, status: 422
     end
     # TODO: can parse errors by their keys ie: @user.errors[:full_name] could use this to better display errors on form
