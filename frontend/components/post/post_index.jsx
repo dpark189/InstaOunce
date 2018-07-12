@@ -20,7 +20,6 @@ class PostIndex extends React.Component {
     });
     return (
       <section className="post-index-section">
-        <h1>i'm a post index</h1>
         {items}
       </section>
     );
