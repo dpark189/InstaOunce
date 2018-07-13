@@ -9,7 +9,9 @@ export default (props) => {
   let images;
 
 
-  if ((typeof props.post.photos === "undefined" ) || (Object.values(props.post.photos).length === 0 ) || (typeof props.post.photos === "null")) {
+  if ((typeof props.post.photos === "undefined" ) ||
+  (Object.values(props.post.photos).length === 0 ) ||
+  (typeof props.post.photos === "null")) {
     images = "";
   } else {
     images = Object.values(props.post.photos).map( (photoUrl, i) => {
