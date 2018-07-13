@@ -11,13 +11,18 @@
 
 class Post < ApplicationRecord
   validates :author_id, presence: true
+  validate :ensure_photo
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   belongs_to :author,
     foreign_key: :author_id,
     class_name: :User
 
-  has_many :images
+    has_attached_file :photo
 
-  has_many :photos,
-  through: :images
+    def ensure_photo
+      unless self.photo.attached?
+        errors[:photo] << "must be attached"
+      end
+    end
 end
