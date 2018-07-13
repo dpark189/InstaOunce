@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { createPost } from '../../actions/post_actions';
 import PostForm from './post_form';
+import { closeModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +14,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    formAction: (post) => dispatch(createPost(post))
+    formAction: (post) => dispatch(createPost(post)),
+    closeModal: () => dispatch(closeModal())
   };
 };
 

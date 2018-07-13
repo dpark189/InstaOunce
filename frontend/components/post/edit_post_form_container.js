@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { createPost, fetchPost } from '../../actions/post_actions';
 import PostForm from './post_form';
+import { closeModal } from '../../actions/modal_actions';
+
 
 class EditPostForm {
   componentDidMount(){
@@ -12,6 +14,7 @@ class EditPostForm {
       <PostForm
         post={this.props.post}
         formAction={this.props.formAction}
+        closeModal={this.props.closeModal}
       />
     );
   }
@@ -32,7 +35,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     formAction: (post) => dispatch(updatePost(post)),
-    fetchPost: (postId) => dispatch(fetchPost(postId))
+    fetchPost: (postId) => dispatch(fetchPost(postId)),
+    closeModal: () => dispatch(closeModal())
+
   };
 };
 
