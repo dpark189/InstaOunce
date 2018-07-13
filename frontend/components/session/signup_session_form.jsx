@@ -24,6 +24,21 @@ class SignupSessionForm extends React.Component {
     };
   }
 
+  renderSessionErrors(){
+
+  return (
+    <ul className='session-errors'>
+      {Object.values(this.props.errors).map((error, idx) => {
+        return (
+          <li key={`error-${idx}`}>
+            {`${error}!`}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
   handleSubmit(e) {
     e.preventDefault();
     const user = merge({}, this.state);
@@ -35,6 +50,14 @@ class SignupSessionForm extends React.Component {
       full_name: ""
     });
     this.props.processForm(user);
+  }
+
+  placeholderErrorCheck(field) {
+    if (this.props.errors.session[field.toLowerCase()]) {
+      return `${field} error`;
+    } else {
+      return `${field}`;
+    }
   }
 
   render () {
@@ -53,7 +76,26 @@ class SignupSessionForm extends React.Component {
         Have an Account?<Link to='/login'> Log in</Link>
       </div>
     );
+    const stateErrors = this.props.errors;
+    let errors = {
+            username: "",
+            full_name: "",
+            username: "",
+            password: ""
+          };
+    if (Object.values(this.props.errors).length === 0) {} else {
+      Object.keys(stateErrors).forEach((key) => {
+        debugger
+        errors[`${key}`] = stateErrors[key].map((err, i) => {
+          return (
+            <span key={`${key}${i}`} className="signup-errors">{err}</span>
+          )
+        })
+      });
+    }
 
+    // <span className="sign-up-errors">{stateErrors[`${key}`]}</span>
+    debugger
     return (
       <div className="top-session-div">
         <div className="signup-image"
@@ -71,21 +113,33 @@ class SignupSessionForm extends React.Component {
                   onChange={this.handleChange("email")}
                   value={this.state.email}>
                 </input>
+
+                {errors["email"]}
+
                 <input
-                  placeholder="Full Name"
+                  placeholder="Full_Name"
                   onChange={this.handleChange("full_name")}
                   value={this.state.fullName}>
                 </input>
+
+                {errors["full_name"]}
+
                 <input
                   placeholder="Username"
                   onChange={this.handleChange("username")}
                   value={this.state.username}>
                 </input>
+
+                {errors["username"]}
+
                 <input
                   placeholder="Password"
                   onChange={this.handleChange("password")}
                   type="password" value={this.state.password}>
                 </input>
+
+                {errors["password"]}
+
                 <input type="submit" value={this.props.formType}/>
               </form>
               {bottomDisclaimer}

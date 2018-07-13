@@ -20,7 +20,9 @@ class Api::UsersController < ApplicationController
       login(@user)
       render :show
     else
-      render json: @user.errors.full_messages, status: 422
+      error_hash = @user.errors.to_hash
+      error_hash.stringify_keys
+      render json: error_hash, status: 422
     end
     # TODO: can parse errors by their keys ie: @user.errors[:full_name] could use this to better display errors on form
   end
@@ -37,5 +39,13 @@ class Api::UsersController < ApplicationController
       :gender,
       :profile_picture
     )
+  end
+end
+
+class UserErrors
+  def initialize(args)
+    args.each do |k,v|
+      instance_variable_set("@#{k}", v) unless v.nil?
+    end
   end
 end
