@@ -97,7 +97,7 @@ class SignupSessionForm extends React.Component {
     // <span className="sign-up-errors">{stateErrors[`${key}`]}</span>
 
     return (
-      <div className="top-session-div">
+      <div className="top-session-div signup-form-top">
         <div className="signup-image"
           style={{backgroundImage: "url(" + window.signup_phone_pic + ")"}}>
           <SignupImage />

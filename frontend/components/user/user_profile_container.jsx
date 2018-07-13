@@ -74,7 +74,7 @@ const mapStateToprops = (state, ownProps) => {
     phone_number: "",
     gender: ""
   };
-
+  debugger
   const user = (state.entities.users[ownProps.match.params.userId]) || (dummyUser);
   const usertype = "i dont know why this is here";
   return {

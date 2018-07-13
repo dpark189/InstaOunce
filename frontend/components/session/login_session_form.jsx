@@ -45,7 +45,7 @@ class LoginSessionForm extends React.Component {
     );
 
     return (
-      <div className="top-session-div">
+      <div className="top-session-div login-form-top">
         <div className="session-container-organize">
           <div className="top-session-div">
             <div className="session-container form-div" style={{height: 260}}>
