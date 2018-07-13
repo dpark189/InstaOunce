@@ -7,8 +7,11 @@ const mapStateToProps = (state) => {
   return {
     post: {
       author_id: state.session.id,
-      caption: ""
-    }
+      caption: "",
+      photoFile: null,
+      photoUrl: null
+    },
+    buttonStatus: false
   };
 };
 

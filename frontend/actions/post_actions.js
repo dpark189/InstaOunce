@@ -51,10 +51,11 @@ export const fetchPost = (postId) => {
   };
 };
 
-export const createPost = (post) => {
+export const createPost = (formData) => {
   return dispatch => {
-    return PostApiUtil.createPost(post).then(
-      (post) => dispatch(receivePost(post))
+    return PostApiUtil.createPost(formData).then(
+      (post) => dispatch(receivePost(post)),
+      (errors) => dispatch(receivePostErrors(errors.responseJSON))
     );
   };
 };

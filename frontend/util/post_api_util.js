@@ -12,13 +12,14 @@ export const fetchPost = (postId) => {
   });
 };
 
-export const createPost = (post) => {
+export const createPost = formData => {
   return $.ajax({
-    method: 'POST',
     url: 'api/posts',
-    data: {
-      post
-    }
+    method: 'POST',
+    dataType: 'json',
+    processData: false,
+    contentType: false,
+    data: formData
   });
 };
 

@@ -23,12 +23,15 @@ class EditPostForm {
 const mapStateToProps = (state, ownProps) => {
   const dummyPost = {
     author_id: state.session.id,
-    caption: ""
+    caption: "",
+    photoFile: null,
+    photoUrl: null
   };
   const id = ownProps.match.params.postId;
   const post = state.posts[id] || dummyPost;
   return {
-    post
+    post,
+    buttonStatus: false
   };
 };
 

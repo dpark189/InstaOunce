@@ -6,6 +6,18 @@ import { withRouter } from 'react-router-dom';
 import UserProfilePicture from '../user/user_profile_picture';
 
 export default (props) => {
+  let images;
+
+
+  if ((typeof props.post.photos === "undefined" ) || (Object.values(props.post.photos).length === 0 ) || (typeof props.post.photos === "null")) {
+    images = "";
+  } else {
+    images = Object.values(props.post.photos).map( (photoUrl, i) => {
+      return (
+        <img key={i} className="post-image" src={photoUrl}/>
+      );
+    });
+  }
 
   return(
     <div className="post-index-item-div">
@@ -14,6 +26,9 @@ export default (props) => {
           <UserProfilePicture user={props.author} />
           <strong>{props.author.username}</strong>
         </div>
+      </section>
+      <section className="post-images">
+        {images}
       </section>
       <section className="post-sub-header">
         <div className="post-icon-links">
