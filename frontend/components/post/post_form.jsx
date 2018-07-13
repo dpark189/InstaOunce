@@ -22,7 +22,7 @@ class PostForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const copy = merge({}, this.state);
-    this.props.formAction(copy).then(this.props.closeModal);
+    this.props.formAction(copy).then(this.props.closeModal());
   }
 
   render () {
