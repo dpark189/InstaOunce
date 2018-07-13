@@ -5,6 +5,7 @@ export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 
 export const receiveUser = (payload) => {
+
   return {
     type: RECEIVE_USER,
     user: payload.user,
@@ -34,7 +35,7 @@ export const updateUser = (user) => {
 export const fetchUser = (userId) => {
   return dispatch => {
     return UserApiUtil.fetchUser(userId).then(
-      (user) => dispatch(receiveUser(user))
+      (payload) => dispatch(receiveUser(payload))
     );
   };
 };

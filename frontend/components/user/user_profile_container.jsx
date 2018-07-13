@@ -14,11 +14,11 @@ class UserProfile extends React.Component {
     this.props.fetchUser(id);
   }
 
-  componentWillReceiveProps(nextProps) {
-  if (this.props.user.id != nextProps.match.params.userId) {
-    this.props.fetchUser(nextProps.match.params.userId);
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  // if (this.props.user.id != nextProps.match.params.userId) {
+  //   this.props.fetchUser(nextProps.match.params.userId);
+  //   }
+  // }
   // TODO: logic for when to show user edit form or user's page
   render(){
 
@@ -74,8 +74,9 @@ const mapStateToprops = (state, ownProps) => {
     phone_number: "",
     gender: ""
   };
-  debugger
+
   const user = (state.entities.users[ownProps.match.params.userId]) || (dummyUser);
+  const userPosts = state.entities.posts
   const usertype = "i dont know why this is here";
   return {
     user,

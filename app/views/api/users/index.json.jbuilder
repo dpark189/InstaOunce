@@ -2,6 +2,9 @@ json.users do
   @users.each do |user|
     json.set! user.id do
       json.extract! user, :id, :username
+      json.postIds do
+        json.array! @postIds
+      end
     end
   end
 end

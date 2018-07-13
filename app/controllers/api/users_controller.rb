@@ -6,8 +6,9 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    user_post_ids = @user.posts.ids
-    @posts = user_post_ids.map{|id| Post.find(id)}
+    @posts = Post.where("author_id = ?", @user.id)
+    @postIds = @user.posts.ids
+
   end
 
   def new
