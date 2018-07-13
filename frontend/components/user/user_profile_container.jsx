@@ -10,17 +10,24 @@ import PostIndexItem from '../post/post_index_item';
 import { compact } from 'lodash';
 
 class UserProfile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: props.user.username
+    };
+  }
 
   componentDidMount(){
+    debugger
     const id = this.props.match.params.userId;
     this.props.fetchUser(id);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  // if (this.props.user.id != nextProps.match.params.userId) {
-  //   this.props.fetchUser(nextProps.match.params.userId);
-  //   }
-  // }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.user.id != nextProps.match.params.userId) {
+      this.props.fetchUser(nextProps.match.params.userId);
+    }
+  }
   // TODO: logic for when to show user edit form or user's page
   render(){
 
@@ -43,7 +50,14 @@ class UserProfile extends React.Component {
         </div>
       );
     } else {
-      userEdit = [];
+      userEdit = (
+        <div className="user-info-sub-1-links">
+          <div className="profile-buttons">
+              <button className="edit-profile button">Follow</button>
+          </div>
+          <i className="fas fa-ellipsis-h icon4"></i>
+        </div>
+      );
     }
 
     const postItems = Object.keys(this.props.userPosts).reverse().map( (key) => {
