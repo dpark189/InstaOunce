@@ -6,6 +6,8 @@ import { openModal } from '../../actions/modal_actions';
 import { withRouter, Route, Link } from 'react-router-dom';
 import EditProfileForm from './edit_profile_form';
 import UserProfilePicture from './user_profile_picture';
+import PostIndexItem from '../post/post_index_item';
+import { compact } from 'lodash';
 
 class UserProfile extends React.Component {
 
@@ -40,24 +42,40 @@ class UserProfile extends React.Component {
           <i className="fas fa-cog icon4"></i>
         </div>
       );
+    } else {
+      userEdit = [];
     }
+
+    const postItems = this.props.userPosts.map( (post) => {
+
+      return (
+        <PostIndexItem
+          post={post}
+          author={this.props.user}
+          key={post.id}
+        />
+      );
+    });
     return(
-      <div className="profile-header">
-        <UserProfilePicture fetchUser={this.props.fetchUser} user={this.props.user} />
-        <div className="user-content">
-          <div className="user-info-sub1">
-            <h3 className="profile-username">{this.props.user.username}</h3>
-            {userEdit}
-          </div>
-          <div className="user-info-sub2">
-            <h4 className="user-info">posts</h4>
-            <h4 className="user-info">followers</h4>
-            <h4 className="user-info">following</h4>
-          </div>
-          <div className="user-info-sub3">
-            <h4 className="user-name">{this.props.user.full_name}</h4>
+      <div className="profile-page">
+        <div className="profile-header">
+          <UserProfilePicture fetchUser={this.props.fetchUser} user={this.props.user} />
+          <div className="user-content">
+            <div className="user-info-sub1">
+              <h3 className="profile-username">{this.props.user.username}</h3>
+              {userEdit}
+            </div>
+            <div className="user-info-sub2">
+              <h4 className="user-info">posts</h4>
+              <h4 className="user-info">followers</h4>
+              <h4 className="user-info">following</h4>
+            </div>
+            <div className="user-info-sub3">
+              <h4 className="user-name">{this.props.user.full_name}</h4>
+            </div>
           </div>
         </div>
+        {postItems}
       </div>
     );
   }
@@ -76,10 +94,22 @@ const mapStateToprops = (state, ownProps) => {
   };
 
   const user = (state.entities.users[ownProps.match.params.userId]) || (dummyUser);
-  const userPosts = state.entities.posts
+  const statePosts = Object.values(state.entities.posts) || [];
+  let userPosts = [];
+  if ((statePosts.length === 0)) {}
+  else {
+    userPosts = statePosts.map( post => {
+      if (post.author_id === Number(ownProps.match.params.userId)) {
+        return post;
+      }
+    });
+  }
+  userPosts= _.compact(userPosts);
+  
   const usertype = "i dont know why this is here";
   return {
     user,
+    userPosts,
     currentUser: state.session
   };
 };

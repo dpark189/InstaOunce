@@ -10,10 +10,10 @@ export default( state = defaultState , action ) => {
   switch (action.type) {
     case RECEIVE_POSTS:
     case RECEIVE_USERS:
+    case RECEIVE_USER:
+    
       return merge(newState, action.posts);
     case RECEIVE_POST:
-    case RECEIVE_USER:
-
       return merge(newState, {[action.post.id]: action.post});
     case REMOVE_POST:
       delete newState[action.postId];
