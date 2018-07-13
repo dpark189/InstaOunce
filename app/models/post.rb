@@ -19,6 +19,8 @@ class Post < ApplicationRecord
 
     has_many_attached :photos
 
+  has_many :likes, as: :liked_item
+
     def ensure_photos
       unless self.photos.attached?
         errors[:photos] << "must be attached"
