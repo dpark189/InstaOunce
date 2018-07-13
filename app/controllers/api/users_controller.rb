@@ -6,7 +6,7 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.order('updated_at DESC')
   end
 
   def new

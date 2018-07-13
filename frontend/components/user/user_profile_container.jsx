@@ -46,13 +46,13 @@ class UserProfile extends React.Component {
       userEdit = [];
     }
 
-    const postItems = this.props.userPosts.map( (post) => {
+    const postItems = Object.keys(this.props.userPosts).reverse().map( (key) => {
 
       return (
         <PostIndexItem
-          post={post}
+          post={this.props.userPosts[key]}
           author={this.props.user}
-          key={post.id}
+          key={key}
         />
       );
     });
@@ -105,7 +105,7 @@ const mapStateToprops = (state, ownProps) => {
     });
   }
   userPosts= _.compact(userPosts);
-  
+
   const usertype = "i dont know why this is here";
   return {
     user,
