@@ -16,6 +16,6 @@ class Like < ApplicationRecord
   validates :user_id, :liked_item_id, :liked_item_type, presence: true
   validates :liked_item_type, uniqueness: {:scope => [:liked_item_id, :user_id]}
 
-  belongs_to :user
-  belongs_to :liked_item, polymorphic: true
+  belongs_to :user, counter_cache: true
+  belongs_to :liked_item, polymorphic: true, counter_cache: true
 end
