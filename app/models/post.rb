@@ -17,4 +17,7 @@ class Post < ApplicationRecord
     class_name: :User
 
   has_many :images
+
+  has_many :photos,
+  through: :images
 end
