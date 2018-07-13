@@ -78,24 +78,24 @@ class SignupSessionForm extends React.Component {
     );
     const stateErrors = this.props.errors;
     let errors = {
-            username: "",
+            email: "",
             full_name: "",
             username: "",
             password: ""
           };
     if (Object.values(this.props.errors).length === 0) {} else {
       Object.keys(stateErrors).forEach((key) => {
-        debugger
+
         errors[`${key}`] = stateErrors[key].map((err, i) => {
           return (
             <span key={`${key}${i}`} className="signup-errors">{err}</span>
-          )
-        })
+          );
+        });
       });
     }
 
     // <span className="sign-up-errors">{stateErrors[`${key}`]}</span>
-    debugger
+
     return (
       <div className="top-session-div">
         <div className="signup-image"
