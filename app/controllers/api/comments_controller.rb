@@ -7,6 +7,12 @@ class Api::CommentsController < ApplicationController
     render 'api/comments/parent_comments', :commentedItemType => type, :commentedItemId => id
   end
 
+  def show
+    @comment = Comment.find(params[:id])
+    debugger
+    render :show
+  end
+
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
