@@ -20,6 +20,7 @@ class Post < ApplicationRecord
     has_many_attached :photos
 
   has_many :likes, as: :liked_item
+  has_many :comments, as: :commented_item
 
     def ensure_photos
       unless self.photos.attached?
