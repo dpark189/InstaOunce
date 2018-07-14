@@ -11,20 +11,22 @@
 
 class Post < ApplicationRecord
   validates :author_id, presence: true
-  validate :ensure_photos
+  # validate :ensure_photos
 
   belongs_to :author,
     foreign_key: :author_id,
     class_name: :User
 
-    has_many_attached :photos
+  has_many_attached :photos
 
   has_many :likes, as: :liked_item
+
   has_many :comments, as: :commented_item
 
-    def ensure_photos
-      unless self.photos.attached?
-        errors[:photos] << "must be attached"
-      end
-    end
+
+    # def ensure_photos
+    #   unless self.photos.attached?
+    #     errors[:photos] << "must be attached"
+    #   end
+    # end
 end
