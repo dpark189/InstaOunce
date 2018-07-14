@@ -1,11 +1,6 @@
 class CommentsController < ApplicationController
-  def post_comments
-    @comments = Comment.where('comment_item_type = Post AND comment_item_id = ?', params[:postId])
-    render :index
-  end
-
-  def comment_comments
-    @comments = Comment.where('comment_item_type = Comment AND comment_item_id = ?', params[:commentId])
+  def parent_comments
+    @comments = Comment.where('comments.commented_item_type = ? AND comments.commented_item_id = ?', params[:commentedItemType], params[:commentedItemId])
     render :index
   end
 
@@ -14,7 +9,9 @@ class CommentsController < ApplicationController
     if @comment.save
       render :show
     else
-      render @comment.errors.full_messages
+      error_hash = @comment.errors.to_hash
+      error_hash.stringify_keys
+      render json: error_hash, status: 422
     end
   end
 
