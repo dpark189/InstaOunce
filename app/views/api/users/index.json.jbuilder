@@ -5,6 +5,9 @@ json.users do
       json.postIds do
         json.array! @postIds
       end
+      json.commentIds do
+        json.array! user.comments.ids
+      end
     end
   end
 end

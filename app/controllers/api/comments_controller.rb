@@ -1,7 +1,10 @@
-class CommentsController < ApplicationController
+class Api::CommentsController < ApplicationController
   def parent_comments
-    @comments = Comment.where('comments.commented_item_type = ? AND comments.commented_item_id = ?', params[:commentedItemType], params[:commentedItemId])
-    render :index
+    type = params[:commentedItemType]
+    id = params[:commentedItemId]
+
+    @comments = Comment.where('comments.commented_item_type = ? AND comments.commented_item_id = ?', type.singularize.capitalize, id).includes(:author)
+    render 'api/comments/parent_comments', :commentedItemType => type, :commentedItemId => id
   end
 
   def create
