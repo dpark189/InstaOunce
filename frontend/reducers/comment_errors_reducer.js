@@ -4,9 +4,9 @@ import { merge } from 'lodash';
 export default ( state = {}, action ) => {
   Object.freeze(state);
   switch (action.type) {
-    case RECEIVE_comment_ERRORS:
+    case RECEIVE_COMMENT_ERRORS:
       return merge({}, state, action.errors);
-    case RECEIVE_comment:
+    case RECEIVE_COMMENT:
       return {};
     default:
       return state;

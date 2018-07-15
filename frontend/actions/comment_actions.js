@@ -48,7 +48,7 @@ export const receiveCommentErrors = (errors) => {
 
 export const fetchCommentsForPost = (postId) => {
   return dispatch => {
-    return CommentApiUtil.fetchCommentForPost(postId).then(
+    return CommentApiUtil.fetchCommentsForPost(postId).then(
       (payload) => dispatch(receiveComments(payload))
     );
   };
@@ -56,7 +56,7 @@ export const fetchCommentsForPost = (postId) => {
 
 export const fetchCommentsForComment = (commentId) => {
   return dispatch => {
-    return CommentApiUtil.fetchCommentForComment(commentId).then(
+    return CommentApiUtil.fetchCommentsForComment(commentId).then(
       (payload) => dispatch(receiveComment(payload))
     );
   };
@@ -67,7 +67,7 @@ export const fetchCommentsForComment = (commentId) => {
 
 export const fetchComment = (commentId) => {
   return dispatch => {
-    return CommentApiUtil.fetchCommentForComment(commentId).then(
+    return CommentApiUtil.fetchComment(commentId).then(
       (payload) => dispatch(receiveComment(payload))
     );
   };

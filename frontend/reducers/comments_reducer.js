@@ -15,6 +15,7 @@ export default (state = defaultState, action) => {
       delete newState[action.commentId];
       return newState;
     default:
+      return defaultState;
 
   }
 };
