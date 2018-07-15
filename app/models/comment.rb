@@ -23,7 +23,9 @@ class Comment < ApplicationRecord
   belongs_to :commented_item,
     polymorphic: true
 
-  has_many :comments, as: :commented_item
+  has_many :child_comments, as: :commented_item,
+  foreign_key: :commented_item_id,
+  class_name: :Comment
 
   has_many :likes, as: :liked_item
 end
