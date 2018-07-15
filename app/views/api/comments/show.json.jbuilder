@@ -1,6 +1,5 @@
 require 'pry'
 json.comments do
-
   json.partial! 'api/comments/comment', passed: @comment
 end
 

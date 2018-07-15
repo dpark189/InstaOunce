@@ -1,5 +1,5 @@
 class Api::PostsController < ApplicationController
-  before_action :ensure_logged_in, except: [:index]
+  # before_action :ensure_logged_in, except: [:index]
   def index
     @posts = Post.all.includes(:author)
     render :index

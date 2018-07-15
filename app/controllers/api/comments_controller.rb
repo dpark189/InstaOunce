@@ -1,4 +1,5 @@
 class Api::CommentsController < ApplicationController
+  # before_action :ensure_logged_in, except: [:parent_comments]
   def parent_comments
     type = params[:commentedItemType]
     id = params[:commentedItemId]
@@ -9,7 +10,7 @@ class Api::CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
-    
+
     render :show
   end
 
@@ -28,6 +29,8 @@ class Api::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       render :show
+    elsif !check_belong(@comment.author_id)
+      render json: ["you do not have permission to edit this post"]
     else
       render @comment.errors.full_messages
     end
@@ -35,7 +38,11 @@ class Api::CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
+    if check_belong(@comment.author_id)
+      @comment.destroy
+    else
+      render json: ["you do not have permission to delete this post"]
+    end
   end
 
   private
