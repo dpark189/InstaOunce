@@ -1,14 +1,21 @@
-export const fetchCommentForPost = (parentId) => {
+export const fetchCommentsForPost = (postId) => {
   return $.ajax({
     method: 'GET',
-    url: `api/posts/${parentId}/comments`
+    url: `api/posts/${postId}/comments`
   });
 };
 
-export const fetchCommentForComment = (parentId) => {
+export const fetchCommentsForComment = (commentId) => {
   return $.ajax({
     method: 'GET',
-    url: `api/posts/${parentId}/comments`
+    url: `api/comments/${commentId}/comments`
+  });
+};
+
+export const fetchComment = (commentId) => {
+  return $.ajax({
+    method: "GET",
+    url: `api/comments/${commentId}`
   });
 };
 

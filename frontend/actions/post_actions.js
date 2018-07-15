@@ -46,7 +46,7 @@ export const fetchPosts = () => {
 export const fetchPost = (postId) => {
   return dispatch => {
     return PostApiUtil.fetchPost(postId).then(
-      (post) => dispatch(receivePost(post))
+      (payload) => dispatch(receivePost(payload))
     );
   };
 };
@@ -54,7 +54,7 @@ export const fetchPost = (postId) => {
 export const createPost = (formData) => {
   return dispatch => {
     return PostApiUtil.createPost(formData).then(
-      (post) => dispatch(receivePost(post)),
+      (payload) => dispatch(receivePost(payload)),
       (errors) => dispatch(receivePostErrors(errors.responseJSON))
     );
   };
@@ -63,7 +63,7 @@ export const createPost = (formData) => {
 export const updatePost = (post) => {
   return dispatch => {
     return PostApiUtil.updatePost(post).then(
-      post => dispatch(receivePost(post))
+      payload => dispatch(receivePost(payload))
     );
   };
 };

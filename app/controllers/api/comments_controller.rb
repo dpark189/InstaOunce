@@ -16,11 +16,8 @@ class Api::CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    type = @comment.commented_item_type.downcase.pluralize
-    id = @comment.commented_item_id
-
     if @comment.save
-      render "api/#{type}/show", :id => id
+      render :show
     else
       error_hash = @comment.errors.to_hash
       error_hash.stringify_keys
@@ -32,11 +29,13 @@ class Api::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
       type = @comment.commented_item_type.downcase.pluralize
-      render "api/#{type}/show", :id => @comment.commented_item_id
+      render :show
     elsif !check_belong(@comment.author_id)
       render json: ["you do not have permission to edit this post"]
     else
-      render @comment.errors.full_messages
+      error_hash = @comment.errors.to_hash
+      error_hash.stringify_keys
+      render error_hash.errors.full_messages
     end
   end
 
