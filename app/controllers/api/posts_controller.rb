@@ -19,7 +19,9 @@ class Api::PostsController < ApplicationController
       # render 'api/users/show', :id => @post.author_id
       render :show
     else
-      render json: @post.errors.full_messages, status: 422
+      error_hash = @post.errors.to_hash
+      error_hash.stringify_keys
+      render json: error_hash, status: 422
     end
   end
 
@@ -30,7 +32,9 @@ class Api::PostsController < ApplicationController
     elsif !check_belong(@post.author_id)
       render json: ["you do not have permission to edit this post"]
     else
-      render json: @post.errors.full_messages, status: 422
+      error_hash = @post.errors.to_hash
+      error_hash.stringify_keys
+      render json: error_hash, status: 422
     end
   end
 
