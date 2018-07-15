@@ -5,7 +5,7 @@ export const RECEIVE_POST = "RECEIVE_POST";
 export const REMOVE_POST = "REMOVE_POST";
 export const RECEIVE_POST_ERRORS = "RECEIVE_POST_ERRORS";
 
-export const receiveAllPosts = (payload) => {
+export const receivePosts = (payload) => {
   return {
     type: RECEIVE_POSTS,
     posts: payload.posts,
@@ -18,6 +18,7 @@ export const receivePost = (payload) => {
     type: RECEIVE_POST,
     post: payload.post,
     user: payload.user,
+    comments: payload.comments
   };
 };
 
@@ -38,7 +39,7 @@ export const receivePostErrors = (errors) => {
 export const fetchPosts = () => {
   return dispatch => {
     return PostApiUtil.fetchPosts().then(
-      (posts) => dispatch(receiveAllPosts(posts))
+      (posts) => dispatch(receivePosts(posts))
     );
   };
 };

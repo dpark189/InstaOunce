@@ -1,3 +1,4 @@
+require 'pry'
 class Api::PostsController < ApplicationController
   # before_action :ensure_logged_in, except: [:index]
   def index
@@ -7,7 +8,7 @@ class Api::PostsController < ApplicationController
 
 # TODO: might be able to do logic for showing followed user posts here
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(:comments).where(:comments => {:commented_item_type => 'Post', :commented_item_id => params[:id]}).first
     @user = User.find(@post.author_id)
     render :show
   end
