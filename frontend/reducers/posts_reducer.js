@@ -4,14 +4,14 @@ import { RECEIVE_USERS, RECEIVE_USER } from '../actions/user_actions';
 
 const defaultState = {};
 
-export default( state = defaultState , action ) => {
+export default( state = defaultState, action ) => {
   Object.freeze(state);
   const newState = merge({}, state);
   switch (action.type) {
     case RECEIVE_POSTS:
     case RECEIVE_USERS:
     case RECEIVE_USER:
-    
+
       return merge(newState, action.posts);
     case RECEIVE_POST:
       return merge(newState, {[action.post.id]: action.post});

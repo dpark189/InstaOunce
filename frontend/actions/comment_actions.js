@@ -5,7 +5,6 @@ export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
 export const RECEIVE_COMMENT_ERRORS = "RECEIVE_COMMENT_ERRORS";
 export const REMOVE_COMMENT = "REMOVE_COMMENT";
-export const RECEIVE_POST_FROM_COMMENT = "RECEIVE_POST_FROM_COMMENT";
 
 export const receiveComments = (payload) => {
   return {
