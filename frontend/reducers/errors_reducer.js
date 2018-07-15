@@ -10,4 +10,3 @@ export default combineReducers({
   post: postErrors,
   comment: commentErrors
 });
-// TODO: possibly could create separate errors render pages in api controller
