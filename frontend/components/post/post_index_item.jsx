@@ -4,6 +4,7 @@ import { fetchPost, deletePost } from '../../actions/post_actions';
 import { fetchUser } from '../../actions/user_actions';
 import { withRouter } from 'react-router-dom';
 import UserProfilePicture from '../user/user_profile_picture';
+import CommentIndex from '../comment/comment_index';
 
 export default (props) => {
   let images;
@@ -43,13 +44,19 @@ export default (props) => {
         </div>
       </section>
       <section className="post-index-item-caption">
-        <span><strong>{props.author.username} </strong>{props.post.caption}</span>
+        <span>
+          <strong>{props.author.username} </strong>{props.post.caption}
+        </span>
+        <CommentIndex
+          commentIds={props.post.commentIds}
+          parentType="Post"
+          parentId={props.post.id}
+        />
         <div className="update-date">
           {props.post.updated_at}
         </div>
       </section>
       <section className="index-item-comment">
-        <p>comments will go here</p>
       </section>
     </div>
   );
