@@ -14,7 +14,9 @@ class Api::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @user = User.find(@post.author_id)
     if @post.save
+      # render 'api/users/show', :id => @post.author_id
       render :show
     else
       render json: @post.errors.full_messages, status: 422
@@ -36,6 +38,7 @@ class Api::PostsController < ApplicationController
     @post = Post.find(params[:id])
     if check_belong(@post.author_id)
       @post.destroy
+      render :show
     else
       render json: ["you do not have permission to delete this post"]
     end

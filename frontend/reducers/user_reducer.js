@@ -15,7 +15,6 @@ export default (state = defaultState, action ) => {
     case RECEIVE_CURRENT_USER:
     case RECEIVE_POST:
     case RECEIVE_USER:
-
       return merge(newState, {[action.user.id]: action.user});
     default:
       return state;

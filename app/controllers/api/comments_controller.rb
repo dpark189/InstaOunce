@@ -16,8 +16,11 @@ class Api::CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
+    type = @comment.commented_item_type.downcase.pluralize
+    id = @comment.commented_item_id
+
     if @comment.save
-      render :show
+      render "api/#{type}/show", :id => id
     else
       error_hash = @comment.errors.to_hash
       error_hash.stringify_keys
@@ -28,7 +31,8 @@ class Api::CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
-      render :show
+      type = @comment.commented_item_type.downcase.pluralize
+      render "api/#{type}/show", :id => @comment.commented_item_id
     elsif !check_belong(@comment.author_id)
       render json: ["you do not have permission to edit this post"]
     else
@@ -38,8 +42,11 @@ class Api::CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    type = @comment.commented_item_type.downcase.pluralize
+    id = @comment.commented_item_id
     if check_belong(@comment.author_id)
       @comment.destroy
+      render "api/#{type}/show", :id => id
     else
       render json: ["you do not have permission to delete this post"]
     end
