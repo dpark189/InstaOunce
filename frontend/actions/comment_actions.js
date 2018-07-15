@@ -1,5 +1,6 @@
 import * as CommentApiUtil from '../util/comment_api_util';
 import receivePost from './post_actions';
+import { merge } from 'lodash';
 
 export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
@@ -17,8 +18,9 @@ export const receiveComments = (payload) => {
 export const receiveComment = (payload) => {
   return {
     type: RECEIVE_COMMENT,
-    comment: payload.comment,
-    user: payload.user
+    comment: payload.comment || {},
+    user: payload.user || {},
+    childComments: payload.childComments || {}
     // thinking about how to use appended data
   };
 };
@@ -68,7 +70,13 @@ export const fetchCommentsForComment = (commentId) => {
 export const fetchComment = (commentId) => {
   return dispatch => {
     return CommentApiUtil.fetchComment(commentId).then(
-      (payload) => dispatch(receiveComment(payload))
+      (payload) => {
+        return dispatch(receiveComment(payload));
+      }
+    ).then(
+      (payload) => {
+        return dispatch(receiveComment(payload.childComments));
+      }
     );
   };
 };

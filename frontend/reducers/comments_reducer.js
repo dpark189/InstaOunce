@@ -13,7 +13,7 @@ export default (state = defaultState, action) => {
       return merge(newState, action.comments);
     case RECEIVE_COMMENT:
     case RECEIVE_POST:
-      return merge(newstate, {[action.comment.id]: action.comment});
+      return merge(newState, {[action.comment.id]: action.comment});
     case REMOVE_COMMENT:
       delete newState[action.commentId];
       return newState;

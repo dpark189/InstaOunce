@@ -8,8 +8,10 @@ json.user do
 end
 
 json.childComments do
-  @comment.child_comments.each do |comment|
-    json.partial! 'api/comments/comment', passed: comment
+  json.comment do
+    @comment.child_comments.each do |comment|
+      json.partial! 'api/comments/comment', passed: comment
+    end
   end
 end
 
