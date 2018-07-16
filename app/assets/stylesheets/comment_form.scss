@@ -5,8 +5,11 @@
 .comment-form {
   display: flex;
   justify-content: center;
+  width:100%;
 }
-
+input.hidden {
+  width: 1px;
+}
 .comment-input {
   display: flex;
   justify-content: flex-start;
