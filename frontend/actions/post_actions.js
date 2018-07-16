@@ -14,7 +14,7 @@ export const receivePosts = (payload) => {
 };
 
 export const receivePost = (payload) => {
-  debugger
+
   return {
     type: RECEIVE_POST,
     post: payload.post,

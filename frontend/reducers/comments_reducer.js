@@ -11,10 +11,10 @@ export default (state = defaultState, action) => {
     case RECEIVE_COMMENTS:
     case RECEIVE_POSTS:
     case RECEIVE_POST:
-    debugger
+
       return merge(newState, action.comments);
     case RECEIVE_COMMENT:
-    debugger
+
       return merge(newState, {[action.comment.id]: action.comment});
     case REMOVE_COMMENT:
       delete newState[action.commentId];

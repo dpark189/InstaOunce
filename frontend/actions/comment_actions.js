@@ -16,7 +16,7 @@ export const receiveComments = (payload) => {
 };
 
 export const receiveComment = (payload) => {
-  debugger
+
   return {
     type: RECEIVE_COMMENT,
     comment: payload.comment || {},
@@ -70,7 +70,7 @@ export const fetchCommentsForComment = (commentId) => {
 // shouldn't need to fetch parent since it is not changing
 
 export const fetchComment = (commentId) => {
-  debugger
+
   return dispatch => {
     return CommentApiUtil.fetchComment(commentId).then(
       (payload) => {
@@ -102,7 +102,7 @@ export const createCommentForPost = (comment) => {
       (errors) => dispatch(receiveCommentErrors(errors))
     ).then(
       (payload) => {
-        debugger
+
         return dispatch(receivePost(payload.parent));
       }
     );
