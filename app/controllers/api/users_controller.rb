@@ -7,7 +7,6 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.order('updated_at DESC')
   end
 
   def new
@@ -28,6 +27,17 @@ class Api::UsersController < ApplicationController
     # TODO: can parse errors by their keys ie: @user.errors[:full_name] could use this to better display errors on form
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      render :show
+    else
+      error_hash = @user.errors.to_hash
+      string_errors_hash = error_hash.stringify_keys
+      render json: string_errors_hash, status: 422
+    end
+  end
+
   def user_params
     params.require(:user).permit(
       :username,
@@ -41,4 +51,5 @@ class Api::UsersController < ApplicationController
       :profile_picture
     )
   end
+
 end

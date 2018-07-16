@@ -44,6 +44,7 @@ class PostForm extends React.Component {
     if (file) {
       formData.append("post[photos]", file);
     }
+
     this.props.formAction(formData).then(this.props.closeModal()).then(this.props.history.push(`/users/${this.props.currentUserId}`));
   }
 

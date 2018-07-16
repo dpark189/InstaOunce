@@ -13,6 +13,7 @@ export const fetchPost = (postId) => {
 };
 
 export const createPost = formData => {
+
   return $.ajax({
     url: 'api/posts',
     method: 'POST',

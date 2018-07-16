@@ -21,10 +21,10 @@ export const receiveUsers = (payload) => {
   };
 };
 
-export const updateUser = (user) => {
+export const updateUser = (userId, formData) => {
   return dispatch => {
-    return UserApiUtil.updateUser(user).then(
-      (user) => dispatch(receiveUser(user)),
+    return UserApiUtil.updateUser(userId, formData).then(
+      (payload) => dispatch(receiveUser(payload)),
       (err) => {
         return dispatch(receiveUserErrors(err));
       }

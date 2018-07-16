@@ -14,7 +14,6 @@
 #  website         :string
 #  bio             :string
 #  gender          :string
-#  profile_picture :string
 #
 
 # tests
@@ -47,9 +46,9 @@ class User < ApplicationRecord
     foreign_key: :author_id,
     class_name: :Comment
 
-  has_many :images
-
   has_many :likes
+
+  has_one_attached :profile_picture
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)

@@ -104,7 +104,8 @@ const mapStateToprops = (state, ownProps) => {
     bio: "",
     email: "",
     phone_number: "",
-    gender: ""
+    gender: "",
+    profile_pictureUrl: ""
   };
 
   const user = (state.entities.users[ownProps.match.params.userId]) || (dummyUser);

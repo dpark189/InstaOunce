@@ -10,8 +10,6 @@
 #  updated_at          :datetime         not null
 #  commented_item_type :string
 #
-# test
-# comment = Comment.new(author_id: 1, commented_item_id: 1, body: "asdfad", commented_item_type: "Post")
 
 class Comment < ApplicationRecord
   validates :body, :commented_item_type, presence: true

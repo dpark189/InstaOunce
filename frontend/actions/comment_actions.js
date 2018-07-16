@@ -102,7 +102,6 @@ export const createCommentForPost = (comment) => {
       (errors) => dispatch(receiveCommentErrors(errors))
     ).then(
       (payload) => {
-
         return dispatch(receivePost(payload.parent));
       }
     );
