@@ -12,15 +12,17 @@ class CommentIndex extends React.Component {
     if (this.props.parentType === "Post") {
       this.props.fetchCommentsForPost(this.props.parentId);
     } else if (this.props.parentType === "Comment") {
+
       this.props.fetchCommentsForComment(this.props.parentId);
     }
   }
+
   render() {
     let comments;
     if ((this.props.comments.length === 0)) {
       comments = "";
     } else {
-      debugger
+
       comments = this.props.comments.map( (comment) => {
         return (
           <CommentIndexItem
@@ -39,7 +41,7 @@ class CommentIndex extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   // pass parent.commentIds and  parent type to help filter
   // change post controller to also give comments for a post
-  debugger
+
   let parentComments = ownProps.commentIds.map( (commentId) => {
     return state.entities.comments[commentId];
   }) || {};

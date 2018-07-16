@@ -1,5 +1,5 @@
 import * as CommentApiUtil from '../util/comment_api_util';
-import receivePost from './post_actions';
+import { receivePost } from './post_actions';
 import { merge } from 'lodash';
 
 export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
@@ -16,11 +16,13 @@ export const receiveComments = (payload) => {
 };
 
 export const receiveComment = (payload) => {
+  debugger
   return {
     type: RECEIVE_COMMENT,
     comment: payload.comment || {},
     user: payload.user || {},
-    childComments: payload.childComments || {}
+    childComments: payload.childComments || {},
+    parent: payload.parent || {}
     // thinking about how to use appended data
   };
 };
@@ -59,7 +61,7 @@ export const fetchCommentsForPost = (postId) => {
 export const fetchCommentsForComment = (commentId) => {
   return dispatch => {
     return CommentApiUtil.fetchCommentsForComment(commentId).then(
-      (payload) => dispatch(receiveComment(payload))
+      (payload) => dispatch(receiveComments(payload))
     );
   };
 };
@@ -68,6 +70,7 @@ export const fetchCommentsForComment = (commentId) => {
 // shouldn't need to fetch parent since it is not changing
 
 export const fetchComment = (commentId) => {
+  debugger
   return dispatch => {
     return CommentApiUtil.fetchComment(commentId).then(
       (payload) => {
@@ -75,7 +78,7 @@ export const fetchComment = (commentId) => {
       }
     ).then(
       (payload) => {
-        return dispatch(receiveComment(payload.childComments));
+        return dispatch(receiveComments(payload.childComments));
       }
     );
   };
@@ -98,7 +101,10 @@ export const createCommentForPost = (comment) => {
       (payload) => dispatch(receiveComment(payload)),
       (errors) => dispatch(receiveCommentErrors(errors))
     ).then(
-      (payload) => dispatch(receivePost(payload.parent.post))
+      (payload) => {
+        debugger
+        return dispatch(receivePost(payload.parent));
+      }
     );
   };
 };

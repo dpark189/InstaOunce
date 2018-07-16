@@ -5,6 +5,7 @@ import { fetchUser } from '../../actions/user_actions';
 import { withRouter } from 'react-router-dom';
 import UserProfilePicture from '../user/user_profile_picture';
 import CommentIndex from '../comment/comment_index';
+import CreateCommentFormContainer from '../comment/create_comment_form_container';
 
 export default (props) => {
   let images;
@@ -57,6 +58,10 @@ export default (props) => {
         </div>
       </section>
       <section className="index-item-comment">
+        <CreateCommentFormContainer
+          parentType="Post"
+          parentId={props.post.id}
+        />
       </section>
     </div>
   );

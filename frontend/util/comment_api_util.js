@@ -19,7 +19,7 @@ export const fetchComment = (commentId) => {
   });
 };
 
-export const createPost = (comment) => {
+export const createComment = (comment) => {
   return $.ajax({
     method: 'POST',
     url: `api/comments`,
