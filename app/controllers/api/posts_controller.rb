@@ -1,4 +1,4 @@
-require 'pry'
+
 class Api::PostsController < ApplicationController
   # before_action :ensure_logged_in, except: [:index]
   def index

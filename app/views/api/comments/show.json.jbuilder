@@ -1,4 +1,4 @@
-require 'pry'
+
 json.comment do
   json.partial! 'api/comments/comment', passed: @comment
 end
@@ -20,11 +20,3 @@ json.parent do
     json.partial! "api/#{@comment.commented_item_type.downcase.pluralize}/#{@comment.commented_item_type.downcase.singularize}", passed: @comment.commented_item
   end
 end
-
-
-# Comment.select('comments.*, child_comments.*').from('comments').join("comments as child_comments on comments.id = child_comments.commented_item_id and child_comments.commented_item_type = 'Comment'").where('comments.id = 7 and child_comments.id != 7;')
-#
-# select comments.*, child_comments.*
-# from comments
-# join comments as child_comments on comments.id = child_comments.commented_item_id and child_comments.commented_item_type = 'Comment'
-# where comments.id = 7 and child_comments.id != 7;
