@@ -3,3 +3,9 @@ json.commentIds do
   json.array! passed.child_comments.ids
 end
 json.updated_at passed.updated_at.strftime("%B %e, %Y")
+if passed.likes
+  count = passed.likes.count
+else
+  count = 0
+end
+json.likes passed.likes.count
