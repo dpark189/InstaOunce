@@ -80,7 +80,7 @@ class UserProfile extends React.Component {
               {userEdit}
             </div>
             <div className="user-info-sub2">
-              <h4 className="user-info">posts</h4>
+              <h4 className="user-info">{this.props.user.postIds.length} posts</h4>
               <h4 className="user-info">followers</h4>
               <h4 className="user-info">following</h4>
             </div>
