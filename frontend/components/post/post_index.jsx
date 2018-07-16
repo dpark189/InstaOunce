@@ -15,6 +15,9 @@ class PostIndex extends React.Component {
           post={this.props.posts[key]}
           author={this.props.users[this.props.posts[key].author_id]}
           key={key}
+          createLike={this.props.createLike}
+          deleteLike={this.props.deleteLike}
+          currentUserId={this.props.currentUserId}
         />
       );
     });

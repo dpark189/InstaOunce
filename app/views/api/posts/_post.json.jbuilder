@@ -10,19 +10,19 @@ json.commentIds do
 end
 
 if passed.likes
-  json.likes do
-    json.count passed.likes.count
-    json.users do
-      passed.likes.each do |like|
-        json.set! like.user.id do
-          json.extract! like.user, :username
-        end
+  json.likes_by_user_id do
+    passed.likes.each do |like|
+      json.set! like.user.id do
+        json.extract! like.user, :username
+        json.like_id like.id
       end
     end
   end
+  json.likes_count passed.likes.count
 else
-  json.likes do
-    json.count 0
-    json.users {}
+  json.likes_by_user_id do
+    {}
   end
+  json.count 0
+
 end
