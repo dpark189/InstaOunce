@@ -1,3 +1,4 @@
+
 class Api::UsersController < ApplicationController
   def index
     @users = User.all.includes(:posts)
@@ -19,6 +20,7 @@ class Api::UsersController < ApplicationController
       login(@user)
       render :show
     else
+
       error_hash = @user.errors.to_hash
       string_errors_hash = error_hash.stringify_keys
       render json: string_errors_hash, status: 422
