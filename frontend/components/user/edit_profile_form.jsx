@@ -69,7 +69,7 @@ class EditProfileForm extends React.Component {
       formData.append("user[profile_picture]", file);
     }
 
-    this.props.updateUser(userId, formData);
+    this.props.updateUser(userId, formData).then(this.props.history.push(`/users/${this.props.currentUserId}`)) ;
   }
 
   render() {
