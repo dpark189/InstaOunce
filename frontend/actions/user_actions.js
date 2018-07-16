@@ -9,7 +9,7 @@ export const receiveUser = (payload) => {
   return {
     type: RECEIVE_USER,
     user: payload.user,
-    posts: payload.posts
+    posts: payload.posts || {}
   };
 };
 
@@ -17,7 +17,7 @@ export const receiveUsers = (payload) => {
   return {
     type: RECEIVE_USERS,
     user: payload.user,
-    posts: payload.posts
+    posts: payload.posts || {}
   };
 };
 
