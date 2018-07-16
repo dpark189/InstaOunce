@@ -16,11 +16,11 @@ class Api::PostsController < ApplicationController
       :author,
       comments: [:likes, :author, :child_comments],
       likes: [:user]
-    ).where(
+    ).find_by(
       :comments => {
         :commented_item_type => 'Post',
         :commented_item_id => params[:id]
-      }).first
+      })
       if !@post
         @post = Post.find(params[:id])
       end
