@@ -6,7 +6,7 @@ export const fetchUser = (userId) => {
 };
 
 export const updateUser = (userId, formData) => {
-debugger
+
   return $.ajax({
     method: "PATCH",
     url: `api/users/${userId}`,

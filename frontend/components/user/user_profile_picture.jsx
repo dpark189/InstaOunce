@@ -8,7 +8,7 @@ class ProfilePicture extends React.Component {
 
   render () {
     let image;
-    debugger
+
     if ((typeof this.props.user.profile_picture === "undefined") || (typeof this.props.user.profile_picture === "null")) {
       image = (
         <div className="profile-frame" style={{backgroundImage: "url(" + window.profile_placeholder + ")"}}>
