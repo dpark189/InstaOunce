@@ -2,14 +2,28 @@
 class Api::PostsController < ApplicationController
   # before_action :ensure_logged_in, except: [:index]
   def index
-    @posts = Post.all.includes(:author)
+    @posts = Post.all.includes(
+      :author,
+      likes: [:user],
+      comments: [:likes, :author, :child_comments]
+    )
     render :index
   end
 
 # TODO: might be able to do logic for showing followed user posts here
   def show
-    @post = Post.includes(:comments).where(:comments => {:commented_item_type => 'Post', :commented_item_id => params[:id]}).first
-    @user = User.find(@post.author_id)
+    @post = Post.includes(
+      :author,
+      comments: [:likes, :author, :child_comments],
+      likes: [:user]
+    ).where(
+      :comments => {
+        :commented_item_type => 'Post',
+        :commented_item_id => params[:id]
+      }).first
+      if !@post
+        @post = Post.find(params[:id])
+      end
     render :show
   end
 

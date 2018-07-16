@@ -8,10 +8,21 @@ json.updated_at passed.updated_at.strftime("%B %e, %Y")
 json.commentIds do
   json.array! passed.comments.ids
 end
-binding.pry
+
 if passed.likes
-  count = passed.likes.count
+  json.likes do
+    json.count passed.likes.count
+    json.users do
+      passed.likes.each do |like|
+        json.set! like.user.id do
+          json.extract! like.user, :username
+        end
+      end
+    end
+  end
 else
-  count = 0
+  json.likes do
+    json.count 0
+    json.users {}
+  end
 end
-json.likes passed.likes.count
