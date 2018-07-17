@@ -8,6 +8,8 @@ import EditProfileForm from './edit_profile_form';
 import UserProfilePicture from './user_profile_picture';
 import PostIndexItem from '../post/post_index_item';
 import { compact } from 'lodash';
+import { createLike, deleteLike } from '../../actions/like_actions';
+
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -67,6 +69,7 @@ class UserProfile extends React.Component {
           post={this.props.userPosts[key]}
           author={this.props.user}
           key={key}
+          currentUserId={this.props.currentUser.id}
         />
       );
     });
