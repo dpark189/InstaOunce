@@ -12,7 +12,6 @@ class PostIndexItem extends React.Component {
   constructor(props) {
     super(props);
     let likedStatus;
-    let buttonClass;
 
     if ((props.post.likes_count === 0) || !props.post.likes_by_user_id) {
       likedStatus = false;
@@ -27,12 +26,27 @@ class PostIndexItem extends React.Component {
     this.state = {
       likedStatus
     };
-
+    this.state.fade = false;
+    this.fadingDone = this.fadingDone.bind(this);
     this.handleLikeClick = this.handleLikeClick.bind(this);
   }
 
+  componentDidMount() {
+    const elm = this.refs.liking;
+		elm.addEventListener('animationend', this.fadingDone);
+  }
+
+  componentWillUnmount () {
+    const elm = this.refs.liking;
+    elm.removeEventListener('animationend', this.fadingDone);
+  }
+
+  fadingDone () {
+    this.setState({fade: false});
+  }
+
   handleLikeClick(e) {
-    debugger
+    this.setState({fade: true});
     if ((typeof this.props.post.likes_by_user_id === 'undefined') ||
       (typeof this.props.post.likes_by_user_id[this.props.currentUserId] === 'undefined')
     ) {
@@ -40,7 +54,6 @@ class PostIndexItem extends React.Component {
         this.setState({likedStatus: false})
       );
     } else {
-
       this.props.deleteLike("Post", this.props.post.likes_by_user_id[this.props.currentUserId].like_id).then(
         this.setState({likedStatus: true})
       );
@@ -71,6 +84,7 @@ class PostIndexItem extends React.Component {
   render() {
     let images;
 
+    const fade = this.state.fade;
 
     if ((typeof this.props.post.photos === "undefined" ) ||
     (Object.values(this.props.post.photos).length === 0 ) ||
@@ -84,6 +98,7 @@ class PostIndexItem extends React.Component {
       });
     }
     const likeCount = this.props.post.likes_count;
+
     return(
       <div className="post-index-item-div">
         <section className="post-header">
@@ -95,7 +110,7 @@ class PostIndexItem extends React.Component {
           </div>
         </section>
         <section className="post-images" onDoubleClick={this.handleLikeClick}>
-          <i className={`fas fa-heart post-icons ${!this.state.likedStatus}-like-icon-picture`}></i>
+          <i ref='liking' className={`${fade ? 'fade' : ''} fas fa-heart post-icons like-icon-picture`}></i>
           {images}
         </section>
         <section className="post-sub-header">
