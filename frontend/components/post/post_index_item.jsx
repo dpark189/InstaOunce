@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions/post_actions';
 import { fetchUser } from '../../actions/user_actions';
 import { createLike, deleteLike } from '../../actions/like_actions';
+import { Link } from 'react-router-dom';
 import UserProfilePicture from '../user/user_profile_picture';
 import CommentIndex from '../comment/comment_index';
 import CreateCommentFormContainer from '../comment/create_comment_form_container';
@@ -31,7 +32,7 @@ class PostIndexItem extends React.Component {
   }
 
   handleLikeClick(e) {
-
+    debugger
     if ((typeof this.props.post.likes_by_user_id === 'undefined') ||
       (typeof this.props.post.likes_by_user_id[this.props.currentUserId] === 'undefined')
     ) {
@@ -88,10 +89,13 @@ class PostIndexItem extends React.Component {
         <section className="post-header">
           <div className="post-user-info">
             <UserProfilePicture user={this.props.author} />
-            <strong>{this.props.author.username}</strong>
+            <Link className="user-show-page-link" to={`/users/${this.props.author.id}`}>
+              <strong>{this.props.author.username}</strong>
+            </Link>
           </div>
         </section>
-        <section className="post-images">
+        <section className="post-images" onDoubleClick={this.handleLikeClick}>
+          <i className={`fas fa-heart post-icons ${!this.state.likedStatus}-like-icon-picture`}></i>
           {images}
         </section>
         <section className="post-sub-header">

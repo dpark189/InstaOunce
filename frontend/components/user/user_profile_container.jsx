@@ -73,22 +73,27 @@ class UserProfile extends React.Component {
         />
       );
     });
+    let postCount = 0;
+    if (typeof this.props.user.postIds === "undefined") {
+    } else {
+      postCount = this.props.user.postIds.length;
+    }
     return(
       <div className="profile-page">
         <div className="profile-header">
-          <UserProfilePicture fetchUser={this.props.fetchUser} user={this.props.user} />
+          <UserProfilePicture fetchUser={this.props.fetchUser} user={this.props.user || ""} />
           <div className="user-content">
             <div className="user-info-sub1">
               <h3 className="profile-username">{this.props.user.username}</h3>
               {userEdit}
             </div>
             <div className="user-info-sub2">
-              <h4 className="user-info">{this.props.user.postIds.length} posts</h4>
+              <h4 className="user-info">{postCount} posts</h4>
               <h4 className="user-info">followers</h4>
               <h4 className="user-info">following</h4>
             </div>
             <div className="user-info-sub3">
-              <h4 className="user-name">{this.props.user.full_name}</h4>
+              <h4 className="user-name">{this.props.user.full_name || ""}</h4>
             </div>
           </div>
         </div>
@@ -129,6 +134,24 @@ const mapStateToprops = (state, ownProps) => {
     user,
     userPosts,
     currentUser: state.session
+  };
+};
+
+const mapStateToProps = (state, ownProps) => {
+  const dummyUser = {
+    full_name: "",
+    username: "",
+    website: "",
+    bio: "",
+    email: "",
+    phone_number: "",
+    gender: "",
+    profile_pictureUrl: ""
+  };
+  const id = ownProps.match.params.userId;
+  const user = state.entities.users[id] || dummyUser;
+  return {
+    user
   };
 };
 

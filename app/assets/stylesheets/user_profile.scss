@@ -44,6 +44,7 @@ div.profile-header {
 }
 
 .profile-username {
+  display: flex;
   padding: 0;
   margin: 0;
   text-decoration: none;
@@ -85,4 +86,12 @@ div.profile-header {
 
 img.profile_picture {
   margin-left: -39px;
+}
+
+.user-show-page-link {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
 }
