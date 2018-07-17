@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import { fetchPosts } from '../../actions/post_actions';
+import { fetchFeedPosts } from '../../actions/post_actions';
 import { createLike, deleteLike } from '../../actions/like_actions';
 import PostIndex from './post_index';
 import { connect } from 'react-redux';
@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: () => dispatch(fetchPosts()),
+    fetchFeedPosts: () => dispatch(fetchFeedPosts()),
     createLike: (likedType, likedId, currentUserId) => dispatch(createLike(likedType, likedId, currentUserId)),
     deleteLike: (likedType, likedId, currentUserId) => dispatch(deleteLike(likedType, likedId, currentUserId))
   };

@@ -37,9 +37,9 @@ export const receivePostErrors = (errors) => {
   };
 };
 
-export const fetchPosts = () => {
+export const fetchFeedPosts = () => {
   return dispatch => {
-    return PostApiUtil.fetchPosts().then(
+    return PostApiUtil.fetchFeedPosts().then(
       (posts) => dispatch(receivePosts(posts))
     );
   };

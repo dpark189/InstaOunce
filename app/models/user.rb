@@ -50,6 +50,24 @@ class User < ApplicationRecord
 
   has_one_attached :profile_picture
 
+# ---- people i'm following -----
+  has_many :follows_as_follower,
+    foreign_key: :follower_id,
+    class_name: :Follow
+
+  has_many :people_im_following,
+    through: :follows_as_follower,
+    source: :followee
+# ---- people following me -----
+  has_many :follows_as_followee,
+    foreign_key: :followee_id,
+    class_name: :Follow
+
+  has_many :people_following_me,
+    through: :follows_as_followee,
+    source: :follower
+
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     return nil unless user && user.is_password?(password)

@@ -140,7 +140,7 @@ const msp = (state, ownProps) => {
 
 const mdp = (dispatch) => {
   return {
-    fetchPosts: () => dispatch(fetchPosts()),
+    fetchFeedPosts: () => dispatch(fetchFeedPosts()),
     createLike: (likedType, likedId, currentUserId) => dispatch(createLike(likedType, likedId, currentUserId)),
     deleteLike: (likedType, likedId, currentUserId) => dispatch(deleteLike(likedType, likedId, currentUserId))
   };
