@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions/post_actions';
 import { fetchUser } from '../../actions/user_actions';
-import { withRouter } from 'react-router-dom';
+import { createLike, deleteLike } from '../../actions/like_actions';
 import UserProfilePicture from '../user/user_profile_picture';
 import CommentIndex from '../comment/comment_index';
 import CreateCommentFormContainer from '../comment/create_comment_form_container';
@@ -16,7 +16,6 @@ class PostIndexItem extends React.Component {
     if ((props.post.likes_count === 0) || !props.post.likes_by_user_id) {
       likedStatus = false;
     } else {
-
       if (Object.values(props.post.likes_by_user_id).includes(props.currentUserId)){
         likedStatus = true;
       } else {
@@ -29,23 +28,13 @@ class PostIndexItem extends React.Component {
     };
 
     this.handleLikeClick = this.handleLikeClick.bind(this);
-    this.toggleLike = this.toggleLike.bind(this);
-  }
-
-  toggleLike(e) {
-
-    this.setState({
-      likedStatus: !this.state.likedStatus
-    });
-
   }
 
   handleLikeClick(e) {
-    debugger
+
     if ((typeof this.props.post.likes_by_user_id === 'undefined') ||
       (typeof this.props.post.likes_by_user_id[this.props.currentUserId] === 'undefined')
     ) {
-
       this.props.createLike("Post", this.props.post.id, this.props.currentUserId).then(
         this.setState({likedStatus: false})
       );
@@ -57,23 +46,31 @@ class PostIndexItem extends React.Component {
     }
   }
 
-  componentWillReceiveProps(newProps) {
-    if ((newProps.post.likes_count === 0) || !newProps.post.likes_by_user_id) {
-      this.setState({likedStatus: false});
-    } else {
 
-      if (Object.values(newProps.post.likes_by_user_id).includes(newProps.currentUserId)){
-        this.setState({likedStatus: true});
-      } else {
+  // componentDidUpdate(prevProps, prevState) {
+  //   if ((typeof this.props.post.likes_by_user_id === 'undefined') ||
+  //     (typeof this.props.post.likes_by_user_id[this.props.currentUserId] === 'undefined')
+  //   ) {
+  //       this.setState({likedStatus: false});
+  //     } else {
+  //       this.setState({likedStatus: true});
+  //     }
+  // }
+
+  componentWillReceiveProps(newProps) {
+    if ((typeof newProps.post.likes_by_user_id === 'undefined') ||
+      (typeof newProps.post.likes_by_user_id[newProps.currentUserId] === 'undefined')
+    ) {
         this.setState({likedStatus: false});
+      } else {
+        this.setState({likedStatus: true});
       }
-    }
   }
 
   render() {
     let images;
 
-    debugger
+
     if ((typeof this.props.post.photos === "undefined" ) ||
     (Object.values(this.props.post.photos).length === 0 ) ||
     (typeof this.props.post.photos === "null")) {
@@ -135,4 +132,18 @@ class PostIndexItem extends React.Component {
   }
 }
 
-export default PostIndexItem;
+const msp = (state, ownProps) => {
+  return {
+    post: ownProps.post
+  };
+};
+
+const mdp = (dispatch) => {
+  return {
+    fetchPosts: () => dispatch(fetchPosts()),
+    createLike: (likedType, likedId, currentUserId) => dispatch(createLike(likedType, likedId, currentUserId)),
+    deleteLike: (likedType, likedId, currentUserId) => dispatch(deleteLike(likedType, likedId, currentUserId))
+  };
+};
+
+export default connect(msp, mdp)(PostIndexItem);
