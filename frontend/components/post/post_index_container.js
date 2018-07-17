@@ -15,7 +15,6 @@ const mapStateToProps = (state, ownProps) => {
       }
     });
   } else { posts = allPosts; }
-  // const posts = Object.values(state.entities.posts) || {};
   const users = state.entities.users;
   return {
     posts,
