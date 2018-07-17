@@ -1,5 +1,5 @@
 export const createLike = (likedType, likedId, currentUserId) => {
-  debugger
+  
   return $.ajax({
     method: "POST",
     url: "api/likes",

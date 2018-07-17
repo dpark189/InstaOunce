@@ -13,54 +13,67 @@ class PostIndexItem extends React.Component {
     let likedStatus;
     let buttonClass;
 
-    if (props.post.likes_count === 0) {
+    if ((props.post.likes_count === 0) || !props.post.likes_by_user_id) {
       likedStatus = false;
     } else {
-      debugger
-      if (!props.post.likes_by_user_id){
-        likedStatus = false;
-      } else {
+
+      if (Object.values(props.post.likes_by_user_id).includes(props.currentUserId)){
         likedStatus = true;
+      } else {
+        likedStatus = false;
       }
     }
 
     this.state = {
-      likedStatus,
-      buttonClass: "far fa-heart post-icons like-icon"
+      likedStatus
     };
 
     this.handleLikeClick = this.handleLikeClick.bind(this);
+    this.toggleLike = this.toggleLike.bind(this);
   }
 
-  handleLikeClick() {
-    const currentUserId = this.props.currentUserId;
-    const post = this.props.post;
-    let likeId;
+  toggleLike(e) {
+
+    this.setState({
+      likedStatus: !this.state.likedStatus
+    });
+
+  }
+
+  handleLikeClick(e) {
     debugger
-    if (this.state.likedStatus === false) {
-      debugger
-      this.props.createLike("Post", post.id, currentUserId).then(
-        this.setState({
-          likedStatus: !this.state.likedStatus,
-          buttonClass: "far fa-heart post-icons unlike-icon"
-        })
+    if ((typeof this.props.post.likes_by_user_id === 'undefined') ||
+      (typeof this.props.post.likes_by_user_id[this.props.currentUserId] === 'undefined')
+    ) {
+
+      this.props.createLike("Post", this.props.post.id, this.props.currentUserId).then(
+        this.setState({likedStatus: false})
       );
-    } else if (this.state.likedStatus === true ) {
-      debugger
-      likeId = post.likes_by_user_id[currentUserId].like_id;
-      this.props.deleteLike("Post", likeId).then(
-        this.setState({
-          likedStatus: !this.state.likedStatus,
-          buttonClass: "far fa-heart post-icons like-icon"
-        })
+    } else {
+
+      this.props.deleteLike("Post", this.props.post.likes_by_user_id[this.props.currentUserId].like_id).then(
+        this.setState({likedStatus: true})
       );
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if ((newProps.post.likes_count === 0) || !newProps.post.likes_by_user_id) {
+      this.setState({likedStatus: false});
+    } else {
+
+      if (Object.values(newProps.post.likes_by_user_id).includes(newProps.currentUserId)){
+        this.setState({likedStatus: true});
+      } else {
+        this.setState({likedStatus: false});
+      }
     }
   }
 
   render() {
     let images;
 
-
+    debugger
     if ((typeof this.props.post.photos === "undefined" ) ||
     (Object.values(this.props.post.photos).length === 0 ) ||
     (typeof this.props.post.photos === "null")) {
@@ -88,7 +101,7 @@ class PostIndexItem extends React.Component {
           <div className="post-icon-links">
               <i
                 onClick={this.handleLikeClick}
-                className={this.state.buttonClass}
+                className={`far fa-heart post-icons ${this.state.likedStatus}-like-icon`}
                 >
               </i>
             <i className="far fa-comment post-icons"></i>

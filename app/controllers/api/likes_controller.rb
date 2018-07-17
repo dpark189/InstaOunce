@@ -2,8 +2,15 @@ class Api::LikesController <ApplicationController
   def create
     @like = Like.new(like_params)
     parent_type = @like.liked_item_type.pluralize.downcase
+    parent_id = @like.liked_item_id
+
     if @like.save
-      render "#{parent_type}/#{@like.liked_item_id}"
+      if parent_type == "posts"
+        @post = @like.liked_item
+      elsif parent_type == "comments"
+        @comment = @like.liked_item
+      end
+      render "api/#{parent_type}/show", :id => parent_id
     else
       error_hash = @like.errors.to_hash
       error_hash.stringify_keys
@@ -12,10 +19,19 @@ class Api::LikesController <ApplicationController
   end
 
   def destroy
-    @like = Like.find(params[:id])
+
+    @like = Like.includes(:liked_item).find(params[:id])
+    parent_type = @like.liked_item_type.pluralize.downcase
+    parent_id = @like.liked_item_id
+    if parent_type == "posts"
+      @post = @like.liked_item
+    elsif parent_type == "comments"
+      @comment = @like.liked_item
+    end
+
     if check_belong(@like.user.id)
       @like.destroy
-      render "#{parent_type}/#{@like.liked_item_id}"
+      render "api/#{parent_type}/show", :id => parent_id
     else
       render json: ["you do not have permission to delete this like"]
     end

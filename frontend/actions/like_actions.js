@@ -4,42 +4,39 @@ import { receivePost } from './post_actions';
 
 export const RECEIVE_LIKE = "RECEIVE_LIKE";
 export const REMOVE_LIKE = "REMOVE_LIKE";
+export const RECEIVE_LIKE_ERRORS = "RECEIVE_LIKE_ERRORS";
 
-export const receiveLike = (like) => {
+export const receiveLike = (payload) => {
   return {
     type: RECEIVE_LIKE,
-    like
+    post: payload.post || {},
+    comment: payload.comment || {}
   };
 };
 
-export const removeLike = (like) => {
+export const removeLike = (payload) => {
   return {
     type: REMOVE_LIKE,
-    like
+    post: payload.post || {},
+    comment: payload.comment || {}
+  };
+};
+
+export const receiveLikeErrors = (errors) => {
+  return {
+    type: RECEIVE_LIKE_ERRORS,
+    errors
   };
 };
 
 export const createLike = (likedType, likedId, currentUserId) => {
   return LikeApiUtil.createLike(likedType, likedId, currentUserId).then(
-    (response) => {
-      debugger
-      if (like.liked_item_type === "Post") {
-        return dispatch(receivePost(response));
-      } else if (like.liked_item_type === "Comment") {
-        return dispatch(receiveComment(response));
-      }
-    }
+    (payload) =>  dispatch(receiveLike(payload))
   );
 };
 
 export const deleteLike = (likedType, likeId) => {
   return LikeApiUtil.deleteLike(likeId).then(
-    (response) => {
-      if (likedType === "Post") {
-        return dispatch(receivePost(response));
-      } else if (likedType === "Comment") {
-        return dispatch(receiveComment(response));
-      }
-    }
+    (payload) => dispatch(removeLike(payload))
   );
 };
