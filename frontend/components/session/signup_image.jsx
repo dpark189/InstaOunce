@@ -11,14 +11,13 @@ class SignupImage extends React.Component {
   }
 
   getRandomImageId() {
-
     const min = 0;
     const max = 5;
     this.setState({currentImage: Math.floor(Math.random() * (max - min)) + min });
   }
 
   componentDidMount () {
-    this.intervalId = setInterval(this.getRandomImageId, 2000);
+    this.intervalId = setInterval(this.getRandomImageId, 5000);
   }
 
   componentWillUnmount() {

@@ -130,4 +130,12 @@ div.signup-image {
   height: 427px;
   margin-left: 88px;
   margin-top: 10px;
+  -webkit-animation: fadeout 4s linear 1s infinite;
+}
+
+@-webkit-animation-delay fadeout {}
+
+@-webkit-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
 }
