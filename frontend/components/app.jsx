@@ -9,6 +9,7 @@ import NavBarContainer from './navbar/navbar_container';
 import EditProfileForm from './user/edit_profile_form';
 import PostIndexContainer from './post/post_index_container';
 import ModalContainer from './modal/modal_container';
+import PostExploreContainer from './explore/post_explore_container';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           </Switch>
         </section>
         <ProtectedRoute exact path="/" component={PostIndexContainer}/>
+        <ProtectedRoute exact path="/explore" component={PostExploreContainer}/>
         <Switch>
           <ProtectedRoute exact path="/users/:userId"
           component={UserProfileContainer}/>

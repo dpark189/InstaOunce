@@ -21,8 +21,9 @@ export default (props) => {
             </nav>
 
             <span className="nav-icon">
-
-              <i className="fa fa-compass icon2"></i>
+              <Link to="/explore">
+                <i className="fa fa-compass icon2"></i>
+              </Link>
               <i className="fa fa-heart icon2"></i>
 
               <Link to={`/users/${props.sessionId}`}>
