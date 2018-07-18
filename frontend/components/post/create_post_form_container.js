@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
       photoFile: null,
       photoUrl: null
     },
+    currentUserId: state.session.id,
     buttonStatus: false
   };
 };

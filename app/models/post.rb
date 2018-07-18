@@ -23,6 +23,10 @@ class Post < ApplicationRecord
 
   has_many :comments, as: :commented_item
 
+  has_many :hashtaggings
+  
+  has_many :hashtags,
+  through: :hashtaggings
 
     # def ensure_photos
     #   unless self.photos.attached?
