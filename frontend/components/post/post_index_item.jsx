@@ -152,8 +152,19 @@ class PostIndexItem extends React.Component {
 }
 
 const msp = (state, ownProps) => {
+
+  const dummyPost = {
+    id: "",
+    author_id: state.session.id,
+    caption: "",
+    photos: {photoUrl: ""},
+    commentIds: [],
+    likes_by_user_id: "",
+    likes_count: 0
+  };
+  const post = ownProps.post || dummyPost;
   return {
-    post: ownProps.post
+    post: post
   };
 };
 

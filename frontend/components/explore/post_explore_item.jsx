@@ -4,6 +4,7 @@ import { fetchPost, deletePost } from '../../actions/post_actions';
 import { fetchUser } from '../../actions/user_actions';
 import { createLike, deleteLike } from '../../actions/like_actions';
 import { Link } from 'react-router-dom';
+import { openModal } from '../../actions/modal_actions';
 import UserProfilePicture from '../user/user_profile_picture';
 import CommentIndex from '../comment/comment_index';
 import CreateCommentFormContainer from '../comment/create_comment_form_container';
@@ -75,6 +76,10 @@ class PostExploreItem extends React.Component {
     let images;
     const likeCount = this.props.post.likes_count;
     const commentCount = this.props.post.commentIds.length;
+    const modalProps = {
+      post: this.props.post,
+      author: this.props.author
+    };
 
     if ((typeof this.props.post.photos === "undefined" ) ||
     (Object.values(this.props.post.photos).length === 0 ) ||
@@ -84,13 +89,16 @@ class PostExploreItem extends React.Component {
       let photoUrl = Object.values(this.props.post.photos)[0];
       images = (
         <div>
-          <div className="hidden-modal" >
+          <div
+            className="hidden-modal"
+            onClick={() => this.props.openModal('postIndexItem', modalProps)}
+            >
             <div className="modal-like hidden-modal-section">
-              <i class="fas fa-heart"></i>
+              <i className="fas fa-heart"></i>
               {likeCount}
             </div>
             <div className="modal-comment hidden-modal-section">
-              <i class="fas fa-comment"></i>
+              <i className="fas fa-comment"></i>
               {commentCount}
             </div>
           </div>
@@ -112,7 +120,8 @@ class PostExploreItem extends React.Component {
 
 const msp = (state, ownProps) => {
   return {
-    post: ownProps.post
+    post: ownProps.post,
+    author: state.entities.users[ownProps.post.author_id]
   };
 };
 
@@ -120,7 +129,8 @@ const mdp = (dispatch) => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
     createLike: (likedType, likedId, currentUserId) => dispatch(createLike(likedType, likedId, currentUserId)),
-    deleteLike: (likedType, likedId, currentUserId) => dispatch(deleteLike(likedType, likedId, currentUserId))
+    deleteLike: (likedType, likedId, currentUserId) => dispatch(deleteLike(likedType, likedId, currentUserId)),
+    openModal: (modal, passedProps) => dispatch(openModal(modal, passedProps))
   };
 };
 

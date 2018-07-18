@@ -2,9 +2,16 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import Modal from './modal';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+
+  let passedProps;
+  if (typeof state.ui.passedProps === "undefined") {
+  } else {
+    passedProps = state.ui.passedProps;
+  }
   return {
-    modal: state.ui.modal
+    modal: state.ui.modal || {},
+    passedProps
   };
 };
 

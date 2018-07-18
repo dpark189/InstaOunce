@@ -1,20 +1,28 @@
 import React from 'react';
 import CreatePostFormContainer from '../post/create_post_form_container';
+import PostIndexItem from '../post/post_index_item';
 
 
 class Modal extends React.Component {
   render() {
+
     if (!this.props.modal) {
       return null;
     }
     let component;
-    switch (this.props.modal) {
+    switch (this.props.modal.modal) {
       case 'createPost':
       component = <CreatePostFormContainer />;
       break;
+      case 'postIndexItem':
+      component = <PostIndexItem
+        post={this.props.modal.passedProps.post}
+        author={this.props.modal.passedProps.author}
+      />;
       // case 'signup':
       //   component = <SignupFormContainer />;
       //   break;
+      break;
       default:
       return null;
     }
