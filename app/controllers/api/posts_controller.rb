@@ -5,7 +5,8 @@ class Api::PostsController < ApplicationController
     @posts = Post.all.includes(
       :author,
       likes: [:user],
-      comments: [:likes, :author, :child_comments]
+      comments: [:likes, :author, :child_comments],
+      hashtaggings: [:hashtag_id]
     )
     render :index
   end
@@ -15,7 +16,8 @@ class Api::PostsController < ApplicationController
     @post = Post.includes(
       :author,
       comments: [:likes, :author, :child_comments],
-      likes: [:user]
+      likes: [:user],
+      hashtaggings: [:hashtag_id]
     ).find_by(
       :comments => {
         :commented_item_type => 'Post',

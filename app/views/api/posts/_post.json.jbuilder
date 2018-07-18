@@ -24,5 +24,14 @@ else
     {}
   end
   json.count 0
+end
 
+if passed.hashtaggings
+  json.hashtagIds do
+    json.array! passed.hashtaggings.hashtag_ids
+  end
+else
+  json.hashtagIds do
+    {}
+  end
 end
