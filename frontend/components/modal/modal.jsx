@@ -1,6 +1,7 @@
 import React from 'react';
 import CreatePostFormContainer from '../post/create_post_form_container';
 import PostIndexItem from '../post/post_index_item';
+import PostExploreItemShow from '../explore/post_explore_item_show';
 
 
 class Modal extends React.Component {
@@ -15,7 +16,7 @@ class Modal extends React.Component {
       component = <CreatePostFormContainer />;
       break;
       case 'postIndexItem':
-      component = <PostIndexItem
+      component = <PostExploreItemShow
         post={this.props.modal.passedProps.post}
         author={this.props.modal.passedProps.author}
       />;

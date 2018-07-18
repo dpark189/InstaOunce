@@ -73,3 +73,51 @@ div.post-explore-div {
   width: auto;
   height: auto;
 }
+
+.post-explore-item-show-div {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+}
+
+.post-explore-item-show-info {
+  max-width: 30%;
+  margin: 5px;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 12px;
+}
+.post-explore-item-show-info > section {
+  max-width: 100%;
+  width: -webkit-fill-available;
+}
+
+section.post-explore-images {
+  max-width: 70%;
+  display: flex;
+  align-self: center;
+  padding: 5px;
+  align-items: center;
+  position: relative;
+  background-color: black;
+}
+section.post-explore-images > .like-icon-picture {
+  width: 100%;
+  height: 100%;
+}
+
+
+.post-explore-image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
