@@ -16,6 +16,13 @@
   margin: 0 auto;
 }
 
+.nav-bar-icon {
+  font-size: 46px;
+  display: inline-flex;
+  text-decoration: none;
+  color: black;
+}
+
 .nav-left {
   display: flex;
   flex-direction: row;
@@ -23,24 +30,21 @@
   justify-content: center;
   margin-right: 30px;
   min-width: 244px;
+  line-height: 2;
+}
+
+.line {
+  padding: 0 5px;
+  line-height: 42px;
 }
 
 .nav-bar > a {
   text-decoration: none;
 }
 
-.line {
-  margin: 0 10px;
-  font-size: 40px;
-  font-style: normal;
-  display: inline-block;
-  text-decoration: none;
-  color: black;
-  font-weight: 100;
-}
-
 .nav-bar-logoName {
   height: 37px;
+  margin: 0 0 -2px;
 }
 
 .search-span {
@@ -57,6 +61,8 @@ input.nav-search[type="text"]{
 .nav-icon{
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 

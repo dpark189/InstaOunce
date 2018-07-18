@@ -9,18 +9,20 @@ export default (props) => {
             <nav className="nav-left">
               <div className="nav-logo-div">
               <Link to="/">
-                <i className="fa fa-instagram icon fa-w-14 fa-5"></i>
-                <i className="line">|</i>
+                <i className="fa fa-instagram icon fa-w-14 fa-5 nav-bar-icon">
+                  <span className="line">
+                    |
+                  </span>
+                </i>
               </Link>
 
               <Link to="/">
                 <img className="nav-bar-logoName" src={window.logoName}/>
               </Link>
             </div>
-
-            </nav>
-
-            <span className="nav-icon">
+          </nav>
+          <nav className="nav-right">
+            <div className="nav-icon">
               <Link to="/explore">
                 <i className="fa fa-compass icon2"></i>
               </Link>
@@ -30,7 +32,8 @@ export default (props) => {
               <i className="fa fa-user icon2 "></i>
               </Link>
               <button onClick={() => props.logout()}>temp logout</button>
-            </span>
+            </div>
+          </nav>
           </nav>
         </div>
       </div>
