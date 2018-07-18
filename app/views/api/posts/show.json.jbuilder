@@ -11,3 +11,11 @@ json.comments do
     json.partial! 'api/comments/comment', passed: comment
   end
 end
+
+json.hashtags do
+  @post.hashtags.each do |tag|
+    json.set! tag.id do
+      json.extract! tag, :id, :name
+    end
+  end
+end

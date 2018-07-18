@@ -28,7 +28,7 @@ end
 
 if passed.hashtaggings
   json.hashtagIds do
-    json.array! passed.hashtaggings.hashtag_ids
+    json.array! passed.hashtags.ids
   end
 else
   json.hashtagIds do

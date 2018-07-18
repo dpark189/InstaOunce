@@ -14,5 +14,5 @@ class Hashtag < ApplicationRecord
   has_many :hashtaggings
 
   has_many :posts,
-    through: :hashtaggigns
+    through: :hashtaggings
 end

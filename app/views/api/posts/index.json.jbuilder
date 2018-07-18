@@ -14,3 +14,11 @@ json.users do
     end
   end
 end
+
+json.hashtags do
+  @hashtags.each do |tag|
+    json.set! tag.id do
+      json.extract! tag, :id, :name
+    end
+  end
+end

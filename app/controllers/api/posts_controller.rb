@@ -5,9 +5,9 @@ class Api::PostsController < ApplicationController
     @posts = Post.all.includes(
       :author,
       likes: [:user],
-      comments: [:likes, :author, :child_comments],
-      hashtaggings: [:hashtag_id]
+      comments: [:likes, :author, :child_comments]
     )
+    @hashtags = Hashtag.all
     render :index
   end
 
@@ -15,9 +15,9 @@ class Api::PostsController < ApplicationController
   def show
     @post = Post.includes(
       :author,
+      :hashtags,
       comments: [:likes, :author, :child_comments],
-      likes: [:user],
-      hashtaggings: [:hashtag_id]
+      likes: [:user]
     ).find_by(
       :comments => {
         :commented_item_type => 'Post',
@@ -34,17 +34,6 @@ class Api::PostsController < ApplicationController
     @user = User.find(@post.author_id)
     if @post.save
       # render 'api/users/show', :id => @post.author_id
-      hashtag_arr = @post.caption.scan(/(#[a-z\d-]+)/i).flatten
-      if !hashtag_arr.empty?
-        hashtag_arr.each do |hashtag|
-          tag = Hashtag.new(name: hashtag)
-          if !tag.save
-            tag = Hashtag.find_by(name: hashtag)
-          end
-          Hashtagging.create(hashtag_id: tag.id, post_id: @post.id)
-        end
-      end
-
       render :show
     else
       error_hash = @post.errors.to_hash
