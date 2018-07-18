@@ -98,6 +98,16 @@ class PostIndexItem extends React.Component {
       });
     }
     const likeCount = this.props.post.likes_count;
+    const caption =  this.props.post.caption.replace(/#(\S+)/g,
+    '<a href="search/$1" title="Find more posts tagged with #$1">#$1</a>'
+
+  );
+
+// '<a href="'+siteURL+'search/$1" title="Find more posts tagged with #$1">#$1</a>'
+
+
+/* <Link to="explore/$1" className="hashtag-links" >{'#$1'}</Link> */
+
 
     return(
       <div className="post-index-item-div">
@@ -129,7 +139,7 @@ class PostIndexItem extends React.Component {
         </section>
         <section className="post-index-item-caption">
           <span>
-            <strong>{this.props.author.username} </strong>{this.props.post.caption}
+            <strong>{this.props.author.username} </strong>{caption}
           </span>
           <CommentIndex
             commentIds={this.props.post.commentIds}
