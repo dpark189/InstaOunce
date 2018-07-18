@@ -54,7 +54,7 @@ class PostForm extends React.Component {
       <div className='post-create-property'>
         <label className='post-create-label'>Image Preview</label>
         <div className='post-preview-container'>
-          <img className='post-preview-photo' src={this.state.photoUrl}/>
+            <img className='post-preview-photo' src={this.state.photoUrl}/>
         </div>
       </div>
     );

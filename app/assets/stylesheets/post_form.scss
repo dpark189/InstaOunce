@@ -6,15 +6,52 @@
   align-content: flex-end;
   box-sizing: border-box;
   border: 1px solid #e6e6e6;
+  background-color: white;
   text-align: center;
   min-height: 250px;
-  max-height: 85%;
+  max-height: 600px;
   background: white;
-  width: 614px;
+  width: 380px;
+  border-top: none;
+}
+
+.post-form-header {
+  background-color: white;
+  margin: 0;
+  padding: 10px;
 }
 
 .signup-errors {
   color: red;
+}
+
+.post-create-property {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 5px;
+  box-sizing: border-box;
+  max-height: 462px;
+}
+
+.post-preview-container {
+  max-height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.post-preview-photo {
+  max-height: 400px;
+  max-width: 550px;
+  height: auto;
+  width: auto;
+  display:flex;
+  justify-self: center;
+  align-self: center;
+
 }
 
 .post-form > textarea {
