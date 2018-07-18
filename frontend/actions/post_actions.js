@@ -9,7 +9,8 @@ export const receivePosts = (payload) => {
   return {
     type: RECEIVE_POSTS,
     posts: payload.posts,
-    users: payload.users
+    users: payload.users,
+    hashtags: payload.hashtags
   };
 };
 
@@ -19,7 +20,8 @@ export const receivePost = (payload) => {
     type: RECEIVE_POST,
     post: payload.post,
     user: payload.user || {},
-    comments: payload.comments || {}
+    comments: payload.comments || {},
+    hashtags: payload.hashtags || {}
   };
 };
 

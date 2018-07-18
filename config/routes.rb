@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :posts, except: [:new]
     get 'users/:userId/feed', to: 'follows#post_feed', as: 'user_post_feed'
     resources :likes, only: [:create, :destroy]
+    resources :hashtags, only: [:index, :show]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
