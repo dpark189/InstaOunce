@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import UserProfilePicture from '../user/user_profile_picture';
 import CommentIndex from '../comment/comment_index';
 import CreateCommentFormContainer from '../comment/create_comment_form_container';
+import reactStringReplace from 'react-string-replace';
 
 class PostIndexItem extends React.Component {
   constructor(props) {
@@ -98,10 +99,9 @@ class PostIndexItem extends React.Component {
       });
     }
     const likeCount = this.props.post.likes_count;
-    const caption =  this.props.post.caption.replace(/#(\S+)/g,
-    '<a href="search/$1" title="Find more posts tagged with #$1">#$1</a>'
-
-  );
+    const caption = reactStringReplace(this.props.post.caption, /#(\S+)/g, (match, i) => (
+  <Link to={`explore/${match}`}>{`#${match}`}</Link>
+));
 
 // '<a href="'+siteURL+'search/$1" title="Find more posts tagged with #$1">#$1</a>'
 
