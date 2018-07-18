@@ -8,15 +8,7 @@ export default (props) => {
           <nav className="nav-bar">
             <nav className="nav-left">
               <div className="nav-logo-div">
-              <Link to="/">
-                <i className="fa fa-instagram icon fa-w-14 fa-5 nav-bar-icon">
-                  <span className="line">
-                    |
-                  </span>
-                </i>
-              </Link>
-
-              <Link to="/">
+              <Link className="home-link" to="/">
                 <img className="nav-bar-logoName" src={window.logoName}/>
               </Link>
             </div>

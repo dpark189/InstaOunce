@@ -16,6 +16,18 @@
   margin: 0 auto;
 }
 
+.home-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-logo-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .nav-bar-icon {
   font-size: 46px;
   display: inline-flex;
