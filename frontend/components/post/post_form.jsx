@@ -1,3 +1,4 @@
+import { withRouter } from 'react-router-dom';
 import React from 'react';
 import { merge } from 'lodash';
 
@@ -88,4 +89,4 @@ class PostForm extends React.Component {
   }
 }
 
-export default PostForm;
+export default withRouter(PostForm);

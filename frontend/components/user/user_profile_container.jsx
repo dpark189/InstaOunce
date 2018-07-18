@@ -20,7 +20,6 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount(){
-
     const id = this.props.match.params.userId;
     this.props.fetchUser(id);
   }
@@ -104,7 +103,7 @@ class UserProfile extends React.Component {
 }
 
 const mapStateToprops = (state, ownProps) => {
-
+  
   const dummyUser = {
     full_name: "",
     username: "",
