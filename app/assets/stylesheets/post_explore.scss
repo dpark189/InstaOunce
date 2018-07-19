@@ -15,6 +15,11 @@ div.post-explore-div {
   flex-wrap: wrap;
   border-top: 1px solid #e6e6e6;
   width: 80%;
+  padding-top: 10px;
+}
+
+.explore-title {
+  color: #999;
 }
 
 .post-explore-header {
@@ -29,10 +34,9 @@ div.post-explore-div {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
-.hashtag-header > h2 {
+.tag-info {
   margin-left: 20px;
 }
 
@@ -48,10 +52,9 @@ div.post-explore-div {
   height: 293px;
   display: flex;
   justify-content: center;
-  align-items: center;
   background: white;
   margin: 5px;
-  padding: 5px;
+  padding: 0;
 }
 
 .hidden-modal {
@@ -89,10 +92,9 @@ div.post-explore-div {
 }
 
 .explore-image {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .post-explore-item-show-div {

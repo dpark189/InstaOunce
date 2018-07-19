@@ -11,13 +11,18 @@ class PostExplore extends React.Component {
 
   render () {
     let header;
-    if (this.props.match.path === "/") {
+    debugger
+    if (this.props.match.path === "/explore") {
       header = (<span className="explore-title">Explore</span>);
     } else if (this.props.match.path === "/hashtag/:hashtag") {
       header = (
         <section className="hashtag-header">
-          <h2>{`#${this.props.match.params.hashtag}`}</h2>
-          <h4>{Object.keys(this.props.posts).length} Posts</h4>
+          <div className="profile-frame" style={{backgroundImage: "url(" + window.profile_placeholder + ")"}}>
+          </div>
+          <div className="tag-info">
+            <h2>{`#${this.props.match.params.hashtag}`}</h2>
+            <h4>{Object.keys(this.props.posts).length} Posts</h4>
+          </div>
         </section>
       );
     }
@@ -40,8 +45,6 @@ class PostExplore extends React.Component {
     return (
       <section className="post-explore-section">
         <div className="post-explore-header">
-          <div className="profile-frame" style={{backgroundImage: "url(" + window.profile_placeholder + ")"}}>
-          </div>
           {header}
         </div>
         <div className="post-explore-div">

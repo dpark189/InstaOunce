@@ -16,23 +16,25 @@ const App = () => {
     <div>
       <ProtectedRoute path="/" component={NavBarContainer}/>
       <ModalContainer />
-      <section className="app-section">
-        <section className="session-order">
+      <div className="main-app">
+        <section className="app-section">
+          <section className="session-order">
+            <Switch>
+              <AuthRoute exact path="/" component={SignupFormContainer} />
+              <AuthRoute exact path="/login" component={LoginFormContainer} />
+            </Switch>
+          </section>
+          <ProtectedRoute exact path="/" component={PostIndexContainer}/>
+          <ProtectedRoute path="/explore" component={PostExploreContainer}/>
+          <ProtectedRoute exact path="/hashtag/:hashtag" component={PostExploreContainer}/>
           <Switch>
-            <AuthRoute exact path="/" component={SignupFormContainer} />
-            <AuthRoute exact path="/login" component={LoginFormContainer} />
+            <ProtectedRoute exact path="/users/:userId"
+            component={UserProfileContainer}/>
+            <ProtectedRoute exact path="/users/:userId/edit"
+            component={EditProfileForm}/>
           </Switch>
         </section>
-        <ProtectedRoute exact path="/" component={PostIndexContainer}/>
-        <ProtectedRoute path="/explore" component={PostExploreContainer}/>
-        <ProtectedRoute exact path="/hashtag/:hashtag" component={PostExploreContainer}/>
-        <Switch>
-          <ProtectedRoute exact path="/users/:userId"
-          component={UserProfileContainer}/>
-          <ProtectedRoute exact path="/users/:userId/edit"
-          component={EditProfileForm}/>
-        </Switch>
-      </section>
+      </div>
     </div>
   );
 };
