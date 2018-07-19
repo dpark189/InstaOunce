@@ -10,6 +10,6 @@
 #
 
 class Hashtagging < ApplicationRecord
-  belongs_to :post, counter_cache: true
-  belongs_to :hashtag, counter_cache: true
+  belongs_to :post
+  belongs_to :hashtag
 end
