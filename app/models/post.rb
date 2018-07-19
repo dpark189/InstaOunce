@@ -23,7 +23,7 @@ class Post < ApplicationRecord
 
   has_many :comments, as: :commented_item
 
-  has_many :hashtaggings
+  has_many :hashtaggings, dependent: :destroy
 
   has_many :hashtags,
   through: :hashtaggings

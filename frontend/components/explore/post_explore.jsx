@@ -17,7 +17,7 @@ class PostExplore extends React.Component {
       header = (
         <section className="hashtag-header">
           <h2>{`#${this.props.match.params.hashtag}`}</h2>
-          <h4># Posts</h4>
+          <h4>{Object.keys(this.props.posts).length} Posts</h4>
         </section>
       );
     }

@@ -11,7 +11,7 @@
 class Hashtag < ApplicationRecord
   validates :name, presence: true
 
-  has_many :hashtaggings
+  has_many :hashtaggings, dependent: :destroy
 
   has_many :posts,
     through: :hashtaggings
