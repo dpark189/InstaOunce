@@ -11,7 +11,7 @@ class PostExplore extends React.Component {
 
   render () {
     let header;
-    debugger
+    
     if (this.props.match.path === "/explore") {
       header = (<span className="explore-title">Explore</span>);
     } else if (this.props.match.path === "/hashtag/:hashtag") {

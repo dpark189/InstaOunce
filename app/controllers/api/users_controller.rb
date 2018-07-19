@@ -15,7 +15,8 @@ class Api::UsersController < ApplicationController
       :posts,
       :comments,
       :likes,
-      :people_im_following
+      :people_im_following,
+      :people_following_me
     ).find_by(:users => {:id => params[:id]})
   end
 

@@ -40,6 +40,14 @@ export const fetchUser = (userId) => {
   };
 };
 
+export const fetchUsers = () => {
+  return dispatch => {
+    return UserApiUtil.fetchUsers().then(
+      (payload) => dispatch(receiveUsers(payload))
+    );
+  };
+};
+
 export const receiveUserErrors = (errors) => {
 
   return {

@@ -138,7 +138,7 @@ class PostExploreItemShow extends React.Component {
                     className={`far fa-heart post-icons ${this.state.likedStatus}-like-icon`}
                     >
                   </i>
-                  <label for="comment-input">
+                  <label htmlFor="comment-input">
                     <i className="far fa-comment post-icons"></i>
                   </label>
               </div>

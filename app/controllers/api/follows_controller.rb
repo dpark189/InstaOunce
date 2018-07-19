@@ -34,7 +34,10 @@ class Api::FollowsController < ApplicationController
   def create
     @follow = Follow.new(follow_params)
     if @follow.save
-      render :show
+      @follower = @follow.follower
+      @followee = @follow.followee
+      @users = [@follower, @followee]
+      render 'api/users/index'
     else
       error_hash = @follow.errors.to_hash
       error_hash.stringify_keys
@@ -43,12 +46,16 @@ class Api::FollowsController < ApplicationController
   end
 
   def destroy
-    @follow = Follow.includes(:follower, :followee).find(params[:id])
+    @follow = Follow.includes(
+      follower: [:posts, :likes, :comments, :people_im_following, :people_following_me],
+      followee: [:posts, :likes, :comments, :people_im_following, :people_following_me]
+    ).where('follows.follower_id = ? and follows.followee_id = ?', params[:follower_id], params[:followee_id]).first
     @follower = @follow.follower
     @followee = @follow.followee
+    @users = [@follower, @followee]
     if check_belong(@follow.follower_id)
       @follow.destroy
-      render :show
+      render 'api/users/index'
     else
       render json: ["you do not have permission to delete this like"]
     end

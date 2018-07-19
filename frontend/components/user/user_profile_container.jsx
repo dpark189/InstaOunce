@@ -9,19 +9,56 @@ import UserProfilePicture from './user_profile_picture';
 import PostIndexItem from '../post/post_index_item';
 import { compact } from 'lodash';
 import { createLike, deleteLike } from '../../actions/like_actions';
+import { createFollow, deleteFollow } from '../../actions/follow_actions';
 
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
+
+    let followText;
+
+    if ((typeof this.props.user.followerIds === "undefined") ||
+      (this.props.user.followerIds.includes(this.props.currentUser.id))) {
+
+      followText = false;
+    } else {
+
+      followText = true;
+    }
+
     this.state = {
-      username: props.user.username
+      username: props.user.username,
+      followStatus: followText
     };
+    this.handleFollowClick = this.handleFollowClick.bind(this);
   }
 
   componentDidMount(){
     const id = this.props.match.params.userId;
-    this.props.fetchUser(id);
+    this.props.fetchUser(id).then(
+      (payload) => console.log(payload),
+      (error) => {
+        this.props.history.push('/nomatch');
+      }
+    );
+  }
+
+  handleFollowClick() {
+
+      if (this.state.followStatus === false) {
+
+        this.props.createFollow(this.props.currentUser.id, this.props.user.id).then(
+          this.setState({followStatus: true})
+        );
+
+      } else {
+
+        this.props.deleteFollow(this.props.currentUser.id, this.props.user.id).then(
+          this.setState({followStatus: false})
+        );
+
+      }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,10 +88,15 @@ class UserProfile extends React.Component {
         </div>
       );
     } else {
+      let followText;
+      this.state.followStatus ? followText = "Unfollow" : followText = "Follow";
+
       userEdit = (
         <div className="user-info-sub-1-links">
           <div className="profile-buttons">
-              <button className="edit-profile button">Follow</button>
+              <button onClick={this.handleFollowClick} className="edit-profile button">
+                {followText}
+              </button>
           </div>
           <i className="fas fa-ellipsis-h icon4"></i>
         </div>
@@ -145,7 +187,10 @@ const mapStateToProps = (state, ownProps) => {
     email: "",
     phone_number: "",
     gender: "",
-    profile_pictureUrl: ""
+    profile_pictureUrl: "",
+    postIds: [],
+    commentIds: [],
+    followeeIds: []
   };
   const id = ownProps.match.params.userId;
   const user = state.entities.users[id] || dummyUser;
@@ -158,7 +203,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateUser: (user) => dispatch(updateUser(user)),
     fetchUser: (userId) => dispatch(fetchUser(userId)),
-    openModal: modal => dispatch(openModal(modal))
+    openModal: modal => dispatch(openModal(modal)),
+    createFollow: (followerId, followeeId) => dispatch(createFollow(followerId, followeeId)),
+    deleteFollow: (followerId, followeeId) => dispatch(deleteFollow(followerId, followeeId))
   };
 };
 

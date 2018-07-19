@@ -94,14 +94,14 @@ class PostIndexItem extends React.Component {
     } else {
       images = Object.values(this.props.post.photos).map( (photoUrl, i) => {
         return (
-          <img key={i} className="post-image" src={photoUrl}/>
+          <img key={`photo-url${i}`} className="post-image" src={photoUrl}/>
         );
       });
     }
     const likeCount = this.props.post.likes_count;
     const caption = reactStringReplace(this.props.post.caption, /#(\S+)/g, (match, i) => (
-  <Link to={`/hashtag/${match}`}>{`#${match}`}</Link>
-));
+      <Link key={match + `${i}`} to={`/hashtag/${match}`}>{`#${match}`}</Link>
+    ));
 
     return(
       <div className="post-index-item-div">
@@ -127,7 +127,7 @@ class PostIndexItem extends React.Component {
                 className={`far fa-heart post-icons ${this.state.likedStatus}-like-icon`}
                 >
               </i>
-              <label for="comment-input">
+              <label htmlFor="comment-input">
                 <i className="far fa-comment post-icons"></i>
               </label>
           </div>

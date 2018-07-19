@@ -14,6 +14,10 @@ end
 json.commentIds do
   json.array! user.comments.ids
 end
-json.followee_ids do
+json.followeeIds do
   json.array! user.people_im_following.ids
+end
+
+json.followerIds do
+  json.array! user.people_following_me.ids
 end

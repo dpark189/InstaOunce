@@ -10,6 +10,8 @@ import EditProfileForm from './user/edit_profile_form';
 import PostIndexContainer from './post/post_index_container';
 import ModalContainer from './modal/modal_container';
 import PostExploreContainer from './explore/post_explore_container';
+import StoriesContainer from './stories/stories_container';
+import NoMatch from './no_match';
 
 const App = () => {
   return (
@@ -24,7 +26,11 @@ const App = () => {
               <AuthRoute exact path="/login" component={LoginFormContainer} />
             </Switch>
           </section>
-          <ProtectedRoute exact path="/" component={PostIndexContainer}/>
+          <div className="app-level-index-div">
+            <ProtectedRoute exact path="/" component={PostIndexContainer}/>
+            <ProtectedRoute exact path="/" component={StoriesContainer}/>
+          </div>
+
           <ProtectedRoute path="/explore" component={PostExploreContainer}/>
           <ProtectedRoute exact path="/hashtag/:hashtag" component={PostExploreContainer}/>
           <Switch>
@@ -32,6 +38,7 @@ const App = () => {
             component={UserProfileContainer}/>
             <ProtectedRoute exact path="/users/:userId/edit"
             component={EditProfileForm}/>
+            <Route component={NoMatch} />
           </Switch>
         </section>
       </div>

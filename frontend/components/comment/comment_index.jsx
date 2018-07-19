@@ -23,9 +23,10 @@ class CommentIndex extends React.Component {
       comments = "";
     } else {
 
-      comments = this.props.comments.map( (comment) => {
+      comments = this.props.comments.map( (comment, i) => {
         return (
           <CommentIndexItem
+            key={"comment" + i}
             comment={comment}
             author={this.props.users[comment.author_id]}/>
         );

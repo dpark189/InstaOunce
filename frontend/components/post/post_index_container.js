@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
         return post;
       } else if (ownProps.match.path === "/") {
           posts = allPosts.filter( (post) => {
-            if (state.entities.users[state.session.id].followee_ids.includes(post.author_id)) {
+            if (state.entities.users[state.session.id].followeeIds.includes(post.author_id)) {
              return post;
             }
           });
