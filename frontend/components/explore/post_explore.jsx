@@ -35,6 +35,8 @@ class PostExplore extends React.Component {
           </div>
       );
     });
+
+
     return (
       <section className="post-explore-section">
         <div className="post-explore-header">
