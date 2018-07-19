@@ -27,8 +27,7 @@ class CommentIndex extends React.Component {
         return (
           <CommentIndexItem
             comment={comment}
-            author={this.props.users[comment.author_id]}
-          />
+            author={this.props.users[comment.author_id]}/>
         );
       });
     }

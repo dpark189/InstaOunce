@@ -12,18 +12,19 @@ const mapStateToProps = (state, ownProps) => {
   if (ownProps.match.path === "/hashtag/:hashtag"){
     posts = allPosts.filter( (post) => {
       if (post.hashtags.includes(`#${ownProps.match.params.hashtag}`)) {
-
         return post;
       } else if (ownProps.match.path === "/") {
-     posts = allPosts.filter( (post) => {
-       if (state.entities.users[state.session.id].followee_ids.includes(post.author_id)) {
-         return post;
-       }
-     });
-   }
+          posts = allPosts.filter( (post) => {
+            if (state.entities.users[state.session.id].followee_ids.includes(post.author_id)) {
+             return post;
+            }
+          });
+        }
     });
   } else { posts = allPosts; }
+
   const users = state.entities.users;
+  
   return {
     posts,
     users,

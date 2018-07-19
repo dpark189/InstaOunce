@@ -74,8 +74,8 @@ class PostIndexItem extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if ((typeof newProps.post.likes_by_user_id === 'undefined') ||
-      (typeof newProps.post.likes_by_user_id[newProps.currentUserId] === 'undefined')
-    ) {
+      (typeof newProps.post.likes_by_user_id[newProps.currentUserId] === 'undefined'))
+      {
         this.setState({likedStatus: false});
       } else {
         this.setState({likedStatus: true});
@@ -103,14 +103,9 @@ class PostIndexItem extends React.Component {
   <Link to={`/hashtag/${match}`}>{`#${match}`}</Link>
 ));
 
-// '<a href="'+siteURL+'search/$1" title="Find more posts tagged with #$1">#$1</a>'
-
-
-/* <Link to="explore/$1" className="hashtag-links" >{'#$1'}</Link> */
-
-
     return(
       <div className="post-index-item-div">
+
         <section className="post-header">
           <div className="post-user-info">
             <UserProfilePicture user={this.props.author} />
@@ -119,10 +114,12 @@ class PostIndexItem extends React.Component {
             </Link>
           </div>
         </section>
+
         <section className="post-images" onDoubleClick={this.handleLikeClick}>
           <i ref='liking' className={`${fade ? 'fade' : ''} fas fa-heart post-icons like-icon-picture`}></i>
           {images}
         </section>
+
         <section className="post-sub-header">
           <div className="post-icon-links">
               <i
@@ -134,11 +131,11 @@ class PostIndexItem extends React.Component {
                 <i className="far fa-comment post-icons"></i>
               </label>
           </div>
-
           <div className="post-sub-header-likes">
             <strong>{likeCount} likes</strong>
           </div>
         </section>
+
         <section className="post-index-item-caption">
           <span>
             <strong>{this.props.author.username} </strong>{caption}
@@ -146,18 +143,18 @@ class PostIndexItem extends React.Component {
           <CommentIndex
             commentIds={this.props.post.commentIds}
             parentType="Post"
-            parentId={this.props.post.id}
-          />
+            parentId={this.props.post.id}/>
           <div className="update-date">
             {this.props.post.updated_at}
           </div>
         </section>
+
         <section className="index-item-comment">
           <CreateCommentFormContainer
             parentType="Post"
-            parentId={this.props.post.id}
-          />
+            parentId={this.props.post.id}/>
         </section>
+
       </div>
     );
   }

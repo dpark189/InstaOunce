@@ -128,8 +128,7 @@ class PostExploreItemShow extends React.Component {
             <CommentIndex
               commentIds={this.props.post.commentIds}
               parentType="Post"
-              parentId={this.props.post.id}
-            />
+              parentId={this.props.post.id}/>
           </section>
 
             <section className="post-sub-header">
@@ -155,9 +154,9 @@ class PostExploreItemShow extends React.Component {
           <section className="explore-item-comment">
             <CreateCommentFormContainer
               parentType="Post"
-              parentId={this.props.post.id}
-            />
+              parentId={this.props.post.id}/>
           </section>
+
         </div>
       </div>
     );
