@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import UserProfilePicture from '../user/user_profile_picture';
 import CommentIndex from '../comment/comment_index';
 import CreateCommentFormContainer from '../comment/create_comment_form_container';
+import reactStringReplace from 'react-string-replace';
 
 class PostExploreItemShow extends React.Component {
   constructor(props) {
@@ -99,6 +100,10 @@ class PostExploreItemShow extends React.Component {
     }
     const likeCount = this.props.post.likes_count;
 
+    const caption = reactStringReplace(this.props.post.caption, /#(\S+)/g, (match, i) => (
+      <Link to={`/hashtag/${match}`}>{`#${match}`}</Link>
+    ));
+
     return(
       <div className="post-explore-item-show-div">
         <section className="post-explore-images" onDoubleClick={this.handleLikeClick}>
@@ -118,7 +123,7 @@ class PostExploreItemShow extends React.Component {
 
           <section className="post-index-item-caption">
             <span>
-              <strong>{this.props.author.username} </strong>{this.props.post.caption}
+              <strong>{this.props.author.username} </strong>{caption}
             </span>
             <CommentIndex
               commentIds={this.props.post.commentIds}
@@ -145,7 +150,7 @@ class PostExploreItemShow extends React.Component {
               </div>
             </section>
 
-          <section className="index-item-comment">
+          <section className="explore-item-comment">
             <CreateCommentFormContainer
               parentType="Post"
               parentId={this.props.post.id}

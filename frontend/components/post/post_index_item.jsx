@@ -100,7 +100,7 @@ class PostIndexItem extends React.Component {
     }
     const likeCount = this.props.post.likes_count;
     const caption = reactStringReplace(this.props.post.caption, /#(\S+)/g, (match, i) => (
-  <Link to={`explore/${match}`}>{`#${match}`}</Link>
+  <Link to={`/hashtag/${match}`}>{`#${match}`}</Link>
 ));
 
 // '<a href="'+siteURL+'search/$1" title="Find more posts tagged with #$1">#$1</a>'

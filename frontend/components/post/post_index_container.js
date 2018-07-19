@@ -6,18 +6,22 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
+
   const allPosts = Object.values(state.entities.posts) || {};
   let posts;
-  if (ownProps.match.path === "/") {
+  if (ownProps.match.path === "/hashtag/:hashtag"){
     posts = allPosts.filter( (post) => {
-      if (state.entities.users[state.session.id].followee_ids.includes(post.author_id)) {
+      if (post.hashtags.includes(`#${ownProps.match.params.hashtag}`)) {
+
         return post;
-      }
+      } else if (ownProps.match.path === "/") {
+     posts = allPosts.filter( (post) => {
+       if (state.entities.users[state.session.id].followee_ids.includes(post.author_id)) {
+         return post;
+       }
+     });
+   }
     });
-  } else if (ownProps.match.path === "/explore/:hashtag"){
-    posts = allPosts.filter( (post) => {
-      if ()
-    })
   } else { posts = allPosts; }
   const users = state.entities.users;
   return {
@@ -26,6 +30,9 @@ const mapStateToProps = (state, ownProps) => {
     currentUserId: state.session.id
   };
 };
+
+
+
 
 const mapDispatchToProps = (dispatch) => {
   return {

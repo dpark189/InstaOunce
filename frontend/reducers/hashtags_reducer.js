@@ -9,7 +9,7 @@ export default (state = {}, action) => {
     case RECEIVE_TAGS:
     case RECEIVE_POST:
     case RECEIVE_POSTS:
-    debugger
+
       return merge(newState, action.hashtags);
     case RECEIVE_TAG:
       return merge(newState, {[action.hashtag.id]: action.hashtag});

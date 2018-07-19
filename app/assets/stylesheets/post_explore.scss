@@ -13,6 +13,27 @@ div.post-explore-div {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  border-top: 1px solid #e6e6e6;
+  width: 80%;
+}
+
+.post-explore-header {
+  display: flex;
+  justify-content: flex-start;
+  width: 80%;
+  margin: 10px;
+}
+
+.hashtag-header{
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hashtag-header > h2 {
+  margin-left: 20px;
 }
 
 .explore-posts {
@@ -85,16 +106,22 @@ div.post-explore-div {
 }
 
 .post-explore-item-show-info {
-  max-width: 30%;
   margin: 5px;
+  height: 344px;
   box-sizing: border-box;
   -webkit-text-size-adjust: auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
+  width: 200px;
   font-size: 12px;
 }
+
+.explore-item-comment > .comment-form > .comment-input{
+  font-size: 11px;
+}
+
 .post-explore-item-show-info > section {
   max-width: 100%;
   width: -webkit-fill-available;
@@ -102,6 +129,7 @@ div.post-explore-div {
 
 section.post-explore-images {
   max-width: 70%;
+  height: 344px;
   display: flex;
   align-self: center;
   padding: 5px;
