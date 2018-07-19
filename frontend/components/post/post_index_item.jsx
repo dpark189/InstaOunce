@@ -130,7 +130,9 @@ class PostIndexItem extends React.Component {
                 className={`far fa-heart post-icons ${this.state.likedStatus}-like-icon`}
                 >
               </i>
-            <i className="far fa-comment post-icons"></i>
+              <label for="comment-input">
+                <i className="far fa-comment post-icons"></i>
+              </label>
           </div>
 
           <div className="post-sub-header-likes">
