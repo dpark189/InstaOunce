@@ -103,7 +103,7 @@ class UserProfile extends React.Component {
 }
 
 const mapStateToprops = (state, ownProps) => {
-  
+
   const dummyUser = {
     full_name: "",
     username: "",
@@ -162,4 +162,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToprops, mapDispatchToProps)(UserProfile);
+export default withRouter(connect(mapStateToprops, mapDispatchToProps)(UserProfile));

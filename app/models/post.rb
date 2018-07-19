@@ -24,7 +24,7 @@ class Post < ApplicationRecord
   has_many :comments, as: :commented_item
 
   has_many :hashtaggings
-  
+
   has_many :hashtags,
   through: :hashtaggings
 
@@ -33,4 +33,10 @@ class Post < ApplicationRecord
     #     errors[:photos] << "must be attached"
     #   end
     # end
+
+    def tag_names
+      self.hashtags.map do |tag|
+        tag.name
+      end
+    end
 end

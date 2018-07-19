@@ -25,6 +25,7 @@ const App = () => {
         </section>
         <ProtectedRoute exact path="/" component={PostIndexContainer}/>
         <ProtectedRoute exact path="/explore" component={PostExploreContainer}/>
+        <ProtectedRoute exact path="/explore/:hashtag" component={PostExploreContainer}/>
         <Switch>
           <ProtectedRoute exact path="/users/:userId"
           component={UserProfileContainer}/>

@@ -14,7 +14,7 @@ end
 
 json.hashtags do
   @post.hashtags.each do |tag|
-    json.set! tag.id do
+    json.set! tag.name do
       json.extract! tag, :id, :name
     end
   end

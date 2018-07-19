@@ -14,6 +14,10 @@ const mapStateToProps = (state, ownProps) => {
         return post;
       }
     });
+  } else if (ownProps.match.path === "/explore/:hashtag"){
+    posts = allPosts.filter( (post) => {
+      if ()
+    })
   } else { posts = allPosts; }
   const users = state.entities.users;
   return {

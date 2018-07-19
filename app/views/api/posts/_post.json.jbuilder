@@ -26,12 +26,12 @@ else
   json.count 0
 end
 
-if passed.hashtaggings
-  json.hashtagIds do
-    json.array! passed.hashtags.ids
+if passed.hashtags
+  json.hashtags do
+    json.array! passed.tag_names
   end
 else
-  json.hashtagIds do
+  json.hashtags do
     {}
   end
 end
