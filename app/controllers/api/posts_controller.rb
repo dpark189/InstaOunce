@@ -34,6 +34,16 @@ class Api::PostsController < ApplicationController
     @user = User.find(@post.author_id)
     if @post.save
       # render 'api/users/show', :id => @post.author_id
+      hashtag_arr = @post.caption.scan(/(#[a-z\d-]+)/i).flatten
+      if !hashtag_arr.empty?
+        hashtag_arr.each do |hashtag|
+          tag = Hashtag.new(name: hashtag)
+          if !tag.save
+            tag = Hashtag.find_by(name: hashtag)
+          end
+          Hashtagging.create(hashtag_id: tag.id, post_id: @post.id)
+        end
+      end
       render :show
     else
       error_hash = @post.errors.to_hash
