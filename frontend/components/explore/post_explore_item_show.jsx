@@ -8,6 +8,7 @@ import UserProfilePicture from '../user/user_profile_picture';
 import CommentIndex from '../comment/comment_index';
 import CreateCommentFormContainer from '../comment/create_comment_form_container';
 import reactStringReplace from 'react-string-replace';
+import { closeModal } from '../../actions/modal_actions';
 
 class PostExploreItemShow extends React.Component {
   constructor(props) {
@@ -115,7 +116,7 @@ class PostExploreItemShow extends React.Component {
           <section className="post-header">
             <div className="post-user-info">
               <UserProfilePicture user={this.props.author} />
-              <Link className="user-show-page-link" to={`/users/${this.props.author.id}`}>
+              <Link onClick={() => this.props.closeModal()} className="user-show-page-link" to={`/users/${this.props.author.id}`}>
                 <strong>{this.props.author.username}</strong>
               </Link>
             </div>
@@ -184,7 +185,9 @@ const mdp = (dispatch) => {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
     createLike: (likedType, likedId, currentUserId) => dispatch(createLike(likedType, likedId, currentUserId)),
-    deleteLike: (likedType, likedId, currentUserId) => dispatch(deleteLike(likedType, likedId, currentUserId))
+    deleteLike: (likedType, likedId, currentUserId) => dispatch(deleteLike(likedType, likedId, currentUserId)),
+    closeModal: () => dispatch(closeModal())
+
   };
 };
 

@@ -10,7 +10,7 @@ end
 json.users do
   @posts.each do |post|
     json.set! post.author_id do
-      json.extract! post.author, :id, :username
+      json.partial! '/api/users/user', user: post.author
     end
   end
 end

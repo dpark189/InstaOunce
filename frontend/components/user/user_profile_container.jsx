@@ -20,10 +20,8 @@ class UserProfile extends React.Component {
 
     if ((typeof this.props.user.followerIds === "undefined") ||
       (this.props.user.followerIds.includes(this.props.currentUser.id))) {
-
       followText = false;
     } else {
-
       followText = true;
     }
 
@@ -45,25 +43,27 @@ class UserProfile extends React.Component {
   }
 
   handleFollowClick() {
-
       if (this.state.followStatus === false) {
-
         this.props.createFollow(this.props.currentUser.id, this.props.user.id).then(
           this.setState({followStatus: true})
         );
-
       } else {
-
         this.props.deleteFollow(this.props.currentUser.id, this.props.user.id).then(
           this.setState({followStatus: false})
         );
-
       }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.user.id != nextProps.match.params.userId) {
       this.props.fetchUser(nextProps.match.params.userId);
+    }
+    if ((typeof this.props.user.followerIds === "undefined") ||
+      (!this.props.user.followerIds.includes(this.props.currentUser.id))) {
+      this.setState({followStatus: false});
+    } else {
+
+      this.setState({followStatus: true});
     }
   }
   // TODO: logic for when to show user edit form or user's page
