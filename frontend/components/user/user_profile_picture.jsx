@@ -15,7 +15,7 @@ class ProfilePicture extends React.Component {
         </div>
       );
     } else {
-      debugger
+
       image = (
         <div className="profile-frame" style={{backgroundImage: "url(" + window.profile_placeholder + ")"}}>
           <img className="profile-img" src={this.props.user.profile_picture.profile_pictureUrl}/>
