@@ -119,6 +119,17 @@ class UserProfile extends React.Component {
     } else {
       postCount = this.props.user.postIds.length;
     }
+    let followCount = 0;
+    if (typeof this.props.user.followerIds === "undefined") {
+    } else {
+      followCount = this.props.user.followerIds.length;
+    }
+
+    let followeeCount = 0;
+    if (typeof this.props.user.followeeIds === "undefined") {
+    } else {
+      followeeCount = this.props.user.followeeIds.length;
+    }
     return(
       <div className="profile-page">
         <div className="profile-header">
@@ -130,8 +141,8 @@ class UserProfile extends React.Component {
             </div>
             <div className="user-info-sub2">
               <h4 className="user-info">{postCount} posts</h4>
-              <h4 className="user-info">followers</h4>
-              <h4 className="user-info">following</h4>
+              <h4 className="user-info">{followCount} followers</h4>
+              <h4 className="user-info">{followeeCount} following</h4>
             </div>
             <div className="user-info-sub3">
               <h4 className="user-name">{this.props.user.full_name || ""}</h4>
