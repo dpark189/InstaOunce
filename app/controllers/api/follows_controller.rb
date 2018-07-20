@@ -36,7 +36,7 @@ class Api::FollowsController < ApplicationController
     if @follow.save
       @follower = @follow.follower
       @followee = @follow.followee
-      @users = [@follower, @followee]
+      @users = User.all
       render 'api/users/index'
     else
       error_hash = @follow.errors.to_hash
@@ -52,7 +52,7 @@ class Api::FollowsController < ApplicationController
     ).where('follows.follower_id = ? and follows.followee_id = ?', params[:follower_id], params[:followee_id]).first
     @follower = @follow.follower
     @followee = @follow.followee
-    @users = [@follower, @followee]
+    @users = User.all
     if check_belong(@follow.follower_id)
       @follow.destroy
       render 'api/users/index'

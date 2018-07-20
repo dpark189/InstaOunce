@@ -2,6 +2,7 @@ import * as UserApiUtil from '../util/user_api_util.js';
 
 export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_USERS = "RECEIVE_USERS";
+export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 
 export const receiveUser = (payload) => {
@@ -16,10 +17,19 @@ export const receiveUser = (payload) => {
 export const receiveUsers = (payload) => {
   return {
     type: RECEIVE_USERS,
-    user: payload.user,
+    users: payload.users,
     posts: payload.posts || {}
   };
 };
+
+export const receiveAllUsers = (payload) => {
+  return {
+    type: RECEIVE_ALL_USERS,
+    users: payload.users,
+    posts: payload.posts || {}
+  };
+};
+
 
 export const updateUser = (userId, formData) => {
   return dispatch => {
