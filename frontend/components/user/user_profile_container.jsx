@@ -58,13 +58,13 @@ class UserProfile extends React.Component {
     if (this.props.user.id != nextProps.match.params.userId) {
       this.props.fetchUser(nextProps.match.params.userId);
     }
-    if ((typeof this.props.user.followerIds === "undefined") ||
-      (!this.props.user.followerIds.includes(this.props.currentUser.id))) {
-      this.setState({followStatus: false});
-    } else {
-
-      this.setState({followStatus: true});
-    }
+    // if ((typeof this.props.user.followerIds === "undefined") ||
+    //   (!this.props.user.followerIds.includes(this.props.currentUser.id))) {
+    //   this.setState({followStatus: false});
+    // } else {
+    //
+    //   this.setState({followStatus: true});
+    // }
   }
   // TODO: logic for when to show user edit form or user's page
   render(){
@@ -95,7 +95,7 @@ class UserProfile extends React.Component {
         <div className="user-info-sub-1-links">
           <div className="profile-buttons">
               <button onClick={this.handleFollowClick} className="edit-profile button">
-                {followText}
+                {`${this.state.followStatus ? "Unfollow" : "Follow"}`}
               </button>
           </div>
           <i className="fas fa-ellipsis-h icon4"></i>
