@@ -12,6 +12,87 @@ require 'faker'
 
 # Post.create(author_id: 1, caption: "first post")
 
-10.times do
-  Post.create(author_id:(rand(1..3)), caption: Faker::ChuckNorris.fact)
+arr = [
+  "#Cupcake",
+ "#Parfait",
+ "#Key Lime Pie",
+ "#Sundae",
+ "#Cake Pop",
+ "#Frozen Yogurt",
+ "#Ice Cream Cake",
+ "#Trifle",
+ "#Frozen Yogurt",
+ "#Cake Pop",
+ "#Cassandra",
+ "#Orpheus",
+ "#Medea",
+ "#Icarus",
+ "#Ismene",
+ "#Hercules",
+ "#Thrace",
+ "#Semele",
+ "#Diomedes",
+ "#Abderus",
+ "#Antilochus",
+ "#Niobe",
+ "#Eunostus",
+ "#Antilochus",
+ "#Icarus",
+ "#Eunostus",
+ "#Antigone",
+ "#Diomedes",
+ "#Chrysippus",
+ "#Antigone"
+]
+
+# https://s3.amazonaws.com/insta-ounce-dev/data-seed/download+(1).jpeg
+# Faker::BackToTheFuture.character
+25.times do
+  User.create(
+    username: Faker::Internet.username,
+    password: "password",
+    email: Faker::Internet.email,
+    full_name: Faker::BackToTheFuture.character,
+    profile_picture_url: "https://s3.amazonaws.com/insta-ounce-dev/data-seed/download+(#{rand(1..80)}).jpeg"
+  )
+end
+
+User.all.each do |user|
+  5.times do
+    followee_id = rand(25)
+    while followee_id == user.id do
+      followee_id = rand(25)
+    end
+    post_id = rand
+    Follow.create(follower_id: user.id, followee_id: folowee_id)
+  end
+end
+
+40.times do
+  Post.create(author_id:(rand(20)), caption: Faker::ChuckNorris.fact, photo_url: "https://s3.amazonaws.com/insta-ounce-dev/data-seed/download+(#{rand(1..80)}).jpeg")
+end
+
+User.all.each do |user|
+  5.times do
+    followee_id = rand(25)
+    while followee_id == user.id do
+      followee_id = rand(25)
+    end
+    post_id = rand(40)
+    Like.create(liked_item_id: post_id, liked_item_type: "Post", user_id: user.id)
+    Follow.create(follower_id: user.id, followee_id: folowee_id)
+  end
+end
+
+arr.each do |tag|
+  hashtag = Hashtag.create(name: tag)
+  post = Post.all[rand(40)]
+  caption = post.caption
+  caption += " #{tag}"
+  Hashtaggings.create(hashtag_id: hashtag.id, post_id: post.id)
+  post.update(caption: caption)
+end
+
+80.times do
+  Comment.create(author_id: rand(25), commented_item_id: rand(40), commented_item_type: "Post", body: Faker::BackToTheFuture.quote )
 end
