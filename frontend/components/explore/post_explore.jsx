@@ -11,7 +11,7 @@ class PostExplore extends React.Component {
 
   render () {
     let header;
-    
+
     if (this.props.match.path === "/explore") {
       header = (<span className="explore-title">Explore</span>);
     } else if (this.props.match.path === "/hashtag/:hashtag") {
@@ -30,7 +30,7 @@ class PostExplore extends React.Component {
       return (
           <div className="explore-posts">
             <PostExploreItem
-              key={key}
+              key={`asdf${key}`}
               post={this.props.posts[key]}
               author={this.props.users[this.props.posts[key].author_id]}
               createLike={this.props.createLike}

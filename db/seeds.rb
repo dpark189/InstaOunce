@@ -46,15 +46,17 @@ arr = [
 ]
 
 # https://s3.amazonaws.com/insta-ounce-dev/data-seed/download+(1).jpeg
-# Faker::BackToTheFuture.character
+Faker::BackToTheFuture.character
 25.times do
-  User.create(
+  user = User.create(
     username: Faker::Internet.username,
     password: "password",
     email: Faker::Internet.email,
-    full_name: Faker::BackToTheFuture.character,
-    profile_picture_url: "https://s3.amazonaws.com/insta-ounce-dev/data-seed/download+(#{rand(1..80)}).jpeg"
+    full_name: Faker::BackToTheFuture.character
   )
+  num = rand(1..80)
+  file = EzDownload.open("https://s3.amazonaws.com/insta-ounce-dev/data-seed/download+(#{num}).jpeg")
+  user.profile_picture.attach(io: file, filename: "download (#{num}).jpeg")
 end
 
 User.all.each do |user|
@@ -64,12 +66,15 @@ User.all.each do |user|
       followee_id = rand(25)
     end
     post_id = rand
-    Follow.create(follower_id: user.id, followee_id: folowee_id)
+    Follow.create(follower_id: user.id, followee_id: followee_id)
   end
 end
 
 40.times do
-  Post.create(author_id:(rand(20)), caption: Faker::ChuckNorris.fact, photo_url: "https://s3.amazonaws.com/insta-ounce-dev/data-seed/download+(#{rand(1..80)}).jpeg")
+  post = Post.create(author_id:(rand(20)), caption: Faker::ChuckNorris.fact)
+  num = rand(1..80)
+  file = EzDownload.open("https://s3.amazonaws.com/insta-ounce-dev/data-seed/download+(#{num}).jpeg")
+  post.photos.attach(io: file, filename: "download (#{num}).jpeg")
 end
 
 User.all.each do |user|
@@ -80,16 +85,16 @@ User.all.each do |user|
     end
     post_id = rand(40)
     Like.create(liked_item_id: post_id, liked_item_type: "Post", user_id: user.id)
-    Follow.create(follower_id: user.id, followee_id: folowee_id)
+    Follow.create(follower_id: user.id, followee_id: followee_id)
   end
 end
 
 arr.each do |tag|
   hashtag = Hashtag.create(name: tag)
-  post = Post.all[rand(40)]
+  post = Post.all[rand(Post.all.length)]
   caption = post.caption
   caption += " #{tag}"
-  Hashtaggings.create(hashtag_id: hashtag.id, post_id: post.id)
+  Hashtagging.create(hashtag_id: hashtag.id, post_id: post.id)
   post.update(caption: caption)
 end
 

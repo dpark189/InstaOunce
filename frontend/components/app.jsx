@@ -38,7 +38,6 @@ const App = () => {
             component={UserProfileContainer}/>
             <ProtectedRoute exact path="/users/:userId/edit"
             component={EditProfileForm}/>
-            <Route component={NoMatch} />
           </Switch>
         </section>
       </div>

@@ -9,6 +9,7 @@ gem 'rails', '~> 5.2.0'
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+gem 'ez_download', git: 'https://github.com/OscarAlvarez8830/EZDownload.git'
 # Use SCSS for stylesheets
 gem 'jquery-rails'
 gem 'sass-rails', '~> 5.0'

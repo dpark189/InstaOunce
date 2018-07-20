@@ -25,8 +25,13 @@ div.profile-header {
   width: 300px;
 }
 
-.profile-username {
-
+.profile-img{
+  align-self: center;
+  flex: 1;
+  justify-content: center;
+  display: flex;
+  object-fit: cover;
+  width: 100%;
 }
 
 .profile-buttons {

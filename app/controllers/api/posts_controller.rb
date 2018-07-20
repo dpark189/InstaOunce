@@ -5,7 +5,7 @@ class Api::PostsController < ApplicationController
     @posts = Post.all.includes(
       :author,
       likes: [:user],
-      comments: [:likes, :author, :child_comments]
+      comments: [:likes, :author, :child_comments],
     )
     @hashtags = Hashtag.all
     render :index
