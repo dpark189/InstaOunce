@@ -19,7 +19,7 @@ class UserProfile extends React.Component {
     let followText;
 
     if ((typeof this.props.user.followerIds === "undefined") ||
-      (this.props.user.followerIds.includes(this.props.currentUser.id))) {
+      (!this.props.user.followerIds.includes(this.props.currentUser.id))) {
       followText = false;
     } else {
       followText = true;
