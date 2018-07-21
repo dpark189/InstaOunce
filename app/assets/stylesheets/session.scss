@@ -128,14 +128,6 @@ div.signup-image {
 #rotatingImg {
   width: 240px;
   height: 427px;
-  margin-left: 88px;
+  margin-left: 89.8px;
   margin-top: 10px;
-  -webkit-animation: fadeout 4s linear 1s infinite;
-}
-
-@-webkit-animation-delay fadeout {}
-
-@-webkit-keyframes fadeout {
-    from { opacity: 1; }
-    to   { opacity: 0; }
 }

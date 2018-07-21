@@ -85,15 +85,16 @@ class SignupSessionForm extends React.Component {
           };
     if (Object.values(this.props.errors).length === 0) {} else {
       Object.keys(stateErrors).forEach((key) => {
-
         errors[`${key}`] = stateErrors[key].map((err, i) => {
+          let label = key.charAt(0).toUpperCase() + key.slice(1);
           return (
-            <span key={`${key}${i}`} className="signup-errors">{err}</span>
+            <span key={`${key}${i}`} className="signup-errors">
+              {`${label === "full_name" ? "Full name" : label} ${err}`}
+            </span>
           );
         });
       });
     }
-
     // <span className="sign-up-errors">{stateErrors[`${key}`]}</span>
 
     return (
@@ -117,7 +118,7 @@ class SignupSessionForm extends React.Component {
                 {errors["email"]}
 
                 <input
-                  placeholder="Full_Name"
+                  placeholder="Full Name"
                   onChange={this.handleChange("full_name")}
                   value={this.state.fullName}>
                 </input>
