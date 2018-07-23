@@ -1,16 +1,15 @@
 .story-container {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
   flex-direction: column;
   font-size: 12px;
   color: #999;
-  border: 1px solid #e6e6e6;
-  background-color: white;
   width: 250px;
   height: 390px;
-  padding: 15px;
-  margin: 0px 25px;
+  padding: 15px 0 0 15px;
+  position: absolute;
+  right: -291px;
 }
 
 .fixed-true {
@@ -18,11 +17,25 @@
   top: 75px;
 }
 
-.fixed-false {
-  
+.story-index {
+  height: 80%;
+  overflow: scroll;
 }
 
-.stories-container > .story-header {
+.story-container-div {
+  width: 100%;
+  height: 100%;
+}
+
+.story-item {
+  padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.story-container-div > .story-header {
   align-self: flex-start;
   padding-bottom: 20px;
   width: 100%;

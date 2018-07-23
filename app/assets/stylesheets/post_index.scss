@@ -14,7 +14,8 @@
   display: flex;
   align-content: center;
   position: relative;
-  width: 66%;
+  min-width: 616px;
+  margin-right: 150px;
   align-self: center;
   justify-content: flex-end;
 }

@@ -27,7 +27,6 @@ class Stories extends React.Component {
     const winPos = window.scrollY;
     const left = this.refs.storiesDiv.getBoundingClientRect().x;
     if (winPos > elPos) {
-      debugger
       this.setState({refFixed: true, left: this.state.leftPos});
     } else {
       this.setState({refFixed: false, left: ""});
