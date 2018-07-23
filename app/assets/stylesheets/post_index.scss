@@ -118,6 +118,16 @@ img.post-image {
   max-height: 100%;
 }
 
+.post-index-item-caption-spans {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.disp-all-link {
+  color: #999;
+}
+
 // ------ like button --------
 
 .false-like-icon {

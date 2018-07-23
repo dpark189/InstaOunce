@@ -25,11 +25,13 @@ class PostIndexItem extends React.Component {
     }
 
     this.state = {
-      likedStatus
+      likedStatus,
+      dispAll: false
     };
     this.state.fade = false;
     this.fadingDone = this.fadingDone.bind(this);
     this.handleLikeClick = this.handleLikeClick.bind(this);
+    this.handleDispAll = this.handleDispAll.bind(this);
   }
 
   componentDidMount() {
@@ -46,8 +48,12 @@ class PostIndexItem extends React.Component {
     this.setState({fade: false});
   }
 
-  handleLikeClick(e) {
+  handleDispAll (e) {
+    debugger
+    this.setState({dispAll: true});
+  }
 
+  handleLikeClick(e) {
     this.setState({fade: true});
     if ((typeof this.props.post.likes_by_user_id === 'undefined') ||
       (typeof this.props.post.likes_by_user_id[this.props.currentUserId] === 'undefined')
@@ -140,10 +146,18 @@ class PostIndexItem extends React.Component {
         </section>
 
         <section className="post-index-item-caption">
-          <span>
-            <strong>{this.props.author.username} </strong>{caption}
-          </span>
+          <div className="post-index-item-caption-spans">
+            <span>
+              <strong>{this.props.author.username} </strong>{caption}
+            </span>
+            <span
+              onClick={this.handleDispAll}
+              className="disp-all-link">
+              {!this.state.dispAll ? `more` : ""}
+            </span>
+          </div>
           <CommentIndex
+            dispAll={this.state.dispAll}
             commentIds={this.props.post.commentIds}
             parentType="Post"
             parentId={this.props.post.id}/>
@@ -151,7 +165,6 @@ class PostIndexItem extends React.Component {
             {this.props.post.updated_at}
           </div>
         </section>
-
         <section className="index-item-comment">
           <CreateCommentFormContainer
             parentType="Post"

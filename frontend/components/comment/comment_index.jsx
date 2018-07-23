@@ -8,6 +8,12 @@ import CommentIndexItem from './comment_index_item';
 class CommentIndex extends React.Component {
   // this.props.comments
   // this.props.parentType
+  constructor(props) {
+    super(props);
+    this.state = {
+      dispAll: props.dispAll
+    };
+  }
   componentDidMount() {
     if (this.props.parentType === "Post") {
       this.props.fetchCommentsForPost(this.props.parentId);
@@ -15,6 +21,10 @@ class CommentIndex extends React.Component {
 
       this.props.fetchCommentsForComment(this.props.parentId);
     }
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({dispAll: newProps.dispAll});
   }
 
   render() {
@@ -33,7 +43,9 @@ class CommentIndex extends React.Component {
       });
     }
     return(
-      <ul>{comments}</ul>
+      <div className="comment-index-div">
+        <ul>{this.state.dispAll ? comments : comments.slice(0, 1)}</ul>
+      </div>
     );
   }
 }
@@ -49,7 +61,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     comments: parentComments,
-    users: state.entities.users
+    users: state.entities.users,
+    dispAll: ownProps.dispAll
   };
 };
 
