@@ -47,16 +47,19 @@ class PostIndexItem extends React.Component {
   }
 
   handleLikeClick(e) {
+    debugger
     this.setState({fade: true});
     if ((typeof this.props.post.likes_by_user_id === 'undefined') ||
       (typeof this.props.post.likes_by_user_id[this.props.currentUserId] === 'undefined')
     ) {
+      debugger
       this.props.createLike("Post", this.props.post.id, this.props.currentUserId).then(
-        this.setState({likedStatus: false})
+        () => this.setState({likedStatus: false})
       );
     } else {
+      debugger
       this.props.deleteLike("Post", this.props.post.likes_by_user_id[this.props.currentUserId].like_id).then(
-        this.setState({likedStatus: true})
+        () => this.setState({likedStatus: true})
       );
     }
   }

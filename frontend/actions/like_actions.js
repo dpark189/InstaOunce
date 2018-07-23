@@ -30,13 +30,17 @@ export const receiveLikeErrors = (errors) => {
 };
 
 export const createLike = (likedType, likedId, currentUserId) => {
-  return LikeApiUtil.createLike(likedType, likedId, currentUserId).then(
-    (payload) =>  dispatch(receiveLike(payload))
-  );
+  return dispatch => {
+    return LikeApiUtil.createLike(likedType, likedId, currentUserId).then(
+      (payload) =>  dispatch(receiveLike(payload))
+    );
+  };
 };
 
 export const deleteLike = (likedType, likeId) => {
-  return LikeApiUtil.deleteLike(likeId).then(
-    (payload) => dispatch(removeLike(payload))
-  );
+  return dispatch => {
+    return LikeApiUtil.deleteLike(likeId).then(
+      (payload) => dispatch(removeLike(payload))
+    );
+  };
 };
