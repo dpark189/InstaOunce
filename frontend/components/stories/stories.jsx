@@ -69,7 +69,10 @@ class Stories extends React.Component {
         <div className="story-container-div">
           <section className="story-header">
             <UserProfilePicture user={this.props.currentUser}/>
-            <span>{this.props.currentUser.username}</span>
+            <span className="story-header-user-info">
+              <strong className="username">{this.props.currentUser.username}</strong>
+              <span>{this.props.currentUser.full_name}</span>
+            </span>
           </section>
           <section className="story-index">
             <div className="story-item-div">

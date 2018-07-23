@@ -22,6 +22,16 @@
   overflow: scroll;
 }
 
+.story-header-user-info {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.story-header-user-info > .username {
+  color: black;
+}
+
 .story-container-div {
   width: 100%;
   height: 100%;
