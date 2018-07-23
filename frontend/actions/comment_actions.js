@@ -36,6 +36,7 @@ export const removeComment = (commentId) => {
 // will have to update the author's state in redux later
 
 export const receiveCommentErrors = (errors) => {
+  debugger
   return {
     type: RECEIVE_COMMENT_ERRORS,
     errors: errors
@@ -99,7 +100,7 @@ export const createCommentForPost = (comment) => {
   return dispatch => {
     return CommentApiUtil.createComment(comment).then(
       (payload) => dispatch(receiveComment(payload)),
-      (errors) => dispatch(receiveCommentErrors(errors))
+      (errors) => dispatch(receiveCommentErrors(errors.responseJSON))
     ).then(
       (payload) => {
         return dispatch(receivePost(payload.parent));

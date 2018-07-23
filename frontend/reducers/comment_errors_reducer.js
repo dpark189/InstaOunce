@@ -1,13 +1,13 @@
 import { RECEIVE_COMMENT_ERRORS, RECEIVE_COMMENT } from '../actions/comment_actions';
 import { merge } from 'lodash';
 
-export default ( state = {}, action ) => {
+export default ( state = [], action ) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_COMMENT_ERRORS:
       return merge({}, state, action.errors);
     case RECEIVE_COMMENT:
-      return {};
+      return [];
     default:
       return state;
   }

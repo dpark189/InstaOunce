@@ -26,13 +26,30 @@ class CommentForm extends React.Component {
   }
 
   render() {
+
+    // ------- comment errors ---------
+    const stateErrors = this.props.errors;
+    debugger
+    let errors = {
+      body: ""
+    };
+    if (Object.values(this.props.errors).length === 0) {} else {
+      Object.keys(stateErrors).forEach((key) => {
+        errors[`${key}`] = stateErrors[key].map((err, i) => {
+          let label = key.charAt(0).toUpperCase() + key.slice(1);
+          return (
+          `${label} ${err}`
+          );
+        });
+      });
+    }
     return (
       <form className="comment-form" onSubmit={this.handleSubmit}>
-        <input id="comment-input" className="comment-input"
+        <input id={`comment-input`} className={`comment-input ${errors.body === "" ? "" : "comment-error"}`}
           onChange={this.handleChange("body")}
           type="text"
           value={this.state.body}
-          placeholder="Add a comment..."
+          placeholder={errors.body === "" ? `Add a comment...` : errors.body}
         />
         <input className="hidden" type="submit" value="hidden button" />
       </form>
