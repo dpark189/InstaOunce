@@ -11,9 +11,9 @@ class PostForm extends React.Component {
     this.handleImage = this.handleImage.bind(this);
   }
 
-  componentWillReceiveProps(newProps){
-    this.state = newProps.post;
-  }
+  // componentWillReceiveProps(newProps){
+  //   this.state = newProps.post;
+  // }
 
   handleChange(field){
     return (e) => {
@@ -46,7 +46,12 @@ class PostForm extends React.Component {
       formData.append("post[photos]", file);
     }
 
-    this.props.formAction(formData).then(this.props.closeModal()).then(this.props.history.push(`/users/${this.props.currentUserId}`));
+    this.props.formAction(formData).then(
+      () => this.props.closeModal(),
+      (errors) => {}
+    ).then(
+      () => this.props.history.push(`/users/${this.props.currentUserId}`)
+    );
   }
 
   imagePreview() {
@@ -71,6 +76,24 @@ class PostForm extends React.Component {
     } else {
       buttonClass = 'disabled';
     }
+
+    // -------- post errors-------
+    const stateErrors = this.props.errors;
+    let errors = {
+      caption: ""
+    };
+    if (Object.values(this.props.errors).length === 0) {} else {
+      Object.keys(stateErrors).forEach((key) => {
+        errors[`${key}`] = stateErrors[key].map((err, i) => {
+          let label = key.charAt(0).toUpperCase() + key.slice(1);
+          return (
+            <span key={key} className="post-errors">
+              {`${label} ${err}`}
+            </span>
+          );
+        });
+      });
+    }
     return (
       <div className="post-form-div">
         <h3 className="post-form-header">Add A Post</h3>
@@ -82,6 +105,7 @@ class PostForm extends React.Component {
             value={this.state.caption}
             onChange={this.handleChange('caption')}
           />
+          {errors.caption}
           <input className={`post-create-button-${buttonClass}`} type="submit" value="Create Post"/>
         </form>
       </div>

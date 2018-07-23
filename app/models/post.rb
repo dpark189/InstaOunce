@@ -11,6 +11,7 @@
 
 class Post < ApplicationRecord
   validates :author_id, presence: true
+  validates :caption, presence: true
   # validate :ensure_photos
 
   belongs_to :author,
