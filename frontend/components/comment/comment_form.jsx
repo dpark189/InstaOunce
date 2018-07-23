@@ -29,7 +29,7 @@ class CommentForm extends React.Component {
 
     // ------- comment errors ---------
     const stateErrors = this.props.errors;
-    debugger
+
     let errors = {
       body: ""
     };

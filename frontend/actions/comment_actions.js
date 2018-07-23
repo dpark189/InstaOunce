@@ -36,7 +36,7 @@ export const removeComment = (commentId) => {
 // will have to update the author's state in redux later
 
 export const receiveCommentErrors = (errors) => {
-  debugger
+
   return {
     type: RECEIVE_COMMENT_ERRORS,
     errors: errors
