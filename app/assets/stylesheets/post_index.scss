@@ -12,9 +12,16 @@
 .app-level-index-div {
   margin-top: 20px;
   display: flex;
-  justify-content: center;
   align-content: center;
+  position: relative;
+  width: 66%;
+  align-self: center;
+  justify-content: flex-end;
+}
 
+.post-index-section {
+  position: absolute;
+  left: 0;
 }
 
 .post-sub-header {

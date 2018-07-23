@@ -20,6 +20,13 @@ class Api::UsersController < ApplicationController
     ).find_by(:users => {:id => params[:id]})
   end
 
+  def fetch_stories
+    @user = User.find(params[:userId])
+    id_arr = @user.all_follow_ids
+    @users = User.where(id: id_arr.uniq)
+    render :index
+  end
+
   def new
     @user = User.new
   end

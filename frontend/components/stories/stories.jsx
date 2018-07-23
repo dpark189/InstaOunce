@@ -1,17 +1,21 @@
 import React from 'react';
 import UserProfilePicture from '../user/user_profile_picture';
+import StoryItem from './story_item';
 
 class Stories extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      refFixed: false
+      refFixed: false,
+      left: ""
     };
     this.checkPosition = this.checkPosition.bind(this);
   }
 
   componentDidMount() {
+    this.props.fetchStories(this.props.currentUser.id);
     window.addEventListener('scroll', this.checkPosition);
+    this.state.leftPos = this.refs.storiesDiv.getBoundingClientRect().x;
   }
 
   componentWillUnmount(){
@@ -21,11 +25,12 @@ class Stories extends React.Component {
   checkPosition (e) {
     const elPos = this.refs.storiesDiv.getBoundingClientRect().top;
     const winPos = window.scrollY;
-
+    const left = this.refs.storiesDiv.getBoundingClientRect().x;
     if (winPos > elPos) {
-      this.setState({refFixed: true});
+      debugger
+      this.setState({refFixed: true, left: this.state.leftPos});
     } else {
-      this.setState({refFixed: false});
+      this.setState({refFixed: false, left: ""});
     }
   }
 
@@ -33,63 +38,46 @@ class Stories extends React.Component {
   }
 
   render() {
-    debugger
     const refFixed = this.state.refFixed;
     let storyItems;
-    if (Object.keys(this.props.followedUsers).length === 0) {
+    if ((typeof this.props.users === "undefined") || (this.props.currentUser.followeeIds.length === 0)) {
       storyItems = (
         <span>Stories from people you follow will show up here.</span>
       );
+    } else {
+      const followedUsers = this.props.users;
+      const fiveDaysAgo = new Date();
+      fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5);
+      const now = new Date();
+      const validUsers = followedUsers.filter( user => {
+        if (( typeof user.last_update !== "undefined" ) &&
+        ( new Date(now) - new Date(user.last_update) < fiveDaysAgo )) {
+          return user;
+        }
+      });
+      validUsers.sort( (user1, user2) => {
+        return Date(user1.last_update) - Date(user2.last_update);
+      });
+      storyItems = validUsers.map( user => {
+        return (
+          <StoryItem user={user}/>
+        );
+      });
     }
 
-    // // ------ Process Dates --------
-    //   const now = Date.now();
-    //
-    //   const lastPost = Object.values(followedUser.posts).slice(-1);
-    //   const updatedDate = new Date(lastPost.updated_at);
-    //   const difference = now - updatedDate;
-    //   let weeks = 0;
-    //   let days = 0;
-    //   let hours = Math.floor(difference / (1000*60*60));
-    //     if (hours >= 24) {
-    //       days = Math.floor(days/24);
-    //       hours = hours % 24;
-    //       if (days >= 7) {
-    //         weeks = Math.floor(days / 7);
-    //         days = days % 7;
-    //       }
-    //     }
-    //
-    // // ------ Set what to display --------
-    //
-    //   let dateDisp;
-    //   if (weeks > 0) {
-    //     dateDisp = `Updated ${weeks} weeks, ${days} days, and ${hours} hours ago`;
-    //   } else if (days > 0) {
-    //       dateDisp = `Updated ${days} days, and ${hours} hours ago`;
-    //   } else if (hours > 0){
-    //       dateDisp = `Updated ${hours} hours ago`;
-    //   } else {
-    //       dateDisp = "Updated less than an hour ago";
-    //   }
-    // // ----- end -----
-    //   if (weeks <= 5) {
-    //     return (
-    //       <div className="date-difference">
-    //         <UserProfilePicture key={`follower${followeeId}`} user={followedUser}/>
-    //         <span className="date-disp">{dateDisp}</span>
-    //       </div>
-    //     );
-    //   }
     return(
-      <div ref='storiesDiv' className={`story-container fixed-${this.state.refFixed}`}>
-        <section className="story-header">
-          <UserProfilePicture user={this.props.currentUser}/>
-          <span>{this.props.currentUser.username}</span>
-        </section>
-        <section className="story-index">
-          <span> </span>
-        </section>
+      <div ref='storiesDiv' className={`story-container fixed-${this.state.refFixed}`} style={{left: this.state.left}}>
+        <div className="story-container-div">
+          <section className="story-header">
+            <UserProfilePicture user={this.props.currentUser}/>
+            <span>{this.props.currentUser.username}</span>
+          </section>
+          <section className="story-index">
+            <div className="story-item-div">
+              {storyItems}
+            </div>
+          </section>
+        </div>
       </div>
     );
   }

@@ -1,5 +1,8 @@
 
 json.extract! user, :id, :username, :phone_number, :email, :full_name, :website, :bio, :gender
+if !user.posts.empty?
+  json.last_update user.posts.last.updated_at
+end
 
 json.profile_picture do
   if user.profile_picture.attached? == true

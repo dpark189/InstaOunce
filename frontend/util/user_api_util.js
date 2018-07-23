@@ -25,3 +25,10 @@ export const updateUser = (userId, formData) => {
     // { formData }
   });
 };
+
+export const fetchStories = (userId) => {
+  return $.ajax({
+    method: "GET",
+    url: `api/users/${userId}/stories`
+  });
+};

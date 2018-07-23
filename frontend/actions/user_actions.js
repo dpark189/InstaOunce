@@ -58,6 +58,14 @@ export const fetchUsers = () => {
   };
 };
 
+export const fetchStories = (userId) => {
+  return dispatch => {
+    return UserApiUtil.fetchStories(userId).then(
+      (payload) => dispatch(receiveUsers(payload))
+    );
+  };
+};
+
 export const receiveUserErrors = (errors) => {
 
   return {

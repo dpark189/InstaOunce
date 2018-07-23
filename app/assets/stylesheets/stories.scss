@@ -1,7 +1,5 @@
-.stories-container {
-  right: 34px;
+.story-container {
   display: flex;
-  flex: auto;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
@@ -9,15 +7,19 @@
   color: #999;
   border: 1px solid #e6e6e6;
   background-color: white;
-  width: 262px;
-  height: 300px;
+  width: 250px;
+  height: 390px;
   padding: 15px;
+  margin: 0px 25px;
 }
 
 .fixed-true {
   position: fixed;
   top: 75px;
-  right: 0;
+}
+
+.fixed-false {
+  
 }
 
 .stories-container > .story-header {
@@ -36,6 +38,12 @@ section.story-header {
 }
 
 section.story-header > .profile-pic-div > .profile-frame {
+  height: 35px;
+  width: 35px;
+  margin-right: 10px;
+}
+
+.story-item > .profile-pic-div > .profile-frame {
   height: 35px;
   width: 35px;
   margin-right: 10px;

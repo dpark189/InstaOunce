@@ -9,3 +9,4 @@
 # a.scan(/^(?:\+?\d{1,3}\s*-?)?\(?(?:\d{3})?\)?[- ]?\d{3}[- ]?\d{4}$/)
 # check for hash tags
 # text.scan(/(#[a-z\d-]+)/i)
+# user.people_im_following.ids.concat(user.people_following_me.ids.concat([user.id]))

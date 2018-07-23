@@ -67,6 +67,9 @@ class User < ApplicationRecord
     through: :follows_as_followee,
     source: :follower
 
+  def all_follow_ids
+    return self.people_im_following.ids.concat(self.people_following_me.ids.concat([self.id]))
+  end
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)

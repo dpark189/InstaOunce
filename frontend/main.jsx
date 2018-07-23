@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { login, logout, signup } from './actions/session_actions';
 import { fetchPost } from './actions/post_actions';
-import { fetchUser } from './actions/user_actions';
+import { fetchUser, fetchStories } from './actions/user_actions';
 import { fetchCommentsForPost, fetchCommentsForComment, fetchComment } from './actions/comment_actions';
 import configureStore from './store/store';
 import Root from './components/root';
@@ -37,5 +37,5 @@ document.addEventListener('DOMContentLoaded', () => {
   window.fetchCommentsForPost = fetchCommentsForPost;
   window.fetchCommentsForComment = fetchCommentsForComment;
   window.fetchComment = fetchComment;
-
+  window.fetchStories = fetchStories;
 });

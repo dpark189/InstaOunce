@@ -1,4 +1,4 @@
-import { fetchUser, fetchUsers } from '../../actions/user_actions';
+import { fetchUser, fetchUsers, fetchStories } from '../../actions/user_actions';
 import { fetchPosts } from '../../actions/post_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -16,23 +16,17 @@ const mapStateToProps = (state) => {
     profile_pictureUrl: "",
     postIds: "",
     commentIds: "",
-    followeeIds: ""
+    followeeIds: []
   };
   const currentUser = state.entities.users[state.session.id] || dummyUser;
-  let followees;
-  if (currentUser === dummyUser) {
-  } else {
-    Object.keys(state.entities.users).map( user => {
-      if (currentUser.followeeIds.includes(user.id)) {
-
-        return user;
-      }
-    });
-  }
+  let followeeIds = currentUser.followeeIds;
+  let users;
+  if (typeof state.entities.users !== "undefined") {
+    users = Object.values(state.entities.users);
+  }else { users = undefined;}
   return {
     currentUser: currentUser,
-    followeeIds: currentUser.followeeIds || {},
-    followedUsers: followees || {},
+    users: users,
     posts: state.entities.posts
   };
 };
@@ -40,7 +34,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchUser: (userId) => dispatch(fetchUser(userId)),
-    fetchUsers: () => dispatch(fetchUsers())
+    fetchUsers: () => dispatch(fetchUsers()),
+    fetchStories: (userId) => dispatch(fetchStories(userId))
   };
 };
 

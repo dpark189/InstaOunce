@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :users do
       resources :follows, only: [:index, :create]
     end
+    get 'users/:userId/stories', to: 'users#fetch_stories', as: 'fetch_stories'
     delete 'follows', to: 'follows#destroy'
     resource :session, only: [:create, :destroy]
     get 'sessions/:id', to: 'sessions#show'
