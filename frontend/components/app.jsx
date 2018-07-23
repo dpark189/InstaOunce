@@ -15,7 +15,7 @@ import NoMatch from './no_match';
 
 const App = () => {
   return (
-    <div>
+    <div className="top-app-div">
       <ProtectedRoute path="/" component={NavBarContainer}/>
       <ModalContainer />
       <div className="main-app">
