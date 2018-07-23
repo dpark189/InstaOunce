@@ -32,7 +32,7 @@ export const login = (user) => {
       (user) => {
         return dispatch(receiveCurrentUser(user));
       },
-      (errors) => {return dispatch(receiveSessionErrors(errors));}
+      (errors) => {return dispatch(receiveSessionErrors(errors.responseJSON));}
     );
   };
 };

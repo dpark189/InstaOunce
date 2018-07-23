@@ -5,7 +5,9 @@ class Api::SessionsController < ApplicationController
       login(@user)
       render :show
     else
-      render json: ['invalid credentials'], status: 401
+      @errors = {}
+      @errors['login'] = ['Invalid credentials']
+      render json: @errors, status: 401
     end
   end
 

@@ -43,6 +43,18 @@ class LoginSessionForm extends React.Component {
         don't have an Account?<Link to='/'> Sign Up</Link>
       </div>
     );
+    const stateErrors = this.props.errors;
+    let errors = {
+      login: ""
+    };
+    if (typeof this.props.errors.login === 'undefined') {} else {
+      errors.login = (
+        <span className="signup-errors">
+          {this.props.errors.login}
+        </span>
+      );
+
+    }
 
     return (
       <div className="top-session-div login-form-top">
@@ -52,6 +64,7 @@ class LoginSessionForm extends React.Component {
               <img className="signup-logo"
                 src={window.logoName}/>
               <form className="session-form" onSubmit={this.handleSubmit}>
+                {errors.login}
                 <input
                   placeholder="Username"
                   onChange={this.handleChange("username")}
