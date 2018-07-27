@@ -7,7 +7,7 @@ InstaOunce is a single page web app inspired by Instagram. Connect with other us
 ## Technology
 InstaOunce is built using the following: 
 *  Backend:
-   *  Ruby on Rails and PostGreSQL are used to keep track of information and data associations using RESTful API.
+   *  Ruby on Rails and PostGreSQL are used to keep track of information and data associations using a RESTful API.
    *  AWS stores media files posted by users.
 *  Frontend: 
    *  React.js and Redux are used to manage the frontend DOM and user interactions while maintaining a normalized state which synchoronizes with backend data through the use of AJAX, Jbuilder and custom routes created in Ruby on Rails.
