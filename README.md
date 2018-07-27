@@ -23,7 +23,7 @@ InstaOunce is built using the following:
 *  Users can like and unlike posts made by other users, which increments or decrements the given post's like counter dynamically.
 *  Users can comment and view comments on posts.
 *  Users who wish to see posts made by users other than those they follow can go to the explore page to view posts from all users.
-   *  Posts displayed in the explore page make use of modals to fully display the full post.
+   *  Posts displayed in the explore page make use of modals to fully display the post.
 *  Users also have the option to customize their avatar and edit their own profiles.
 
 ## Polymorphic assocations
