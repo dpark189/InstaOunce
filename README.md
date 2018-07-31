@@ -31,7 +31,7 @@ Likes and hashtags make use of polymorphic associations. This was done to allow 
 
 ## Postscript
 
-### Short Term Future Features Estimated to be Complete By 8/3/2018
+### Short Term Future Features Estimated to be Complete By 8/10/2018
 *  More robust production Readme.
 *  Multiple images can be posted on a single post.
 *  If a post has multiple images, clicking arrow icons on the sides of the post will flip through each image.
