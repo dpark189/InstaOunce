@@ -15,22 +15,8 @@ class Api::FollowsController < ApplicationController
   # follows#post_feed as user_post_feed
   def post_feed
     offset = params[:offset].to_i * 10;
-    @follows = Follow.includes(
-      :followee,
-      follower: [
-        feed_posts: [
-          :author,
-          likes:[:user],
-          comments:[:likes, :author, :child_comments]
-        ]
-      ]
-    ).find_by(
-      :follows => {
-        :follower_id => params[:userId]
-      }
-    )
-
-    @posts = @follows.follower.feed_posts.order(updated_at: :desc)
+    @follows = Follow.includes(:follower, :followee).where(:follows => {:follower_id => params[:userId]})
+    @posts = User.find(params[:userId]).offset_feed_posts(offset)
     @hashtags = Hashtag.all
     render 'api/posts/index'
   end

@@ -62,6 +62,11 @@ class User < ApplicationRecord
   has_many :feed_posts,
     through: :people_im_following,
     source: :posts
+
+  def offset_feed_posts(offset_num)
+    posts = self.feed_posts.order(updated_at: :desc).limit(10).offset(offset_num)
+    posts
+  end
 # ---- people following me -----
   has_many :follows_as_followee,
     foreign_key: :followee_id,
