@@ -49,7 +49,7 @@ class PostIndexItem extends React.Component {
   }
 
   handleDispAll (e) {
-    debugger
+    
     this.setState({dispAll: true});
   }
 

@@ -14,7 +14,8 @@ export default (props) => {
     let days = 0;
     let hours = Math.floor(difference / (1000*60*60));
       if (hours >= 24) {
-        days = Math.floor(days/24);
+
+        days = Math.floor(hours/24);
         hours = hours % 24;
         if (days >= 7) {
           weeks = Math.floor(days / 7);
@@ -25,12 +26,13 @@ export default (props) => {
   // ------ Set what to display --------
 
     let dateDisp;
+
     if (weeks > 0) {
-      dateDisp = `Updated ${weeks} weeks, ${days} days, and ${hours} hours ago`;
+      dateDisp = `Updated ${weeks} ${weeks === 1 ? "week" : "weeks"}, ${days} ${days === 1 ? "day" : "days"}, and ${hours} ${hours === 1 ? "hour" : "hours"} ago`;
     } else if (days > 0) {
-        dateDisp = `Updated ${days} days, and ${hours} hours ago`;
+        dateDisp = `Updated ${days} ${days === 1 ? "day" : "days"}, and ${hours} ${hours === 1 ? "hour" : "hours"} ago`;
     } else if (hours > 0){
-        dateDisp = `Updated ${hours} hours ago`;
+        dateDisp = `Updated ${hours} ${hours === 1 ? "hour" : "hours"} ago`;
     } else {
         dateDisp = "Updated less than an hour ago";
     }

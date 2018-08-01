@@ -47,15 +47,16 @@ class Stories extends React.Component {
       const followedUsers = this.props.users;
       const fiveDaysAgo = new Date();
       fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5);
+      const difference = new Date() - fiveDaysAgo;
       const now = new Date();
       const validUsers = followedUsers.filter( user => {
         if (( typeof user.last_update !== "undefined" ) &&
-        ( new Date(now) - new Date(user.last_update) < fiveDaysAgo )) {
+        ( new Date(new Date(now) - new Date(user.last_update)) < (new Date() - fiveDaysAgo) )) {
           return user;
         }
       });
       validUsers.sort( (user1, user2) => {
-        return Date(user1.last_update) - Date(user2.last_update);
+        return new Date(user1.last_update) - new Date(user2.last_update);
       });
       storyItems = validUsers.map( user => {
         return (
