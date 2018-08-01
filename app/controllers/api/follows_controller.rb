@@ -67,4 +67,8 @@ class Api::FollowsController < ApplicationController
   end
 end
 
-# follows = Follow.includes( :follower, :followee, feed_posts: [ :author, likes: [:user], comments: [:likes, :author, :child_comments] ]).find_by( :follows => { :follower_id => params[:id] })
+# follows = Follow.includes( :follower, :followee, feed_posts: [ :author, likes: [:user], comments: [:likes, :author, :child_comments] ]).find_by( :follows => { :follower_id => 1 })
+
+# Follow.all.order(:updated_at).limit(10).offset(10)
+# for later
+# User.where('users.id IN (?, ?)', @follower.id, @followee.id)

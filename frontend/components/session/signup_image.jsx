@@ -4,29 +4,29 @@ class SignupImage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      currentImage: 0
-    };
-    this.getRandomImageId = this.getRandomImageId.bind(this);
+    // this.state = {
+    //   currentImage: 0
+    // };
+    // this.getRandomImageId = this.getRandomImageId.bind(this);
   }
 
-  getRandomImageId() {
-    const min = 0;
-    const max = 5;
-    if (this.state.currentImage === max) {
-      this.setState({currentImage: 0});
-    } else {
-      this.setState({currentImage: this.state.currentImage + 1});
-    }
-
-  }
+  // getRandomImageId() {
+  //   const min = 0;
+  //   const max = 5;
+  //   if (this.state.currentImage + 1 === max) {
+  //     this.setState({currentImage: 0});
+  //   } else {
+  //     this.setState({currentImage: this.state.currentImage + 1});
+  //   }
+  //
+  // }
 
   componentDidMount () {
-    this.intervalId = setInterval(this.getRandomImageId, 5000);
+    // this.intervalId = setInterval(this.getRandomImageId, 5000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.intervalId);
+    // clearInterval(this.intervalId);
   }
 
   render () {
@@ -39,8 +39,23 @@ class SignupImage extends React.Component {
       window.signup_image5
     ];
 
+    const figures = images.map((image, i) => {
+      return (
+        <figure key={`figure${i}`}
+          style={
+            {
+              backgroundImage: "url(" + image + ")",
+              animationDelay: `${3 * (i + 1)}s`,
+            }
+          }
+        ></figure>
+      );
+    });
+
     return (
-        <img id="rotatingImg" src={images[this.state.currentImage]} />
+      <div className="signup-image-div">
+        {figures}
+      </div>
     );
   }
 }

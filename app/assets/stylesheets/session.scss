@@ -27,9 +27,63 @@ div.signup-image {
   object-fit: cover;
   background-size: cover;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+div.signup-image-div {
+  position: absolute;
+  right: 13.5%;
+  bottom: 14.5%;
+  overflow: hidden;
+  width: 242px;
+  height: 430px;
+  margin-left: -35px;
+  object-fit: cover;
+  background-size: cover;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
+
+
+.signup-image-div > figure {
+  margin: 0;
+  animation: imageAnimation 30s linear infinite 0s;
+  backface-visibility: hidden;
+  background-size: cover;
+  background-position: center center;
+  color: transparent;
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 0;
+}
+
+@keyframes
+imageAnimation {  0% {
+   animation-timing-function: ease-in;
+   opacity: 0;
+  }
+   8% {
+   animation-timing-function: ease-out;
+   opacity: 1;
+  }
+   17% {
+   opacity: 1
+  }
+   25% {
+   opacity: 0
+  }
+   100% {
+   opacity: 0
+  }
+}
+
 
 .signup-logo {
   width: 175px;
