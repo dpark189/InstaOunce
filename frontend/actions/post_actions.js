@@ -79,3 +79,11 @@ export const deletePost = (postId) => {
     );
   };
 };
+
+export const fetchFeedPosts = (userId, postOffset) => {
+  return dispatch => {
+    return PostApiUtil.fetchFeedPosts(userId, postOffset).then(
+      () => dispatch(receivePosts)
+    );
+  };
+};

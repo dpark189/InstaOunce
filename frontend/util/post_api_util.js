@@ -12,6 +12,16 @@ export const fetchPost = (postId) => {
   });
 };
 
+export const fetchFeedPosts = (userId, postOffset) => {
+  return $.ajax({
+    method: 'GET',
+    url: `api/users/${userId}/feed`,
+    data: {
+      offset: postOffset
+    }
+  });
+};
+
 export const createPost = formData => {
 
   return $.ajax({

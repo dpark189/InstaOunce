@@ -58,6 +58,10 @@ class User < ApplicationRecord
   has_many :people_im_following,
     through: :follows_as_follower,
     source: :followee
+
+  has_many :feed_posts,
+    through: :people_im_following,
+    source: :posts
 # ---- people following me -----
   has_many :follows_as_followee,
     foreign_key: :followee_id,

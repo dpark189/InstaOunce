@@ -20,8 +20,4 @@ class Follow < ApplicationRecord
   belongs_to :followee,
     foreign_key: :followee_id,
     class_name: :User
-
-  has_many :feed_posts,
-    through: :followee,
-    source: :posts
 end
