@@ -47,7 +47,6 @@ class Stories extends React.Component {
       const followedUsers = this.props.users;
       const fiveDaysAgo = new Date();
       fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5);
-      const difference = new Date() - fiveDaysAgo;
       const now = new Date();
       const validUsers = followedUsers.filter( user => {
         if (( typeof user.last_update !== "undefined" ) &&
