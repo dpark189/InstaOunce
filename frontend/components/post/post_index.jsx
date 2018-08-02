@@ -7,13 +7,31 @@ class PostIndex extends React.Component {
     super(props);
     this.state = {
       offset: 0,
-      posts: props.posts.sort( (post1, post2) => { return new Date(post1.updated_at) - new Date(post2.updated_at);}),
+      posts: props.posts,
       users: props.users
     };
+    this.checkLoadMore = this.checkLoadMore.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchFeedPosts(this.props.currentUserId, this.state.offset);
+    window.addEventListener('scroll', this.checkLoadMore);
+  }
+
+  loadCompVisibile(el){
+    const comp = el.getBoundingClientRect();
+    return (comp.top >= 0 && comp.left >= 0 &&
+      comp.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      comp.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  checkLoadMore() {
+    const loadComp = this.refs.loadMore;
+    if (this.loadCompVisibile(loadComp)) {
+      this.setState({offset: this.state.offset + 1});
+      this.props.fetchFeedPosts(this.props.currentUserId, this.state.offset);
+    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -34,6 +52,7 @@ class PostIndex extends React.Component {
     return (
       <section className="post-index-section">
         {items}
+        <div ref="loadMore" className="post-index-item-div"></div>
       </section>
     );
   }

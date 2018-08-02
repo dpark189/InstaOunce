@@ -14,7 +14,7 @@ export default( state = defaultState, action ) => {
     case RECEIVE_USERS:
     case RECEIVE_USER:
     case RECEIVE_TAGS:
-
+    debugger
       return merge(newState, action.posts);
     case RECEIVE_POST:
       return merge(newState, {[action.post.id]: action.post});

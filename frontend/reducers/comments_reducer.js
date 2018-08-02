@@ -9,9 +9,7 @@ export default (state = defaultState, action) => {
   const newState = merge({}, state);
   switch (action.type) {
     case RECEIVE_COMMENTS:
-    case RECEIVE_POSTS:
     case RECEIVE_POST:
-
       return merge(newState, action.comments);
     case RECEIVE_COMMENT:
 
