@@ -6,7 +6,9 @@ class PostIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      offset: 0
+      offset: 0,
+      posts: props.posts.sort( (post1, post2) => { return new Date(post1.updated_at) - new Date(post2.updated_at);}),
+      users: props.users
     };
   }
 
@@ -14,14 +16,18 @@ class PostIndex extends React.Component {
     this.props.fetchFeedPosts(this.props.currentUserId, this.state.offset);
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState({posts: newProps.posts, users: newProps.users});
+  }
+
   render () {
-    const items = Object.keys(this.props.posts).reverse().map( (key) => {
+    const items = this.state.posts.map( (post) => {
       return (
         <PostIndexItem
-          post={this.props.posts[key]}
-          author={this.props.users[this.props.posts[key].author_id]}
-          key={key}
-          currentUserId={this.props.currentUserId}
+          post={post}
+          author={this.state.users[post.author_id]}
+          key={post.id}
+          currentUserId={this.state.currentUserId}
         />
       );
     });

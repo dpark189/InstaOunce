@@ -11,7 +11,6 @@ class Api::PostsController < ApplicationController
     render :index
   end
 
-# TODO: might be able to do logic for showing followed user posts here
   def show
     @post = Post.includes(
       :author,
