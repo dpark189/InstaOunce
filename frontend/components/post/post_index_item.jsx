@@ -13,7 +13,7 @@ class PostIndexItem extends React.Component {
   constructor(props) {
     super(props);
     let likedStatus;
-    debugger
+
     if ((props.post.likes_count === 0) || !props.post.likes_by_user_id) {
       likedStatus = false;
     } else {

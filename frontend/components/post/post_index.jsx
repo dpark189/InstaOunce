@@ -18,6 +18,10 @@ class PostIndex extends React.Component {
     window.addEventListener('scroll', this.checkLoadMore);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.checkLoadMore);
+  }
+
   loadCompVisibile(el){
     const comp = el.getBoundingClientRect();
     return (comp.top >= 0 && comp.left >= 0 &&
