@@ -28,11 +28,11 @@ export default (props) => {
     let dateDisp;
 
     if (weeks > 0) {
-      dateDisp = `Updated ${weeks} ${weeks === 1 ? "week" : "weeks"}, ${days} ${days === 1 ? "day" : "days"}, and ${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+      dateDisp = `Updated ${weeks} ${weeks === 1 ? "week" : "weeks"} ${days === 0 ? "" : `, and ${days} ${days === 1 ? "day" : "days"}`}, and ${hours === 0 ? "" : `, and ${hours} ${hours === 1 ? "hour" : "hours"}`} ago`;
     } else if (days > 0) {
-        dateDisp = `Updated ${days} ${days === 1 ? "day" : "days"}, and ${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+        dateDisp = `Updated ${days} ${days === 1 ? "day" : "days"} ${hours === 0 ? "" : `, and ${hours} ${hours === 1 ? "hour" : "hours"}`} ago`;
     } else if (hours > 0){
-        dateDisp = `Updated ${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+        dateDisp = `Updated ${hours === 0 ? "" : `, and ${hours} ${hours === 1 ? "hour" : "hours"}`} ago`;
     } else {
         dateDisp = "Updated less than an hour ago";
     }

@@ -28,7 +28,7 @@
   flex-direction: column;
 }
 
-.story-header-user-info > .username {
+.story-header-user-info > a > .username {
   color: black;
 }
 
@@ -73,7 +73,14 @@ section.story-header {
   flex-direction: row;
 }
 
-section.story-header > .profile-pic-div > .profile-frame {
+section.story-header > a {
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+
+section.story-header > a > .profile-pic-div > .profile-frame {
   height: 35px;
   width: 35px;
   margin-right: 10px;
@@ -83,4 +90,9 @@ section.story-header > .profile-pic-div > .profile-frame {
   height: 35px;
   width: 35px;
   margin-right: 10px;
+}
+
+.story-item-div > a {
+  text-decoration: none;
+  color: #999;
 }

@@ -24,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
   } else { posts = allPosts;}
 
   posts.sort((post1, post2) => {
-    return new Date(post1.updated_at) - new Date(post2.updated_at);}
+    return new Date(post2.updated_at) - new Date(post1.updated_at);}
   );
 
   const users = state.entities.users;

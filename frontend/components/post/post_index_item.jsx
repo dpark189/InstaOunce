@@ -110,6 +110,9 @@ class PostIndexItem extends React.Component {
       <Link key={match + `${i}`} to={`/hashtag/${match}`}>{`#${match}`}</Link>
     ));
 
+    const date = new Date(this.props.post.updated_at);
+    const dispDate = `${date.getMonth()}-${date.getDate()}-${date.getFullYear()}`;
+
     return(
       <div className="post-index-item-div">
 
@@ -160,7 +163,7 @@ class PostIndexItem extends React.Component {
             parentType="Post"
             parentId={this.props.post.id}/>
           <div className="update-date">
-            {this.props.post.updated_at}
+            {dispDate}
           </div>
         </section>
         <section className="index-item-comment">

@@ -1,6 +1,7 @@
 import React from 'react';
 import UserProfilePicture from '../user/user_profile_picture';
 import StoryItem from './story_item';
+import {Link} from 'react-router-dom';
 
 class Stories extends React.Component {
   constructor(props) {
@@ -55,11 +56,13 @@ class Stories extends React.Component {
         }
       });
       validUsers.sort( (user1, user2) => {
-        return new Date(user1.last_update) - new Date(user2.last_update);
+        return new Date(user2.last_update) - new Date(user1.last_update);
       });
       storyItems = validUsers.map( user => {
         return (
-          <StoryItem user={user}/>
+          <Link to={`/users/${user.id}`}>
+            <StoryItem user={user}/>
+          </Link>
         );
       });
     }
@@ -68,11 +71,13 @@ class Stories extends React.Component {
       <div ref='storiesDiv' className={`story-container fixed-${this.state.refFixed}`} style={{left: this.state.left}}>
         <div className="story-container-div">
           <section className="story-header">
-            <UserProfilePicture user={this.props.currentUser}/>
-            <span className="story-header-user-info">
-              <strong className="username">{this.props.currentUser.username}</strong>
-              <span>{this.props.currentUser.full_name}</span>
-            </span>
+            <Link to={`/users/${this.props.currentUser.id}`}>
+              <UserProfilePicture user={this.props.currentUser}/>
+              <span className="story-header-user-info">
+                <strong className="username">{this.props.currentUser.username}</strong>
+                <span>{this.props.currentUser.full_name}</span>
+              </span>
+            </Link>
           </section>
           <section className="story-index">
             <div className="story-item-div">

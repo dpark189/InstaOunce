@@ -39,10 +39,14 @@ class PostIndex extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState({posts: newProps.posts, users: newProps.users});
+    this.setState({
+      posts: newProps.posts,
+      users: newProps.users
+    });
   }
 
   render () {
+    debugger
     const items = this.state.posts.map( (post) => {
       return (
         <PostIndexItem

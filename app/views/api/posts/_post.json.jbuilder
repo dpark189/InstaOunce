@@ -4,7 +4,7 @@ json.photos do
     json.photoUrl url_for(photo)
   end
 end
-json.updated_at passed.updated_at.strftime("%B %e, %Y")
+json.updated_at passed.updated_at
 json.commentIds do
   json.array! passed.comments.ids
 end
