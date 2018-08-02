@@ -3,7 +3,6 @@ class Api::LikesController <ApplicationController
     @like = Like.new(like_params)
     parent_type = @like.liked_item_type.pluralize.downcase
     parent_id = @like.liked_item_id
-
     if @like.save
       if parent_type == "posts"
         @post = @like.liked_item

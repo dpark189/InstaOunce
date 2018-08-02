@@ -13,7 +13,7 @@ class PostIndexItem extends React.Component {
   constructor(props) {
     super(props);
     let likedStatus;
-
+    debugger
     if ((props.post.likes_count === 0) || !props.post.likes_by_user_id) {
       likedStatus = false;
     } else {
@@ -49,7 +49,7 @@ class PostIndexItem extends React.Component {
   }
 
   handleDispAll (e) {
-    
+
     this.setState({dispAll: true});
   }
 
@@ -58,14 +58,12 @@ class PostIndexItem extends React.Component {
     if ((typeof this.props.post.likes_by_user_id === 'undefined') ||
       (typeof this.props.post.likes_by_user_id[this.props.currentUserId] === 'undefined')
     ) {
-
       this.props.createLike("Post", this.props.post.id, this.props.currentUserId).then(
-        () => this.setState({likedStatus: false})
+        () => this.setState({likedStatus: true})
       );
     } else {
-
       this.props.deleteLike("Post", this.props.post.likes_by_user_id[this.props.currentUserId].like_id).then(
-        () => this.setState({likedStatus: true})
+        () => this.setState({likedStatus: false})
       );
     }
   }

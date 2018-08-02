@@ -45,7 +45,7 @@ class PostIndex extends React.Component {
           post={post}
           author={this.state.users[post.author_id]}
           key={post.id}
-          currentUserId={this.state.currentUserId}
+          currentUserId={this.props.currentUserId}
         />
       );
     });
