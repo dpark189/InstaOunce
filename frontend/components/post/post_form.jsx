@@ -1,6 +1,7 @@
 import { withRouter } from 'react-router-dom';
 import React from 'react';
 import { merge } from 'lodash';
+import ImageSlide from './image_slide';
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -22,28 +23,41 @@ class PostForm extends React.Component {
   }
 
   handleImage(e) {
-    const reader = new FileReader();
-    const file = e.currentTarget.files[0];
-    reader.onloadend = () => {
-      this.setState({photoUrl: reader.result, photoFile: file, buttonStatus: true});
-    };
+    const files = Array.from(e.currentTarget.files);
+    let valid = true;
 
-    if (file) {
-      reader.readAsDataURL(file);
-    } else {
-      this.setState({ photoUrl: "", photoFile: null, buttonStatus: false });
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.setState( prevState => {
+
+          return {
+            photoUrl: [...prevState.photoUrl, reader.result],
+            photoFile: [...prevState.photoFile, files],
+            buttonStatus: true
+          };
+        });
+      };
+
+      if (files[i] && files[i].type.match("image")) {
+        reader.readAsDataURL(files[i]);
+      } else { valid = false; }
+    }
+    if (!valid) {
+      this.setState({ photoUrl: [], photoFile: [], buttonStatus: false });
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const copy = merge({}, this.state);
-    const file = copy.photoFile;
+    const files = copy.photoFile;
     const formData = new FormData();
     formData.append("post[caption]", copy.caption);
     formData.append("post[author_id]", copy.author_id);
-    if (file) {
-      formData.append("post[photos]", file);
+    if (files) {
+      formData.append("post[photos]", files);
     }
 
     this.props.formAction(formData).then(
@@ -55,19 +69,21 @@ class PostForm extends React.Component {
   }
 
   imagePreview() {
-  if (this.state.photoUrl !== "") {
-    return (
-      <div className='post-create-property'>
-        <label className='post-create-label'>Image Preview</label>
-        <div className='post-preview-container'>
-            <img className='post-preview-photo' src={this.state.photoUrl}/>
-        </div>
-      </div>
-    );
-  } else {
-    return null;
+
+    if (this.state.photoUrl !== "") {
+
+        return (
+          <div className='post-create-property'>
+            <label className='post-create-label'>Image Preview</label>
+            <div className="preview-images">
+              <ImageSlide images={this.state.photoUrl}/>
+            </div>
+          </div>
+        );
+    } else {
+      return null;
+    }
   }
-}
 
   render () {
     let buttonClass;
@@ -98,8 +114,10 @@ class PostForm extends React.Component {
       <div className="post-form-div">
         <h3 className="post-form-header">Add A Post</h3>
         <form className="post-form" onSubmit={this.handleSubmit}>
+
           {this.imagePreview()}
-           <input className='post-create-input' type='file' onChange={this.handleImage} />
+
+           <input className='post-create-input' type='file' onChange={this.handleImage} multiple="multiple"/>
           <textarea
             placeholder="caption"
             value={this.state.caption}

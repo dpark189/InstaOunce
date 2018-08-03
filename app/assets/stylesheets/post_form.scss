@@ -43,7 +43,7 @@
 
 .post-preview-container {
   max-height: 100%;
-  width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -51,12 +51,10 @@
 .post-preview-photo {
   max-height: 400px;
   max-width: 550px;
+  flex: auto;
+  flex-shrink: 5;
   height: auto;
   width: auto;
-  display:flex;
-  justify-self: center;
-  align-self: center;
-
 }
 
 .post-form > textarea {
@@ -70,4 +68,21 @@
 
 .post-form > input[type="text"] {
   width: 250px;
+}
+
+.post-form > input[type="file"] {
+  width:250px;
+  height: auto;
+}
+
+.preview-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.carousel-dot {
+  font-size: 10px;
 }

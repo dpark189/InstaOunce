@@ -46,7 +46,7 @@ class PostIndex extends React.Component {
   }
 
   render () {
-    debugger
+    
     const items = this.state.posts.map( (post) => {
       return (
         <PostIndexItem

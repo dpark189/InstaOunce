@@ -8,8 +8,8 @@ const mapStateToProps = (state) => {
     post: {
       author_id: state.session.id,
       caption: "",
-      photoFile: null,
-      photoUrl: null
+      photoFile: [],
+      photoUrl: []
     },
     currentUserId: state.session.id,
     buttonStatus: false,
