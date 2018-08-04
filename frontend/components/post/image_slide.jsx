@@ -66,7 +66,8 @@ class ImageSlide extends React.Component {
           imageDisp = "flex";
           dotClass = "fas";
         }
-        dots.push(<span ref={`dots${i}`} key={i} className="carousel-dot" onClick={this.currentSlide(i)}><i className={` fa-circle ${dotClass}`}></i></span>);
+        dots.push(
+          <span ref={`dots${i}`} key={i} className="carousel-dot carousel-controls" onClick={this.currentSlide(i)}><i className={` fa-circle ${dotClass}`}></i></span>);
         return (
           <img ref={`images${i}`} key={i} className="mySlides" src={url} style={{display:`${imageDisp}`}}/>
         );
@@ -76,9 +77,11 @@ class ImageSlide extends React.Component {
       <div className="image-carousel">
         {mySlides}
         <div className="image-carousel-nav">
-          <div className="w3-left w3-hover-text-khaki" onClick={this.incrementSlide(-1)}><i className="fas fa-chevron-left"></i></div>
-          {dots}
-          <div className="w3-right w3-hover-text-khaki" onClick={this.incrementSlide(1)}><i className="fas fa-chevron-right"></i></div>
+          <div className="w3-left w3-hover-text-khaki" onClick={this.incrementSlide(-1)}><i className="fas fa-chevron-left carousel-controls"></i></div>
+          <div className="carousel-nav-dots">
+            {dots}
+          </div>
+          <div className="w3-right w3-hover-text-khaki carousel-controls" onClick={this.incrementSlide(1)}><i className="fas fa-chevron-right"></i></div>
         </div>
       </div>
     );
