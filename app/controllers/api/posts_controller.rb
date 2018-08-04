@@ -29,10 +29,14 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    debugger
+
     @post = Post.new(post_params)
+    if post_photos
+      @post.photos.attach(post_photos)
+    end
+
     @user = User.find(@post.author_id)
-    debugger
+
     if @post.save
       # render 'api/users/show', :id => @post.author_id
       hashtag_arr = @post.caption.scan(/(#[a-z\d-]+)/i).flatten
@@ -79,6 +83,10 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:author_id, :caption, :photos)
+    params.require(:post).permit(:author_id, :caption)
+  end
+
+  def post_photos
+    params[:post][:photos].values
   end
 end

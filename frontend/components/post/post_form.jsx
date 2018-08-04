@@ -32,7 +32,7 @@ class PostForm extends React.Component {
 
       reader.onload = () => {
         this.setState( prevState => {
-          debugger
+
           return {
             photoFile: files,
             buttonStatus: true,
@@ -56,18 +56,15 @@ class PostForm extends React.Component {
     e.preventDefault();
     const copy = merge({}, this.state);
     const files = copy.photoFile;
-    debugger
-    files.map(file => {
-      return file[0];
-    });
-    debugger
     const formData = new FormData();
     formData.append("post[caption]", copy.caption);
     formData.append("post[author_id]", copy.author_id);
     if (files) {
-      files.forEach( file =>
-        formData.append("post[photos]", file[0])
-      )
+      formData.append(`post[photos]`, {});
+      files.forEach( (file, i) =>
+        formData.append(`post[photos][${i}]`, file)
+      );
+      // formData.append("post[photos]", [files]);
     }
 
     this.props.formAction(formData).then(
