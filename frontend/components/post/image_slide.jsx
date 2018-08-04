@@ -7,6 +7,7 @@ class ImageSlide extends React.Component {
       index: 0,
       image_urls: props.images || []
     };
+    this.navShow = false;
     this.incrementSlide = this.incrementSlide.bind(this);
     this.currentSlide = this.currentSlide.bind(this);
   }
@@ -59,6 +60,7 @@ class ImageSlide extends React.Component {
     const dots = [];
     let mySlides;
     if (this.state.image_urls.length > 0) {
+      if (this.state.image_urls.length> 1) this.navShow = true;
       mySlides = this.state.image_urls.map( (url, i) => {
         let imageDisp = "none";
         let dotClass = "far";
@@ -66,7 +68,8 @@ class ImageSlide extends React.Component {
           imageDisp = "flex";
           dotClass = "fas";
         }
-        dots.push(<span ref={`dots${i}`} key={i} className="carousel-dot" onClick={this.currentSlide(i)}><i className={` fa-circle ${dotClass}`}></i></span>);
+        dots.push(
+          <span ref={`dots${i}`} key={i} className="carousel-dot carousel-controls" onClick={this.currentSlide(i)}><i className={` fa-circle ${dotClass}`}></i></span>);
         return (
           <img ref={`images${i}`} key={i} className="mySlides" src={url} style={{display:`${imageDisp}`}}/>
         );
@@ -75,10 +78,14 @@ class ImageSlide extends React.Component {
     return(
       <div className="image-carousel">
         {mySlides}
-        <div className="image-carousel-nav">
-          <div className="w3-left w3-hover-text-khaki" onClick={this.incrementSlide(-1)}><i className="fas fa-chevron-left"></i></div>
-          {dots}
-          <div className="w3-right w3-hover-text-khaki" onClick={this.incrementSlide(1)}><i className="fas fa-chevron-right"></i></div>
+        <div className="image-carousel-nav" style={
+          !this.navShow ? {display: "none"} : {}
+        }>
+          <div className="w3-left w3-hover-text-khaki" onClick={this.incrementSlide(-1)}><i className="fas fa-chevron-left carousel-controls"></i></div>
+          <div className="carousel-nav-dots">
+            {dots}
+          </div>
+          <div className="w3-right w3-hover-text-khaki carousel-controls" onClick={this.incrementSlide(1)}><i className="fas fa-chevron-right"></i></div>
         </div>
       </div>
     );

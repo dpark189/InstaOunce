@@ -8,6 +8,7 @@ import UserProfilePicture from '../user/user_profile_picture';
 import CommentIndex from '../comment/comment_index';
 import CreateCommentFormContainer from '../comment/create_comment_form_container';
 import reactStringReplace from 'react-string-replace';
+import ImageSlide from './image_slide';
 
 class PostIndexItem extends React.Component {
   constructor(props) {
@@ -99,12 +100,11 @@ class PostIndexItem extends React.Component {
     (typeof this.props.post.photos === "null")) {
       images = "";
     } else {
-      images = Object.values(this.props.post.photos).map( (photoUrl, i) => {
-        return (
-          <img key={`photo-url${i}`} className="post-image" src={photoUrl}/>
+      images = (
+          <ImageSlide images={this.props.post.photos}/>
         );
-      });
-    }
+      }
+
     const likeCount = this.props.post.likes_count;
     const caption = reactStringReplace(this.props.post.caption, /#(\S+)/g, (match, i) => (
       <Link key={match + `${i}`} to={`/hashtag/${match}`}>{`#${match}`}</Link>
@@ -125,8 +125,8 @@ class PostIndexItem extends React.Component {
           </div>
         </section>
 
-        <section className="post-images" onDoubleClick={this.handleLikeClick}>
-          <i ref='liking' className={`${fade ? 'fade' : ''} fas fa-heart post-icons like-icon-picture`}></i>
+        <section className="post-images" >
+          <i ref='liking' className={`${fade ? 'fade' : ''} fas fa-heart post-icons like-icon-picture`} onDoubleClick={this.handleLikeClick}></i>
           {images}
         </section>
 

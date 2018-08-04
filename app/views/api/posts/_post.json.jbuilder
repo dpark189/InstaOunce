@@ -1,8 +1,10 @@
 json.extract! passed, :id, :author_id, :caption
 json.photos do
+  photo_arr = []
   passed.photos.each do |photo|
-    json.photoUrl url_for(photo)
+    photo_arr << url_for(photo)
   end
+  json.array! photo_arr
 end
 json.updated_at passed.updated_at
 json.commentIds do
