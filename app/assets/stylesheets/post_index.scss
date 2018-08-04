@@ -142,6 +142,7 @@ img.post-image {
 .like-icon-picture {
   margin: 0;
   position: absolute;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -150,7 +151,7 @@ img.post-image {
   opacity: 0;
   z-index: 3;
   width: 100%;
-  height: 90%;
+  height: 95%;
 }
 
 

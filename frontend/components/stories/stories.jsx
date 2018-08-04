@@ -60,8 +60,8 @@ class Stories extends React.Component {
       });
       storyItems = validUsers.map( user => {
         return (
-          <Link to={`/users/${user.id}`}>
-            <StoryItem user={user}/>
+          <Link key={`user${user.id}`} to={`/users/${user.id}`}>
+            <StoryItem key={`user${user.id}`} user={user}/>
           </Link>
         );
       });
