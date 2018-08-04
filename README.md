@@ -2,7 +2,7 @@
 
 [Live Link] (https://insta-ounce.herokuapp.com)
 
-InstaOunce is a single page web app inspired by Instagram. Connect with other users and share pictures with friends and followers. 
+InstaOunce is a full-stack web application inspired by Instagram. The purpose of this app is to provide users with a way to share pictures, thoughts through posts, build small communities via hashtags, and ultimately connect people together. InstaOunce uses Ruby on Rails for the backend, a PostgreSQL database, and React/Redux architectural framework for the frontend.
 
 ## Technology
 InstaOunce is built using the following: 
