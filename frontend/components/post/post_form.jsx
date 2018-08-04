@@ -7,6 +7,7 @@ class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = props.post;
+    this.errors = "";
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleImage = this.handleImage.bind(this);
@@ -31,21 +32,23 @@ class PostForm extends React.Component {
 
       reader.onload = () => {
         this.setState( prevState => {
-
+          debugger
           return {
-            photoUrl: [...prevState.photoUrl, reader.result],
-            photoFile: [...prevState.photoFile, files],
-            buttonStatus: true
+            photoFile: files,
+            buttonStatus: true,
+            photoUrl: [reader.result, ...prevState.photoUrl]
+
           };
         });
       };
 
-      if (files[i] && files[i].type.match("image")) {
+      if (files[i] && files[i].type.match("image") && files.length <= 10) {
         reader.readAsDataURL(files[i]);
       } else { valid = false; }
     }
     if (!valid) {
       this.setState({ photoUrl: [], photoFile: [], buttonStatus: false });
+
     }
   }
 
@@ -53,11 +56,18 @@ class PostForm extends React.Component {
     e.preventDefault();
     const copy = merge({}, this.state);
     const files = copy.photoFile;
+    debugger
+    files.map(file => {
+      return file[0];
+    });
+    debugger
     const formData = new FormData();
     formData.append("post[caption]", copy.caption);
     formData.append("post[author_id]", copy.author_id);
     if (files) {
-      formData.append("post[photos]", files);
+      files.forEach( file =>
+        formData.append("post[photos]", file[0])
+      )
     }
 
     this.props.formAction(formData).then(

@@ -5,7 +5,7 @@ class ImageSlide extends React.Component {
     super(props);
     this.state = {
       index: 0,
-      image_urls: props.images
+      image_urls: props.images || []
     };
     this.incrementSlide = this.incrementSlide.bind(this);
     this.currentSlide = this.currentSlide.bind(this);
@@ -33,7 +33,6 @@ class ImageSlide extends React.Component {
     const that = this;
     const boundN = n;
     return () => {
-      debugger
       that.refs[`images${that.state.index}`].style.display = "none";
       if ((that.state.index + boundN) <= (that.state.image_urls.length - 1)){
         that.setState({index: that.state.index += boundN});
@@ -58,18 +57,21 @@ class ImageSlide extends React.Component {
 
   render() {
     const dots = [];
-    const mySlides = this.state.image_urls.map( (url, i) => {
-      let imageDisp = "none";
-      let dotClass = "far";
-      if (i === this.state.index) {
-        imageDisp = "flex";
-        dotClass = "fas";
-      }
-      dots.push(<span ref={`dots${i}`} key={i} className="carousel-dot" onClick={this.currentSlide(i)}><i className={` fa-circle ${dotClass}`}></i></span>);
-      return (
-        <img ref={`images${i}`} key={i} className="mySlides" src={url} style={{display:`${imageDisp}`}}/>
-      );
-    });
+    let mySlides;
+    if (this.state.image_urls.length > 0) {
+      mySlides = this.state.image_urls.map( (url, i) => {
+        let imageDisp = "none";
+        let dotClass = "far";
+        if (i === this.state.index) {
+          imageDisp = "flex";
+          dotClass = "fas";
+        }
+        dots.push(<span ref={`dots${i}`} key={i} className="carousel-dot" onClick={this.currentSlide(i)}><i className={` fa-circle ${dotClass}`}></i></span>);
+        return (
+          <img ref={`images${i}`} key={i} className="mySlides" src={url} style={{display:`${imageDisp}`}}/>
+        );
+      });
+    }
     return(
       <div className="image-carousel">
         {mySlides}

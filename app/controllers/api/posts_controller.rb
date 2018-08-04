@@ -29,8 +29,10 @@ class Api::PostsController < ApplicationController
   end
 
   def create
+    debugger
     @post = Post.new(post_params)
     @user = User.find(@post.author_id)
+    debugger
     if @post.save
       # render 'api/users/show', :id => @post.author_id
       hashtag_arr = @post.caption.scan(/(#[a-z\d-]+)/i).flatten
