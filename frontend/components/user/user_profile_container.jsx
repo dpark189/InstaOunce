@@ -27,7 +27,8 @@ class UserProfile extends React.Component {
 
     this.state = {
       username: props.user.username,
-      followStatus: followText
+      followStatus: followText,
+      bio: props.user.bio
     };
     this.handleFollowClick = this.handleFollowClick.bind(this);
   }
@@ -140,12 +141,13 @@ class UserProfile extends React.Component {
               {userEdit}
             </div>
             <div className="user-info-sub2">
-              <h4 className="user-info">{postCount} posts</h4>
-              <h4 className="user-info">{followCount} followers</h4>
-              <h4 className="user-info">{followeeCount} following</h4>
+              <h4 className="user-info"><b>{postCount}</b> posts</h4>
+              <h4 className="user-info"><b>{followCount}</b> followers</h4>
+              <h4 className="user-info"><b>{followeeCount}</b> following</h4>
             </div>
             <div className="user-info-sub3">
               <h4 className="user-name">{this.props.user.full_name || ""}</h4>
+              <span className="user-bio">{this.state.bio || ""}</span>
             </div>
           </div>
         </div>
