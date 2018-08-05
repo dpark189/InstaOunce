@@ -16,6 +16,7 @@ class ImageSlide extends React.Component {
   }
 
   componentDidMount(){
+
     if (this.state.image_urls.length > 0){
       this.refs[`images${this.state.index}`].style.display = "flex";
     }
@@ -25,10 +26,11 @@ class ImageSlide extends React.Component {
   }
 
   handleImageLoad(e) {
+
     if (e.target.height > this.state.maxHeight) {
       this.setState({maxHeight: e.target.height});
     }
-    debugger
+
   }
 
   // componentDidUpdate(prevprops, prevState) {
@@ -41,12 +43,6 @@ class ImageSlide extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.setState({image_urls: newProps.images});
-  }
-
-  componentDidUpdate(oldProps, oldState){
-    if (this.state.maxHeight !== oldState.maxHeight) {
-      debugger
-    }
   }
 
   incrementSlide(n) {
@@ -79,7 +75,8 @@ class ImageSlide extends React.Component {
     const dots = [];
     let mySlides;
     if (this.state.image_urls.length > 0) {
-      if (this.state.image_urls.length> 1) this.navShow = true;
+
+      if (this.state.image_urls.length > 1) this.navShow = true;
       mySlides = this.state.image_urls.map( (url, i) => {
         let imageDisp = "none";
         let dotClass = "far";
@@ -89,13 +86,15 @@ class ImageSlide extends React.Component {
         }
         dots.push(
           <span ref={`dots${i}`} key={i} className="carousel-dot carousel-controls" onClick={this.currentSlide(i)}><i className={` fa-circle ${dotClass}`}></i></span>);
+
         return (
-          <img onLoad={this.handleImageLoad} ref={`images${i}`} key={i} className="mySlides" src={url} style={{display:`${imageDisp}`}}/>
+          <img onLoad={this.handleImageLoad} ref={`images${i}`} key={i} className="mySlides" src={url} style={{display:`${imageDisp}`, height: "auto"}}/>
         );
       });
     }
+
     return(
-      <div className="image-carousel" style={this.maxHeight === 0 ? {} : {height: `${this.state.maxHeight}px`}}>
+      <div className="image-carousel" style={this.state.maxHeight === 0 ? {height: "auto"} : {height: `${this.state.maxHeight}px`}}>
         {mySlides}
         <div className="image-carousel-nav" style={
           !this.navShow ? {display: "none"} : {}

@@ -100,6 +100,7 @@ class PostIndexItem extends React.Component {
     (typeof this.props.post.photos === "null")) {
       images = "";
     } else {
+
       images = (
           <ImageSlide images={this.props.post.photos}/>
         );

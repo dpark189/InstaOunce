@@ -35,9 +35,9 @@ const App = () => {
           <ScrollToTopRoute routeType={ProtectedRoute} path="/explore" component={PostExploreContainer}/>
           <ScrollToTopRoute routeType={ProtectedRoute} exact path="/hashtag/:hashtag" component={PostExploreContainer}/>
           <Switch>
-            <ScrollToTopRoute routeType={ProtectedRoute} exact path="/users/:userId"
+            <ProtectedRoute exact path="/users/:userId"
             component={UserProfileContainer}/>
-            <ScrollToTopRoute routeType={ProtectedRoute} exact path="/users/:userId/edit"
+            <ProtectedRoute exact path="/users/:userId/edit"
             component={EditProfileForm}/>
           </Switch>
         </section>

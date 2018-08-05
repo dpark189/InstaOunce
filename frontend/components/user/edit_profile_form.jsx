@@ -2,7 +2,7 @@ import React from 'react';
 import { merge } from 'lodash';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateUser } from '../../actions/user_actions';
+import { updateUser, fetchUser } from '../../actions/user_actions';
 
 class EditProfileForm extends React.Component {
   constructor(props){
@@ -11,6 +11,11 @@ class EditProfileForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleImage = this.handleImage.bind(this);
+  }
+
+  componentDidMount() {
+
+    this.props.fetchUser(this.props.currentUserId);
   }
 
   componentWillReceiveProps(newProps) {
@@ -69,7 +74,7 @@ class EditProfileForm extends React.Component {
       formData.append("user[profile_picture]", file);
     }
 
-    this.props.updateUser(userId, formData).then(this.props.history.push(`/users/${this.props.currentUser.id}`));
+    this.props.updateUser(userId, formData).then(this.props.history.push(`/users/${this.props.currentUserId}`));
   }
 
   render() {
@@ -145,14 +150,14 @@ const mapStateToprops = (state, ownProps) => {
 
   return {
     user,
-    currentUser: state.session
+    currentUserId: state.session.id
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     updateUser: (userId, formData) => dispatch(updateUser(userId, formData)),
-    fetchUser: (user) => dispatch(fetchUser)
+    fetchUser: (userId) => dispatch(fetchUser(userId))
   };
 };
 
