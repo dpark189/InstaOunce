@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions/post_actions';
 import { fetchUser } from '../../actions/user_actions';
 import { createLike, deleteLike } from '../../actions/like_actions';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import UserProfilePicture from '../user/user_profile_picture';
 import CommentIndex from '../comment/comment_index';
 import CreateCommentFormContainer from '../comment/create_comment_form_container';
 import reactStringReplace from 'react-string-replace';
+import ImageSlide from '../post/image_slide';
 import { closeModal } from '../../actions/modal_actions';
 
 class PostExploreItemShow extends React.Component {
@@ -28,6 +29,7 @@ class PostExploreItemShow extends React.Component {
     this.state = {
       likedStatus
     };
+
     this.state.fade = false;
     this.fadingDone = this.fadingDone.bind(this);
     this.handleLikeClick = this.handleLikeClick.bind(this);
@@ -49,19 +51,19 @@ class PostExploreItemShow extends React.Component {
 
   handleLikeClick(e) {
     this.setState({fade: true});
+
     if ((typeof this.props.post.likes_by_user_id === 'undefined') ||
       (typeof this.props.post.likes_by_user_id[this.props.currentUserId] === 'undefined')
     ) {
       this.props.createLike("Post", this.props.post.id, this.props.currentUserId).then(
-        this.setState({likedStatus: false})
+        () => this.setState({likedStatus: true})
       );
     } else {
       this.props.deleteLike("Post", this.props.post.likes_by_user_id[this.props.currentUserId].like_id).then(
-        this.setState({likedStatus: true})
+        () => this.setState({likedStatus: false})
       );
     }
   }
-
 
   // componentDidUpdate(prevProps, prevState) {
   //   if ((typeof this.props.post.likes_by_user_id === 'undefined') ||
@@ -74,9 +76,10 @@ class PostExploreItemShow extends React.Component {
   // }
 
   componentWillReceiveProps(newProps) {
+
     if ((typeof newProps.post.likes_by_user_id === 'undefined') ||
-      (typeof newProps.post.likes_by_user_id[newProps.currentUserId] === 'undefined')
-    ) {
+      (typeof newProps.post.likes_by_user_id[newProps.currentUserId] === 'undefined'))
+      {
         this.setState({likedStatus: false});
       } else {
         this.setState({likedStatus: true});
@@ -93,22 +96,22 @@ class PostExploreItemShow extends React.Component {
     (typeof this.props.post.photos === "null")) {
       images = "";
     } else {
-      images = Object.values(this.props.post.photos).map( (photoUrl, i) => {
-        return (
-          <img key={i} className="post-explore-image" src={photoUrl}/>
+      images = (
+          <ImageSlide images={this.props.post.photos}/>
         );
-      });
     }
     const likeCount = this.props.post.likes_count;
-
     const caption = reactStringReplace(this.props.post.caption, /#(\S+)/g, (match, i) => (
-      <Link to={`/hashtag/${match}`}>{`#${match}`}</Link>
+      <Link key={match + `${i}`} to={`/hashtag/${match}`}>{`#${match}`}</Link>
     ));
+
+    const date = new Date(this.props.post.updated_at);
+    const dispDate = `${date.getMonth()}-${date.getDate()}-${date.getFullYear()}`;
 
     return(
       <div className="post-explore-item-show-div">
-        <section className="post-explore-images" onDoubleClick={this.handleLikeClick}>
-          <i ref='liking' className={`${fade ? 'fade' : ''} fas fa-heart post-icons like-icon-picture`}></i>
+        <section className="post-explore-images">
+          <i ref='liking' className={`${fade ? 'fade' : ''} fas fa-heart post-icons like-icon-picture`} onDoubleClick={this.handleLikeClick}></i>
           {images}
         </section>
 
@@ -167,7 +170,7 @@ class PostExploreItemShow extends React.Component {
 const msp = (state, ownProps) => {
 
   const dummyPost = {
-    id: "",
+    id: ownProps.post.id,
     author_id: state.session.id,
     caption: "",
     photos: {photoUrl: ""},
@@ -175,15 +178,17 @@ const msp = (state, ownProps) => {
     likes_by_user_id: "",
     likes_count: 0
   };
-  const post = ownProps.post || dummyPost;
+
+  const post = state.entities.posts[ownProps.post.id] || dummyPost;
   return {
-    post: post
+    post: post,
+    currentUserId: state.session.id
   };
 };
 
 const mdp = (dispatch) => {
   return {
-    fetchPosts: () => dispatch(fetchPosts()),
+    fetchPost: (postId) => dispatch(fetchPost(postId)),
     createLike: (likedType, likedId, currentUserId) => dispatch(createLike(likedType, likedId, currentUserId)),
     deleteLike: (likedType, likedId, currentUserId) => dispatch(deleteLike(likedType, likedId, currentUserId)),
     closeModal: () => dispatch(closeModal())

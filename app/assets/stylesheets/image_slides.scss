@@ -5,6 +5,11 @@
 .image-carousel {
   position: relative;
   width: 556px;
+  max-height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  
 }
 
 .post-images > .image-carousel {

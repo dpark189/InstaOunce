@@ -3,6 +3,7 @@ import React from 'react';
 class ImageSlide extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       index: 0,
       image_urls: props.images || [],

@@ -92,15 +92,12 @@ class PostIndexItem extends React.Component {
 
   render() {
     let images;
-
     const fade = this.state.fade;
-
     if ((typeof this.props.post.photos === "undefined" ) ||
     (Object.values(this.props.post.photos).length === 0 ) ||
     (typeof this.props.post.photos === "null")) {
       images = "";
     } else {
-
       images = (
           <ImageSlide images={this.props.post.photos}/>
         );
