@@ -29,10 +29,10 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-
     @post = Post.new(post_params)
-    if post_photos
-      @post.photos.attach(post_photos)
+    photos = params[:post][:photos].values
+    if photos
+      @post.photos.attach(photos)
     end
 
     @user = User.find(@post.author_id)
@@ -86,7 +86,4 @@ class Api::PostsController < ApplicationController
     params.require(:post).permit(:author_id, :caption)
   end
 
-  def post_photos
-    params[:post][:photos].values
-  end
 end

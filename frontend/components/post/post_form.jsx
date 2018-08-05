@@ -57,16 +57,22 @@ class PostForm extends React.Component {
     const copy = merge({}, this.state);
     const files = copy.photoFile;
     const formData = new FormData();
+    let count = files.length;
     formData.append("post[caption]", copy.caption);
     formData.append("post[author_id]", copy.author_id);
+    formData.append("file_count", count);
     if (files) {
-      formData.append(`post[photos]`, {});
-      files.forEach( (file, i) =>
-        formData.append(`post[photos][${i}]`, file)
-      );
-      // formData.append("post[photos]", [files]);
+      files.map( file =>
+      file[0]);
+      files.forEach((file, i) => {
+        formData.append(`post[photos][${i}]`, file);
+      });
+      // files.forEach( (file, i) =>
+      //   formData.append(`post[photos][${i}]`, file)
+      // );
+          // formData.append("post[photos]", [files]);
     }
-
+    debugger
     this.props.formAction(formData).then(
       () => this.props.closeModal(),
       (errors) => {}
@@ -105,7 +111,7 @@ class PostForm extends React.Component {
     let errors = {
       caption: ""
     };
-    if (Object.values(this.props.errors).length === 0) {} else {
+    if ((Object.keys(this.props.errors) === "undefined") || Object.values(this.props.errors).length === 0) {} else {
       Object.keys(stateErrors).forEach((key) => {
         errors[`${key}`] = stateErrors[key].map((err, i) => {
           let label = key.charAt(0).toUpperCase() + key.slice(1);
@@ -121,9 +127,7 @@ class PostForm extends React.Component {
       <div className="post-form-div">
         <h3 className="post-form-header">Add A Post</h3>
         <form className="post-form" onSubmit={this.handleSubmit}>
-
           {this.imagePreview()}
-
            <input className='post-create-input' type='file' onChange={this.handleImage} multiple="multiple"/>
           <textarea
             placeholder="caption"
