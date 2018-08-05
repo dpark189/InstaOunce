@@ -108,8 +108,10 @@ class PostIndexItem extends React.Component {
       <Link key={match + `${i}`} to={`/hashtag/${match}`}>{`#${match}`}</Link>
     ));
 
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
     const date = new Date(this.props.post.updated_at);
-    const dispDate = `${date.getMonth()}-${date.getDate()}-${date.getFullYear()}`;
+    const dispDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 
     return(
       <div className="post-index-item-div">
