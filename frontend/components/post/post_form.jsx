@@ -72,7 +72,7 @@ class PostForm extends React.Component {
       // );
           // formData.append("post[photos]", [files]);
     }
-    debugger
+
     this.props.formAction(formData).then(
       () => this.props.closeModal(),
       (errors) => {}
