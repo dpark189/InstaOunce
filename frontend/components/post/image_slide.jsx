@@ -9,9 +9,12 @@ class ImageSlide extends React.Component {
       maxHeight: 0
     };
     this.navShow = false;
+    this.hover = false;
     this.incrementSlide = this.incrementSlide.bind(this);
     this.currentSlide = this.currentSlide.bind(this);
     this.handleImageLoad = this.handleImageLoad.bind(this);
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseLeave = this.handleMouseLeave.bind(this);
     this.refCount = this.state.image_urls.length;
   }
 
@@ -60,8 +63,19 @@ class ImageSlide extends React.Component {
     };
   }
 
-  currentSlide(n) {
+  handleMouseEnter(){
+    this.hover = true;
+    if (this.hover && this.navShow) {
+      this.refs.carouselNav.style.display = "flex";
+    }
+  }
 
+  handleMouseLeave(){
+    this.hover = false;
+    this.refs.carouselNav.style.display = "none";
+  }
+
+  currentSlide(n) {
     const that = this;
     const boundN = n;
     return () => {
@@ -79,13 +93,13 @@ class ImageSlide extends React.Component {
       if (this.state.image_urls.length > 1) this.navShow = true;
       mySlides = this.state.image_urls.map( (url, i) => {
         let imageDisp = "none";
-        let dotClass = "far";
+        let dotClass = "#999";
         if (i === this.state.index) {
           imageDisp = "flex";
-          dotClass = "fas";
+          dotClass = "#3897f0";
         }
         dots.push(
-          <span ref={`dots${i}`} key={i} className="carousel-dot carousel-controls" onClick={this.currentSlide(i)}><i className={` fa-circle ${dotClass}`}></i></span>);
+          <span ref={`dots${i}`} key={i} className="carousel-dot carousel-controls" onClick={this.currentSlide(i)}><i className={` fa-circle fas carousel-indiv-dot`} style={{color: `${dotClass}`}}></i></span>);
 
         return (
           <img onLoad={this.handleImageLoad} ref={`images${i}`} key={i} className="mySlides" src={url} style={{display:`${imageDisp}`, height: "auto"}}/>
@@ -94,16 +108,32 @@ class ImageSlide extends React.Component {
     }
 
     return(
-      <div className="image-carousel" style={this.state.maxHeight === 0 ? {height: "auto"} : {height: `${this.state.maxHeight}px`}}>
+      <div
+        className="image-carousel"
+        style={
+          this.state.maxHeight === 0 ? {height: "auto"} : {height: `${this.state.maxHeight}px`}
+        }
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
         {mySlides}
-        <div className="image-carousel-nav" style={
-          !this.navShow ? {display: "none"} : {}
-        }>
-          <div className="w3-left w3-hover-text-khaki" onClick={this.incrementSlide(-1)}><i className="fas fa-chevron-left carousel-controls"></i></div>
-          <div className="carousel-nav-dots">
-            {dots}
+        <div ref="carouselNav" className="image-carousel-nav" style={
+          {display: "none"}}>
+          <div className="w3-left w3-hover-text-khaki carousel-controls" onClick={this.incrementSlide(-1)}>
+            <i className="fas fa-circle carousel-arrow-background">
+              <i className="fas fa-chevron-left carousel-arrow"></i>
+            </i>
+
           </div>
-          <div className="w3-right w3-hover-text-khaki carousel-controls" onClick={this.incrementSlide(1)}><i className="fas fa-chevron-right"></i></div>
+          <div className="w3-right w3-hover-text-khaki carousel-controls" onClick={this.incrementSlide(1)}>
+            <i className="fas fa-circle carousel-arrow-background">
+              <i className="fas fa-chevron-right carousel-arrow"></i>
+            </i>
+
+          </div>
+        </div>
+        <div className="carousel-nav-dots">
+          {dots}
         </div>
       </div>
     );

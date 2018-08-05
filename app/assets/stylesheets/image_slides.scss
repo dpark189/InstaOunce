@@ -1,5 +1,5 @@
 .carousel-dot {
-  font-size: 10px;
+  font-size: 8px;
 }
 
 .image-carousel {
@@ -27,13 +27,43 @@ img.mySlides {
   max-height: 100%;
 }
 
-
 .image-carousel-nav {
   width: 100%;
   display: flex;
   color: white;
   justify-content: space-between;
-  background-color: black;
+  position: absolute;
+  top: 50%;
+}
+
+.carousel-nav-dots {
+  color: grey;
+  width: 100%;
+  background: white;
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
   position: absolute;
   bottom: 0;
+}
+
+.carousel-indiv-dot{
+  margin-right: 5px;
+}
+
+.carousel-arrow-background {
+  position: relative;
+  mix-blend-mode: lighten;
+  display: flex;
+  justify-content: center;
+  font-size: 21px;
+  padding: 0 6px;
+}
+
+.carousel-arrow {
+  font-size: 15px;
+  align-self: center;
+  position: absolute;
+  color: black;
+  mix-blend-mode: multiply;
 }
