@@ -5,17 +5,30 @@ class ImageSlide extends React.Component {
     super(props);
     this.state = {
       index: 0,
-      image_urls: props.images || []
+      image_urls: props.images || [],
+      maxHeight: 0
     };
     this.navShow = false;
     this.incrementSlide = this.incrementSlide.bind(this);
     this.currentSlide = this.currentSlide.bind(this);
+    this.handleImageLoad = this.handleImageLoad.bind(this);
+    this.refCount = this.state.image_urls.length;
   }
 
   componentDidMount(){
     if (this.state.image_urls.length > 0){
       this.refs[`images${this.state.index}`].style.display = "flex";
     }
+      // if (this.refs[`images${i}`].height > this.maxHeight) {
+      //   this.maxHeight = this.refs[`images${i}`].height;
+      // }
+  }
+
+  handleImageLoad(e) {
+    if (e.target.height > this.state.maxHeight) {
+      this.setState({maxHeight: e.target.height});
+    }
+    debugger
   }
 
   // componentDidUpdate(prevprops, prevState) {
@@ -28,6 +41,12 @@ class ImageSlide extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.setState({image_urls: newProps.images});
+  }
+
+  componentDidUpdate(oldProps, oldState){
+    if (this.state.maxHeight !== oldState.maxHeight) {
+      debugger
+    }
   }
 
   incrementSlide(n) {
@@ -71,12 +90,12 @@ class ImageSlide extends React.Component {
         dots.push(
           <span ref={`dots${i}`} key={i} className="carousel-dot carousel-controls" onClick={this.currentSlide(i)}><i className={` fa-circle ${dotClass}`}></i></span>);
         return (
-          <img ref={`images${i}`} key={i} className="mySlides" src={url} style={{display:`${imageDisp}`}}/>
+          <img onLoad={this.handleImageLoad} ref={`images${i}`} key={i} className="mySlides" src={url} style={{display:`${imageDisp}`}}/>
         );
       });
     }
     return(
-      <div className="image-carousel">
+      <div className="image-carousel" style={this.maxHeight === 0 ? {} : {height: `${this.state.maxHeight}px`}}>
         {mySlides}
         <div className="image-carousel-nav" style={
           !this.navShow ? {display: "none"} : {}
