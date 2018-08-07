@@ -32,3 +32,13 @@ export const fetchStories = (userId) => {
     url: `api/users/${userId}/stories`
   });
 };
+
+export const searchUsers = (query) => {
+  return $.ajax({
+    method: "GET",
+    url: 'api/users/search',
+    data: {
+      query
+    }
+  });
+};

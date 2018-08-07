@@ -4,15 +4,17 @@ export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
+export const RECEIVE_ONLY_USERS = 'RECEIVE_ONLY_USERS';
 
 export const receiveUser = (payload) => {
-
   return {
     type: RECEIVE_USER,
     user: payload.user,
     posts: payload.posts || {}
   };
 };
+
+
 
 export const receiveUsers = (payload) => {
   return {
@@ -27,6 +29,13 @@ export const receiveAllUsers = (payload) => {
     type: RECEIVE_ALL_USERS,
     users: payload.users,
     posts: payload.posts || {}
+  };
+};
+
+export const receiveOnlyUsers = (users) => {
+  return {
+    type: RECEIVE_ONLY_USERS,
+    users
   };
 };
 
@@ -66,8 +75,15 @@ export const fetchStories = (userId) => {
   };
 };
 
-export const receiveUserErrors = (errors) => {
+export const searchUsers = (query) => {
+  return dispatch => {
+    return UserApiUtil.searchUsers(query).then(
+      (payload) => dispatch(receiveOnlyUsers(payload))
+    );
+  };
+};
 
+export const receiveUserErrors = (errors) => {
   return {
     type: RECEIVE_USER_ERRORS,
     errors
