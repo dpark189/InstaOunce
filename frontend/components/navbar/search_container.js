@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
   return {
     query: "",
     results: state.ui.searchResults,
-    errors: state.errors.searchErrors
+    errors: state.errors.searchErrors,
+    fetching: false
   };
 };
 

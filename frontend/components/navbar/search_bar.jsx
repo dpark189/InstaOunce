@@ -5,7 +5,6 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = props;
-    this.fetching = false;
     this.quedQuery = "";
     // {query: "", results: {}, errors: []}
     // this.fetchQuery = this.fetchQuery.bind(this);
@@ -33,16 +32,29 @@ class SearchBar extends React.Component {
 
 
   handleChange() {
+    const that = this;
     return (e) => {
-      this.props.searchUsers(e.target.value);
+      that.setState({fetching: true});
+      that.refs.searchInput.style.backgroundImage = `url(${window.loading})`;
+      that.props.searchUsers(e.target.value).then(
+        that.setState({fetching: false})
+      ).then(
+        that.refs.searchInput.style.backgroundImage = "none"
+      );
     };
   }
 
   render() {
-
+    let background = this.state.fetching ? `url(${window.loading})` : "none";
     return(
       <section className="search-bar-section">
-        <input type="text" className="search-input" onChange={this.handleChange()} placeholder="Search for User"/>
+        <input
+          ref="searchInput"
+          type="text"
+          className="search-input"
+          onChange={this.handleChange()}
+          placeholder="Search for User"
+        />
       </section>
     );
   }
