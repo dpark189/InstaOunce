@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get 'sessions/:id', to: 'sessions#show'
     resources :posts, except: [:new]
     get 'users/:userId/feed', to: 'follows#post_feed', as: 'user_post_feed'
+    get 'users/search', to: 'users#search', as: 'user_search'
     resources :likes, only: [:create, :destroy]
     resources :hashtags, only: [:index, :show]
   end

@@ -10,6 +10,11 @@ class Api::UsersController < ApplicationController
     render :index
   end
 
+  def search
+    query = "%#{params[:userQuery]}%"
+    @users = User.where("username LIKE ?", query)
+  end
+
   def show
     @user = User.includes(
       :posts,
