@@ -15,8 +15,6 @@ export const receiveUser = (payload) => {
   };
 };
 
-
-
 export const receiveUsers = (payload) => {
   return {
     type: RECEIVE_USERS,

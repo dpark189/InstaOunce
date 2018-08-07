@@ -1,5 +1,5 @@
 import { RECEIVE_ONLY_USERS, RECEIVE_SEARCH_ERRORS } from '../actions/user_actions';
-import { merge } from './lodash';
+import { merge } from 'lodash';
 
 export default ( state = {}, action ) => {
   Object.freeze(state);

@@ -1,4 +1,4 @@
-import { RECEIVE_SEARCH_ERRORS, RECEIVE_ONLY_USERS } from '../actions/users/user_actions';
+import { RECEIVE_SEARCH_ERRORS, RECEIVE_ONLY_USERS } from '../actions/user_actions';
 
 export default (state = [], action) => {
   Object.freeze(state);
