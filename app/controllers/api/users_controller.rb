@@ -11,12 +11,13 @@ class Api::UsersController < ApplicationController
   end
 
   def search
-    query = "%#{params[:userQuery]}%"
-    @users = User.where("username LIKE ?", query)
+    query = "#{params[:query]}%"
+    @users = User.where("LOWER(username) LIKE LOWER(?)", query)
     if @users
       render 'api/users/search'
     else
       render json: ["Could not find find users that matched your search"]
+    end
   end
 
   def show

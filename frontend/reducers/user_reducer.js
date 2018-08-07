@@ -20,7 +20,6 @@ export default (state = defaultState, action ) => {
     case RECEIVE_USERS:
     case RECEIVE_POSTS:
     case RECEIVE_COMMENTS:
-    case RECEIVE_ONLY_USERS:
       return merge(newState, action.users);
     case RECEIVE_CURRENT_USER:
     case RECEIVE_POST:

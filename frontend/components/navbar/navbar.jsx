@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import SearchContainer from './search_container';
 
 export default (props) => {
  return (
@@ -13,13 +14,15 @@ export default (props) => {
               </Link>
             </div>
           </nav>
+          <nav className="search-bar-nav">
+            <SearchContainer />
+          </nav>
           <nav className="nav-right">
             <div className="nav-icon">
               <Link to="/explore">
                 <i className="fa fa-compass icon2"></i>
               </Link>
               <i className="fa fa-heart icon2"></i>
-
               <Link to={`/users/${props.sessionId}`}>
               <i className="fa fa-user icon2 "></i>
               </Link>
