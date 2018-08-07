@@ -49,6 +49,9 @@ class User < ApplicationRecord
   has_many :likes
 
   has_one_attached :profile_picture
+  scope :with_eager_loaded_profile_picture, -> {
+    eager_load(profile_picture_attachment: :blob)
+  }
 
 # ---- people i'm following -----
   has_many :follows_as_follower,

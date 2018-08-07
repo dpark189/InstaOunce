@@ -19,7 +19,9 @@ class Post < ApplicationRecord
     class_name: :User
 
   has_many_attached :photos
-  scope :with_eager_loaded_photos, -> { eager_load(photos_attachments: :blob) }
+  scope :with_eager_loaded_photos, -> {
+    eager_load(photos_attachments: :blob)
+  }
 
   has_many :likes, as: :liked_item
 
