@@ -13,6 +13,10 @@ class Api::UsersController < ApplicationController
   def search
     query = "%#{params[:userQuery]}%"
     @users = User.where("username LIKE ?", query)
+    if @users
+      render 'api/users/search'
+    else
+      render json: ["Could not find find users that matched your search"]
   end
 
   def show

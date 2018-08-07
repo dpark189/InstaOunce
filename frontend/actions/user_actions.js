@@ -5,6 +5,7 @@ export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 export const RECEIVE_ONLY_USERS = 'RECEIVE_ONLY_USERS';
+export const RECEIVE_SEARCH_ERRORS = 'RECEIVE_SEARCH_ERRORS';
 
 export const receiveUser = (payload) => {
   return {
@@ -78,8 +79,16 @@ export const fetchStories = (userId) => {
 export const searchUsers = (query) => {
   return dispatch => {
     return UserApiUtil.searchUsers(query).then(
-      (payload) => dispatch(receiveOnlyUsers(payload))
+      (users) => dispatch(receiveOnlyUsers(users)),
+      (errors) => dispatch(receiveSearchErrors(errors))
     );
+  };
+};
+
+export const receiveSearchErrors = (errors) => {
+  return {
+    type: RECEIVE_SEARCH_ERRORS,
+    errors
   };
 };
 
