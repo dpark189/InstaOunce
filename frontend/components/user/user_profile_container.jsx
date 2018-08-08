@@ -31,9 +31,11 @@ class UserProfile extends React.Component {
       bio: props.user.bio
     };
     this.handleFollowClick = this.handleFollowClick.bind(this);
+    this.checkOverflow = this.checkOverflow.bind(this);
   }
 
   componentDidMount(){
+
     const id = this.props.match.params.userId;
     this.props.fetchUser(id).then(
       (payload) => console.log(payload),
@@ -41,6 +43,21 @@ class UserProfile extends React.Component {
         this.props.history.push('/nomatch');
       }
     );
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    const username = this.refs.usernameRef;
+    let font = parseInt(window.getComputedStyle(username).fontSize.split("").join("").slice(0, -2));
+    let overflowing = this.checkOverflow(username);
+    while (overflowing) {
+      font -= 1;
+      username.style.fontSize = `${font}px`;
+      overflowing = this.checkOverflow(username);
+    }
+  }
+
+  checkOverflow(elem) {
+    return elem.offsetWidth < elem.scrollWidth;
   }
 
   handleFollowClick() {
@@ -91,7 +108,6 @@ class UserProfile extends React.Component {
     } else {
       let followText;
       this.state.followStatus ? followText = "Unfollow" : followText = "Follow";
-
       userEdit = (
         <div className="user-info-sub-1-links">
           <div className="profile-buttons">
@@ -137,7 +153,7 @@ class UserProfile extends React.Component {
           <UserProfilePicture fetchUser={this.props.fetchUser} user={this.props.user || ""} />
           <div className="user-content">
             <div className="user-info-sub1">
-              <h3 className="profile-username">{this.props.user.username}</h3>
+              <h3 ref="usernameRef" className="profile-username">{this.props.user.username}</h3>
               {userEdit}
             </div>
             <div className="user-info-sub2">
