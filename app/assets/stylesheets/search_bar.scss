@@ -54,6 +54,11 @@
   align-items: center;
   color: #999;
   padding: 0 10px 10px 5px;
+  cursor: pointer;
+}
+
+.result-user-item:hover {
+  background-color: #efefef;
 }
 
 .result-div {

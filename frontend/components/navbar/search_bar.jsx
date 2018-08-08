@@ -12,6 +12,7 @@ class SearchBar extends React.Component {
     // this.fetchQuery = this.fetchQuery.bind(this);
     // this.checkQue = this.checkQue.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.checkPrevInputVal = this.checkPrevInputVal.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -36,16 +37,31 @@ class SearchBar extends React.Component {
   //   }
 
 
-  handleChange() {
+  checkPrevInputVal(e) {
     const that = this;
-    return (e) => {
-      if (e.target.value){that.setState({fetching: true});
+    if (e.target.value) {
+      that.setState({fetching: true});
+
       that.refs.searchInput.style.backgroundImage = `url(${window.loading})`;
       that.props.searchUsers(e.target.value).then(
         that.setState({fetching: false})
       ).then(
         that.refs.searchInput.style.backgroundImage = "none"
       );
+    }
+  }
+
+  handleChange() {
+    const that = this;
+    return (e) => {
+      if (e.target.value){
+        that.setState({fetching: true});
+        that.refs.searchInput.style.backgroundImage = `url(${window.loading})`;
+        that.props.searchUsers(e.target.value).then(
+          that.setState({fetching: false})
+        ).then(
+          that.refs.searchInput.style.backgroundImage = "none"
+        );
       } else if (e.target.value === "") {
         this.setState({results: {}});
       }
@@ -68,6 +84,10 @@ class SearchBar extends React.Component {
           className="search-input"
           onChange={this.handleChange()}
           placeholder="Search for User"
+          onBlur={(e) => {
+            this.props.clearSearchResult();
+          }}
+          onFocus={this.checkPrevInputVal}
         />
           {results}
       </section>
