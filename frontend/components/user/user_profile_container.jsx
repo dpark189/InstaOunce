@@ -35,7 +35,7 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount(){
-
+    window.scrollTo(0, 0);
     const id = this.props.match.params.userId;
     this.props.fetchUser(id).then(
       (payload) => console.log(payload),
