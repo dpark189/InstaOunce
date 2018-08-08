@@ -26,16 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<Root store={store} />, root);
 
 
-  window.store = store;
-  window.dispatch = store.dispatch;
-  window.getState = store.getState;
-  window.login = login;
-  window.logout = logout;
-  window.signup = signup;
-  window.fetchPost = fetchPost;
-  window.fetchUser = fetchUser;
-  window.fetchCommentsForPost = fetchCommentsForPost;
-  window.fetchCommentsForComment = fetchCommentsForComment;
-  window.fetchComment = fetchComment;
-  window.fetchStories = fetchStories;
+  // window.store = store;
+  // window.dispatch = store.dispatch;
+  // window.getState = store.getState;
+  // window.login = login;
+  // window.logout = logout;
+  // window.signup = signup;
+  // window.fetchPost = fetchPost;
+  // window.fetchUser = fetchUser;
+  // window.fetchCommentsForPost = fetchCommentsForPost;
+  // window.fetchCommentsForComment = fetchCommentsForComment;
+  // window.fetchComment = fetchComment;
+  // window.fetchStories = fetchStories;
 });
