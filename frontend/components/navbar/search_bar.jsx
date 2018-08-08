@@ -84,9 +84,6 @@ class SearchBar extends React.Component {
           className="search-input"
           onChange={this.handleChange()}
           placeholder="Search for User"
-          onBlur={(e) => {
-            this.props.clearSearchResult();
-          }}
           onFocus={this.checkPrevInputVal}
         />
           {results}
