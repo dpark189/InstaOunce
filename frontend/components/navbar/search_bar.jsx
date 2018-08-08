@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Results from './search_results';
+import {merge} from 'lodash';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -12,6 +14,9 @@ class SearchBar extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState({results: newProps.results});
+  }
   // checkQue() {
   //   if (this.quedQuery !== "") {
   //     this.props.fetchQuery(this.quedQuery);
@@ -34,20 +39,29 @@ class SearchBar extends React.Component {
   handleChange() {
     const that = this;
     return (e) => {
-      that.setState({fetching: true});
+      if (e.target.value){that.setState({fetching: true});
       that.refs.searchInput.style.backgroundImage = `url(${window.loading})`;
       that.props.searchUsers(e.target.value).then(
         that.setState({fetching: false})
       ).then(
         that.refs.searchInput.style.backgroundImage = "none"
       );
+      } else if (e.target.value === "") {
+        this.setState({results: {}});
+      }
     };
   }
 
   render() {
-    let background = this.state.fetching ? `url(${window.loading})` : "none";
+    let results;
+    if ((typeof Object.keys(this.state.results) === "undefined") || (typeof this.state.results.users === "undefined")) {
+    } else if (Object.keys(this.state.results.users).length > 0) {
+      results = (
+          <Results inputRef={this.refs.searchInput} users={this.state.results.users}/>
+        );
+    }
     return(
-      <section className="search-bar-section">
+      <section className="search-bar-section ">
         <input
           ref="searchInput"
           type="text"
@@ -55,6 +69,7 @@ class SearchBar extends React.Component {
           onChange={this.handleChange()}
           placeholder="Search for User"
         />
+          {results}
       </section>
     );
   }

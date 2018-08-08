@@ -6,6 +6,7 @@ export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 export const RECEIVE_ONLY_USERS = 'RECEIVE_ONLY_USERS';
 export const RECEIVE_SEARCH_ERRORS = 'RECEIVE_SEARCH_ERRORS';
+export const CLEAR_SEARCH_RESULT = 'CLEAR_SEARCH_RESULT';
 
 export const receiveUser = (payload) => {
   return {
@@ -38,6 +39,11 @@ export const receiveOnlyUsers = (users) => {
   };
 };
 
+export const clearSearchResult = () => {
+  return {
+    type: CLEAR_SEARCH_RESULT
+  };
+};
 
 export const updateUser = (userId, formData) => {
   return dispatch => {
