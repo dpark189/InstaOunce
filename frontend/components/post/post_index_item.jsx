@@ -50,7 +50,6 @@ class PostIndexItem extends React.Component {
   }
 
   handleDispAll (e) {
-
     this.setState({dispAll: true});
   }
 
@@ -113,6 +112,17 @@ class PostIndexItem extends React.Component {
     const date = new Date(this.props.post.updated_at);
     const dispDate = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 
+    let moreSpan;
+    if (this.props.post.commentIds.length > 2) {
+      moreSpan = (
+        <span
+          onClick={this.handleDispAll}
+          className="disp-all-link">
+          {!this.state.dispAll ? `more` : ""}
+        </span>
+      );
+    }
+
     return(
       <div className="post-index-item-div">
 
@@ -151,11 +161,7 @@ class PostIndexItem extends React.Component {
             <span>
               <strong>{this.props.author.username} </strong>{caption}
             </span>
-            <span
-              onClick={this.handleDispAll}
-              className="disp-all-link">
-              {!this.state.dispAll ? `more` : ""}
-            </span>
+            {moreSpan}
           </div>
           <CommentIndex
             dispAll={this.state.dispAll}

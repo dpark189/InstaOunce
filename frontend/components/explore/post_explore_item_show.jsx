@@ -27,12 +27,14 @@ class PostExploreItemShow extends React.Component {
     }
 
     this.state = {
-      likedStatus
+      likedStatus,
+      dispAll: false
     };
 
     this.state.fade = false;
     this.fadingDone = this.fadingDone.bind(this);
     this.handleLikeClick = this.handleLikeClick.bind(this);
+    this.handleDispAll = this.handleDispAll.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +45,10 @@ class PostExploreItemShow extends React.Component {
   componentWillUnmount () {
     const elm = this.refs.liking;
     elm.removeEventListener('animationend', this.fadingDone);
+  }
+
+  handleDispAll (e) {
+    this.setState({dispAll: true});
   }
 
   fadingDone () {
@@ -107,7 +113,17 @@ class PostExploreItemShow extends React.Component {
 
     const date = new Date(this.props.post.updated_at);
     const dispDate = `${date.getMonth()}-${date.getDate()}-${date.getFullYear()}`;
+    let moreSpan;
+    if (this.props.post.commentIds.length > 2) {
 
+      moreSpan = (
+        <span
+          onClick={this.handleDispAll}
+          className="disp-all-link">
+          {!this.state.dispAll ? `more` : ""}
+        </span>
+      );
+    }
     return(
       <div className="post-explore-item-show-div">
         <section className="post-explore-images">
@@ -129,10 +145,13 @@ class PostExploreItemShow extends React.Component {
             <span>
               <strong>{this.props.author.username} </strong>{caption}
             </span>
+            {moreSpan}
             <CommentIndex
               commentIds={this.props.post.commentIds}
               parentType="Post"
-              parentId={this.props.post.id}/>
+              parentId={this.props.post.id}
+              dispAll={this.state.dispAll}
+            />
           </section>
 
             <section className="post-sub-header">

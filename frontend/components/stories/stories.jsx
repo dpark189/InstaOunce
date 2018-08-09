@@ -59,14 +59,16 @@ class Stories extends React.Component {
         return new Date(user2.last_update) - new Date(user1.last_update);
       });
       storyItems = validUsers.map( user => {
-        return (
-          <Link key={`user${user.id}`} to={`/users/${user.id}`}>
-            <StoryItem key={`user${user.id}`} user={user}/>
-          </Link>
-        );
+        if (user.id === this.props.currentUser.id){
+        }else {
+          return (
+            <Link key={`user${user.id}`} to={`/users/${user.id}`}>
+              <StoryItem key={`user${user.id}`} user={user}/>
+            </Link>
+          );
+        }
       });
     }
-
     return(
       <div ref='storiesDiv' className={`story-container fixed-${this.state.refFixed}`} style={{left: this.state.left}}>
         <div className="story-container-div">
