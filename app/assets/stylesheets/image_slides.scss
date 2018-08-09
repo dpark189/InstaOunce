@@ -9,7 +9,7 @@
   margin: 0;
   display: flex;
   justify-content: center;
-  
+
 }
 
 .post-images > .image-carousel {
@@ -23,6 +23,7 @@
 
 img.mySlides {
   max-width: 400px;
+  max-height: 400px;
   box-shadow: 4px 4px 30px 0 ghostwhite;
   overflow: hidden;
 }
