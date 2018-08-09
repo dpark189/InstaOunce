@@ -23,9 +23,12 @@
 
 img.mySlides {
   max-width: 400px;
-  max-height: 400px;
   box-shadow: 4px 4px 30px 0 ghostwhite;
   overflow: hidden;
+}
+
+.post-create-property > .preview-images > .image-carousel > .mySlides {
+  max-height: 400px;
 }
 
 .post-images > .image-carousel > img.mySlides {
