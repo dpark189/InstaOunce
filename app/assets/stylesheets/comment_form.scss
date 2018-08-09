@@ -2,6 +2,11 @@
   visibility: hidden;
 }
 
+.explore-item-comment > .comment-form > .comment-input {
+  position: absolute;
+  bottom: 0;
+}
+
 .comment-form {
   display: flex;
   justify-content: center;
