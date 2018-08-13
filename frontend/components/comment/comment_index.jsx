@@ -16,6 +16,7 @@ class CommentIndex extends React.Component {
   }
   componentDidMount() {
     if (this.props.parentType === "Post") {
+      debugger
       this.props.fetchCommentsForPost(this.props.parentId);
     } else if (this.props.parentType === "Comment") {
 
@@ -58,7 +59,6 @@ const mapStateToProps = (state, ownProps) => {
     return state.entities.comments[commentId];
   }) || {};
   parentComments = _.compact(parentComments);
-
   return {
     comments: parentComments,
     users: state.entities.users,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPost, deletePost } from '../../actions/post_actions';
+import { fetchCommentsForPost } from '../../actions/comment_actions';
 import { fetchUser } from '../../actions/user_actions';
 import { createLike, deleteLike } from '../../actions/like_actions';
 import { Link } from 'react-router-dom';
@@ -38,6 +39,7 @@ class PostIndexItem extends React.Component {
   componentDidMount() {
     const elm = this.refs.liking;
 		elm.addEventListener('animationend', this.fadingDone);
+    this.props.fetchCommentsForPost(this.props.post.id);
   }
 
   componentWillUnmount () {
@@ -203,7 +205,7 @@ const msp = (state, ownProps) => {
 
 const mdp = (dispatch) => {
   return {
-    fetchPosts: () => dispatch(fetchPosts()),
+    fetchCommentsForPost: (postId) => dispatch(fetchCommentsForPost(postId)),
     createLike: (likedType, likedId, currentUserId) => dispatch(createLike(likedType, likedId, currentUserId)),
     deleteLike: (likedType, likedId, currentUserId) => dispatch(deleteLike(likedType, likedId, currentUserId))
   };
