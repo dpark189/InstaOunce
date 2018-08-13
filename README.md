@@ -23,6 +23,9 @@ InstaOunce is built using the following:
 *  The Ruby on Rails backend will automatically parse a new posts captions for hashtags and either create a new hashtag if it does not yet exist or create an assocation with an existing hashtag.
 *  Clicking on a hashtag within a post's caption will render a hash tag page that displays all posts associated with that hashtag
 *  A User's feed will display posts made by their favorite users through the follow system
+
+![](https://lh3.googleusercontent.com/jCilSci3nqtU9GCwcqD8jnzuUcS9AA96XsBaNokDFC66MbxWMlF-jh_yRDeHouTBhKO8F2dtitD_57VrUIu-5QUQc471-lWgTVrAs0LVt8OjyKPt3iGNHe7h5Rygs0H0eFfsMC9gb45x8mdt8zTU2zcNQAjZ-QK2xSrIgnZ4_Jczif_IS6piq_xP4J-IDqyU797Wb3Ip0TBt3ngtW01DjsANYqoVp5PaRxeWOaeUwduuMJbxAG9C9Ydj4pFIRQgCTGvLkU6KfZqCsQ8ntSCzHZY3ZxBsyquVVyljx8-om3DGiE3eqxbd4JGoCWiuUbDsa7jUKpKE0UQFffYuj_irLKywIIoIUQdQU_xoGteI9ummausNuiX84GZ_G8px9SdWEFOeRYyGcDVMiTyV6Ai--7w5tD8qzifw_AL5h7-r-SGu7p9yyiUO7lBL63tgqeARhDlZBjOj_XAU5Dr_Dph3rxIUsuCmkZXlvSJ0cCZ_HQwCBXv3v7iEpTxiGzB0IrUn12LMK6zctOa6qWjO0siA1PCS9jpT21QLSO_EanC1uEacz6_t11MZW38DdL_i3-NRe4_iSE7kKPHXDvVHkG8VSjm_Y4x0ukIlLbHSeuw=w800-h447-no)
+
 *  Upon logging in a user will immediately see a stories container that displays updates on users they follow who have posted within the last 5 days, ordered by the most recent update first.
 *  Users can follow and unfollow other users.
 *  Users can like and unlike posts made by other users, which increments or decrements the given post's like counter dynamically.
