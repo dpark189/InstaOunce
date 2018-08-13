@@ -15,6 +15,9 @@ InstaOunce is built using the following:
    *  React.js and Redux are used to manage the frontend DOM and user interactions while maintaining a normalized state which synchoronizes with backend data through the use of AJAX, Jbuilder and custom routes created in Ruby on Rails.
    
 ## Features
+
+![](https://lh3.googleusercontent.com/lhHeDsKqeQ2_5ojgKS2UNHqTvjXg1mUWsbPrEusgKmisKtV7UkUo-Xf-O4eOV4ZGRMOYnhzSi92PYjHG2d68Ub4rcXRDteklBgJHT6hmO6TR-5BInjzIOVDekNRFI1i922cLTScDvrv9jmOPC1YS-ENrZ9_MCl_SX-n_IYr9Im_Ti7s-LgCytJn4n_Xji2J-hcK1Y1LuLPBs9RamwnF167_stbzGxwN_vhjmQlEtkyKPskzbmT0UlV6C8_e4FISjzipFfJnN_tcABC6Qzt43lCirxc016LH5MOuqhjhdv3c1Uqj5KiaiVDm-yATx0vp481BDXa_m2Vfw5aXfC-UnP3HWJh-AeMau-Uoh_JYrFRzPwR5Ke9j0jTF_G2rlZm95gZPboX8SUOBSZabLztL2ydVgFk0crrUYMAlEpThTdHYHZRZUVGyT2LemeXMPuIOI3w_siYQQDsISWzngXbXIITdSceKlAM2MfqDMLdg8xZojEx_4vLmO9sMd8sRoI0mo2LaFiUpylqAs34UiRswSyu8cY5T-oGBLmtAu7EPl8QhrbUDZkO_01IwWdsYEpbyr4LFj-saaAYiWLF8tuv_4FRXIb2bQlR8x0wzYwJo=w600-h338-no)
+
 *  User authentication using BCrypt.
 *  Users can create posts containing captions and images which can then be seen by their followers and other authorized users.
 *  The Ruby on Rails backend will automatically parse a new posts captions for hashtags and either create a new hashtag if it does not yet exist or create an assocation with an existing hashtag.
