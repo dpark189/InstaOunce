@@ -54,7 +54,11 @@ class ImageSlide extends React.Component {
     const boundN = n;
     return () => {
       that.refs[`images${that.state.index}`].style.display = "none";
-      if ((that.state.index + boundN) <= (that.state.image_urls.length - 1)){
+      if ((that.state.index + boundN) < 0){
+        debugger
+        that.setState({index: that.state.image_urls.length - 1});
+        that.refs[`images${that.state.index}`].style.display = "flex";
+      } else if ((that.state.index + boundN) <= (that.state.image_urls.length - 1)){
         that.setState({index: that.state.index += boundN});
         that.refs[`images${that.state.index}`].style.display = "flex";
       } else {

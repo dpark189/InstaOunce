@@ -16,7 +16,7 @@ class CommentIndex extends React.Component {
   }
   componentDidMount() {
     if (this.props.parentType === "Post") {
-      debugger
+
       this.props.fetchCommentsForPost(this.props.parentId);
     } else if (this.props.parentType === "Comment") {
 
