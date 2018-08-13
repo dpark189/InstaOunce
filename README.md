@@ -19,7 +19,7 @@ InstaOunce is built using the following:
 ![](https://lh3.googleusercontent.com/lhHeDsKqeQ2_5ojgKS2UNHqTvjXg1mUWsbPrEusgKmisKtV7UkUo-Xf-O4eOV4ZGRMOYnhzSi92PYjHG2d68Ub4rcXRDteklBgJHT6hmO6TR-5BInjzIOVDekNRFI1i922cLTScDvrv9jmOPC1YS-ENrZ9_MCl_SX-n_IYr9Im_Ti7s-LgCytJn4n_Xji2J-hcK1Y1LuLPBs9RamwnF167_stbzGxwN_vhjmQlEtkyKPskzbmT0UlV6C8_e4FISjzipFfJnN_tcABC6Qzt43lCirxc016LH5MOuqhjhdv3c1Uqj5KiaiVDm-yATx0vp481BDXa_m2Vfw5aXfC-UnP3HWJh-AeMau-Uoh_JYrFRzPwR5Ke9j0jTF_G2rlZm95gZPboX8SUOBSZabLztL2ydVgFk0crrUYMAlEpThTdHYHZRZUVGyT2LemeXMPuIOI3w_siYQQDsISWzngXbXIITdSceKlAM2MfqDMLdg8xZojEx_4vLmO9sMd8sRoI0mo2LaFiUpylqAs34UiRswSyu8cY5T-oGBLmtAu7EPl8QhrbUDZkO_01IwWdsYEpbyr4LFj-saaAYiWLF8tuv_4FRXIb2bQlR8x0wzYwJo=w600-h338-no)
 
 *  User authentication using BCrypt.
-*  Users can create posts containing captions and images which can then be seen by their followers and other authorized users.
+*  Users can create posts containing captions and multiple images which can then be seen by their followers and other authorized users.
 *  The Ruby on Rails backend will automatically parse a new posts captions for hashtags and either create a new hashtag if it does not yet exist or create an assocation with an existing hashtag.
 *  Clicking on a hashtag within a post's caption will render a hash tag page that displays all posts associated with that hashtag
 *  A User's feed will display posts made by their favorite users through the follow system
@@ -38,10 +38,11 @@ Likes and hashtags make use of polymorphic associations. This was done to allow 
 
 ## Postscript
 
-### Short Term Future Features Estimated to be Complete By 8/10/2018
-*  More robust production Readme.
-*  Multiple images can be posted on a single post.
-*  If a post has multiple images, clicking arrow icons on the sides of the post will flip through each image.
+### Updates 8/10/2018
+*  Multiple images can be uploaded for a post.
+*  Image carousel implemented, allowing for users to flip through images
+
+### Short Term Future Features
 *  Users will have the option to post videos.
 *  Users can like comments and hashtags witten in the body of a comment belonging to a post will create an assocation between the post and the hashtag
 
