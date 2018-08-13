@@ -42,6 +42,10 @@ Likes and hashtags make use of polymorphic associations. This was done to allow 
 ## Postscript
 
 ### Updates 8/10/2018
+*  Implemented infinite scroll for user feed.
+   *  Scrolling to bottom of a user's feed will load additional posts.
+   *  10 posts will be fetched at a time to decrease unnecessary data transfers from database.
+*  Implemented a search function that searches for users with matching usernames
 *  Multiple images can be uploaded for a post.
 *  Image carousel implemented, allowing for users to flip through images
 
