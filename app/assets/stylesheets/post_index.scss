@@ -12,6 +12,11 @@
 .empty-feed {
   text-align: center;
   color: #999;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .app-level-index-div {

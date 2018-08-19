@@ -58,9 +58,24 @@ class PostIndex extends React.Component {
     });
     if (items.length === 0) {
       items = (
-        <span className="empty-feed">Feed is empty. To Find other users, click
-            <Link to="/explore"> <strong>here </strong></Link>
-        or use the Search bar above.</span>
+        <span className="empty-feed">
+          <div>
+            Feed is empty.
+          </div>
+          <div>
+            To find other users, click&nbsp;
+            <Link to="/explore">
+              <strong>here</strong>
+            </Link>
+            &nbsp;or "Search for User" above.
+          </div>
+          <div>
+            To make a post, click&nbsp;
+            <Link to={`/users/${this.props.currentUserId}`}>
+              <strong>here</strong>
+            </Link>.
+          </div>
+        </span>
       );
     }
     return (
