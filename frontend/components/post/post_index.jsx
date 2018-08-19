@@ -46,8 +46,7 @@ class PostIndex extends React.Component {
   }
 
   render () {
-    
-    const items = this.state.posts.map( (post) => {
+    let items = this.state.posts.map( (post) => {
       return (
         <PostIndexItem
           post={post}
@@ -57,6 +56,13 @@ class PostIndex extends React.Component {
         />
       );
     });
+    if (items.length === 0) {
+      items = (
+        <span className="empty-feed">Feed is empty. To Find other users, click
+            <Link to="/explore"> <strong>here </strong></Link>
+        or use the Search bar above.</span>
+      );
+    }
     return (
       <section className="post-index-section">
         {items}
