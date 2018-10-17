@@ -15,6 +15,7 @@
 
 
 
+
 ![](https://lh3.googleusercontent.com/UZFJF0NdfJL4mORiQGw7OavxYF6kYRK3fW8kr_z8D1RF5fSYZmT-XfJ5WRxd2vFmQTpUDJzqIi72IO0nJxAUGOFrhB11N-qt0XpzoogCBf4o_7F9ybPqruVwwI9tdqsz2FKOttjmUUYLNEfa2GXVQ9VcwbcjBEdaIFNCJIthTSYBzJBBaqhFCkHjQcYPT7GrQU-jNQjq1QBVB83R0dlT5qTUg-SvUa_N3VYjdiCUZEVauwX3c-JSuNWMeIQXpPbnlO3Dmi-Tr9cPVvP_F08F8xER20Aq6HZAjLLxbyEi8oC2avWNxNQAGQrdLGO6yEFRwIXQ50o9gcHMd-lMe_oCGuUfkKfiviUtX-MGUEntX4FJu76qV3HYZMafE4qvozbAuh8Qswly5tIVQfpXznHvFisBm4riInCgFHu-rozcfKzMQhb93IeQfrmuksOpUYPIUYnNerAf1QN-oEOG-Xn31nBfI6IeUSM9cfDwzgLQShLDCoQpWuQ_MMNhwwT0NqMT3_uZ--9ei0RRaOguhM2WuC5ZHBKucrZX9ecAY0Xv6A9ZTQfGaH4KqTWYYXFVIuWxg5TqffHfCYPidPliqWMecZTaGxX-cktUJQaIYQg=w600-h348-no)
 
 InstaOunce is a full-stack web application inspired by Instagram. The purpose of this app is to provide users with a way to share pictures, thoughts through posts, build small communities via hashtags, and ultimately connect people together. InstaOunce uses Ruby on Rails for the backend, a PostgreSQL database, and React/Redux architectural framework for the frontend.
